@@ -7,5 +7,5 @@
 🥅 2021 Goals: Complete cath.exe and get 1000 Subscribers in YouTube
 Links:
 [Website]: https://cath.gq/
-[cath.exe Discord Bot]: https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands
+[cath.exe Discord Bot]: https://dsc.gg/cath
 [YouTube]: https://youtube.com/c/Kirito01/
