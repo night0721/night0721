@@ -1,5 +1,4 @@
-# night
-Personal stats
+# Personal stats
 [![night0721's github stats](https://github-readme-stats.vercel.app/api?username=night0721&show_icons=true&theme=synthwave)](https://github.com/night0721/night)
 
 ### Hi! I am Night aka Kirito.
