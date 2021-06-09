@@ -7,7 +7,7 @@
 ### I'm a junior school student insisted on programming!
 🥅 2021 Goals: Complete cath.exe and get 1000 Subscribers in YouTube
 
-[![Top Language](https://github-readme-stats.vercel.app/api/top-langs/?username=night0721&layout=compact)](https://github.com/night0721/night)
+[![Top Language](https://github-readme-stats.vercel.app/api/top-langs/?username=night0721&layout=compact&theme=algolia)](https://github.com/night0721/night)
 
 
 Links:
