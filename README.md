@@ -1,7 +1,7 @@
 # Night's Stats
 [![night0721's github stats](https://github-readme-stats.vercel.app/api?username=night0721&show_icons=true&theme=tokyonight)](https://github.com/night0721/night0721)
 
-
+![dacord](https://discord.c99.nl/widget/theme-2/452076196419600394.png)
 ### Hi! I am Night aka Kirito.
 
 ### I'm a junior school student insisted on programming!
@@ -16,7 +16,6 @@
 [![cath.gq](https://github-readme-stats.vercel.app/api/pin/?username=night0721&repo=cath.gq&theme=gotham)](https://github.com/night0721/cath.gq)
 
 Links:
-
 [Website<img src = "https://cdn.discordapp.com/emojis/841196992385253408.png" width = 15>](https://cath.gq/)
 [cath.exe<img src = "https://cdn.discordapp.com/emojis/836296538137428009.png" width = 15>](https://dsc.gg/cath)
 [YouTube<img src = "https://cdn.discordapp.com/emojis/841186450497339412.png" width = 15>](https://youtube.com/c/Kirito01/)
