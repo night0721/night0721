@@ -2,10 +2,8 @@
 [![night0721's github stats](https://github-readme-stats.vercel.app/api?username=night0721&show_icons=true&theme=tokyonight)](https://github.com/night0721/night0721)
 
 ![dacord](https://discord.c99.nl/widget/theme-2/452076196419600394.png)
-### Hi! I am Night aka Kirito.
+### Hi! I am Night aka Kirito from Hong Kong.
 
-### I'm a junior school student insisted on programming!
-🥅 2021 Goals: Complete cath.exe and get 1000 Subscribers in YouTube
 
 ### Top Language
 [![Top Language](https://github-readme-stats.vercel.app/api/top-langs/?username=night0721&layout=compact&theme=algolia)](https://github.com/night0721/night0721)
