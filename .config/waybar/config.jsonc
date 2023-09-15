@@ -6,36 +6,16 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 20,
-    "modules-left": [
-    ],
     "modules-center": [
         "clock",
         "custom/updates"
     ],
     "modules-right": [
-        "cpu",
         "pulseaudio",
         "pulseaudio#microphone",
-        "backlight",
         "tray",
         "battery"
     ],
-    "include": [],
-    "hyprland/language": {
-        "interval": 30,
-        "format": " {}",
-        "keyboard-name": "logitech-g512-rgb-mechanical-gaming-keyboard",
-        "on-click": "hyprctl switchxkblayout logitech-g512-rgb-mechanical-gaming-keyboard next && baraction",
-        "signal": 8
-    },
-    "cpu": {
-        "interval": 10,
-        "format": "",
-        "max-length": 10,
-        "format-alt-click": "click-right",
-        "format-alt": " {usage}%",
-        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    },
     "battery": {
         "states": {
             "good": 80,
@@ -80,15 +60,6 @@
         "scroll-step": 5,
         "tooltip": true,
         "tooltip-format": " at {volume}%"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon}",
-        "format-alt-click": "click-right",
-        "format-alt": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "brightness --inc",
-        "on-scroll-down": "brightness --dec"
     },
     "tray": {
         "icon-size": 16,
