@@ -1,0 +1,8 @@
+catppuccin-gtk-theme-mocha
+hyprland-nvidia
+libva-nvidia-driver-git
+nwg-look-bin
+swaylock-effects
+swww
+wlogout
+yay

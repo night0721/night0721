@@ -1,0 +1,14 @@
+[General]
+day_time_start=4
+day_time_start=5
+background_vid_day=night.m3u
+background_vid_night=night.m3u
+displayFont="jetbrains mono nerd font"
+passwordLeftMargin=15
+relativePositionX=0.2
+relativePositionY=0.2
+showLoginButton=false
+type=color
+usernameLeftMargin=15
+showTopBar=true
+autofocusInput=true
