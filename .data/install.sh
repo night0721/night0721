@@ -40,6 +40,7 @@ nvidia_stage=(
 
 # the main packages
 install_stage=(
+    ntfs-3g
     catppuccin-gtk-theme-mocha
     autojump
     cmatrix
@@ -62,7 +63,6 @@ install_stage=(
     swww 
     swaylock-effects 
     wofi 
-    wlogout 
     xdg-desktop-portal-hyprland 
     swappy 
     grim 
@@ -73,7 +73,6 @@ install_stage=(
     mpv
     pamixer 
     pavucontrol 
-    brightnessctl 
     bluez 
     bluez-utils 
     blueman 
@@ -86,7 +85,7 @@ install_stage=(
     lxappearance 
     xfce4-settings
     nwg-look-bin
-    sddm
+    sddm-git
 )
 
 # set some colors
@@ -287,6 +286,9 @@ gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-L
 
 # zsh
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
+cd ~/.config/zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
 # plymouth
 cd /usr/share/plymouth/themes/
