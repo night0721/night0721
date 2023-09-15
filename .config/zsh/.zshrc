@@ -5,8 +5,6 @@
 # aliases
 source "${XDG_CONFIG_HOME}/zsh/aliases"
 
-#export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-
 #options
 unsetopt menu_complete
 unsetopt flowcontrol
@@ -33,17 +31,8 @@ bindkey '^e' end-of-line
 # theme/plugins
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.config/zsh/zsh-auto-notify/auto-notify.plugin.zsh
 
 zstyle ':completion:*' menu select
-
-# history substring search options
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# auto notify options
-AUTO_NOTIFY_IGNORE+=("lf" "hugo serve" "wofi" "cat" "bat")
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
@@ -63,11 +52,8 @@ source $XDG_CONFIG_HOME/zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $XDG_CONFIG_HOME/zsh/.p10k.zsh ]] || source $XDG_CONFIG_HOME/zsh/.p10k.zsh
 
 
-#neofetch
-icat --place 10x10@0x0 /run/media/N/.nky/Photo/Profile\ Pic/me.png
-echo "\n\n\n\n"
-#echo "N 0.0.1"
-#echo "Copyright (c) N Corporation. No rights reserved."
-#echo ""
-#echo "https://night.is-a.dev"
+echo "N 0.0.1"
+echo "Copyright (c) N Corporation. No rights reserved."
+echo ""
+echo "https://night.is-a.dev"
 
