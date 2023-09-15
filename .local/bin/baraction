@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. ~/.config/n.conf
+
+#set the xfce and GTK theme
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
+gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
+xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-dark"
+gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
+
+# change background
+swww img $BACKGROUND 
+# if need transition, add the following to the command
+# --transition-fps 60 --transition-type wipe --transition-duration 1
+
+#reset mako
+sleep 1
+pkill mako
+mako &
+
+#restart the waybar
+#killall -SIGUSR2 waybar <-- start causing web brwsers to close so switched to below...
+pkill waybar
+waybar &
+
+# start bottom bar if config is yes
+if [[ $BOTTOM_BAR == "yes" ]]; then
+	waybar --config ~/.config/waybar/bottom.jsonc
+fi
