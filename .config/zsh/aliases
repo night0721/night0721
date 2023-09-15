@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# settings for common commands
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -vI"
+alias bc="bc -ql"
+alias mkdir="mkdir -pv"
+alias cat='bat'
+alias cls="clear"
+alias grep='grep --color=always'
+alias ls='ls --color=auto'
+alias ll="ls -lah"
+alias :q="exit"
+
+# application aliases
+alias v="$EDITOR"
+alias vw="$EDITOR /run/media/N/.nky/Coding/Markdown/wiki/index.md"
+alias vim="$EDITOR"
+alias p="sudo pacman"
+alias sd="shutdown now"
+alias nf="neofetch"
+alias cpc="paccache -dvk2"
+alias rmpkg="sudo pacman -Rcns"
+alias rmpkg-conf="sudo pacman -Runs"
+alias pipes="pipes.sh"
+alias icat="kitty +kitten icat"
+alias foldersize="sudo du -shc"
+alias findfiles="grep -Rnwi"
+
+# Change directory aliases
+alias .='cd ~'
+alias ..='cd ..'
+
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
