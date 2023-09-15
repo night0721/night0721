@@ -9,10 +9,8 @@ xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavend
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
 
 # change background
-swww img $BACKGROUND 
-# if need transition, add the following to the command
-# --transition-fps 60 --transition-type wipe --transition-duration 1
-
+swww img $BACKGROUND --transition-fps 60 --transition-type wipe --transition-duration 1
+ 
 #reset mako
 sleep 1
 pkill mako
@@ -22,8 +20,3 @@ mako &
 #killall -SIGUSR2 waybar <-- start causing web brwsers to close so switched to below...
 pkill waybar
 waybar &
-
-# start bottom bar if config is yes
-if [[ $BOTTOM_BAR == "yes" ]]; then
-	waybar --config ~/.config/waybar/bottom.jsonc
-fi

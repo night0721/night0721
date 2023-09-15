@@ -33,6 +33,7 @@ nvidia_stage=(
     libva 
     libva-nvidia-driver-git
 )
+
 # not sure do i still need lxappearance when nwg-look exist
 # thunar-archive-plugin can be removed
 # maybe need to swap sddm to sddm-git
@@ -135,16 +136,6 @@ install_software() {
 # clear the screen
 clear
 
-# give the user an option to exit out
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install (y,n) ' CONTINST
-if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
-    echo -e "$CNT - Setup starting..."
-    sudo touch /tmp/hyprv.tmp
-else
-    echo -e "$CNT - This script will now exit, no changes were made to your system."
-    exit
-fi
-
 # find the Nvidia GPU
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
     ISNVIDIA=true
@@ -217,10 +208,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     
         # update config
         sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-        # append to HOOKS
-        # HOOKS=(base udev plymouth autodetect modconf kms keyboard keymap consolefont block filesystems fsck)
-
-        sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+        sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
+        sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
         echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf &>> $INSTLOG
     fi
 
@@ -304,7 +293,6 @@ cd /usr/share/plymouth/themes/
 sudo git clone https://github.com/farsil/monoarch
 plymouth-set-default-theme -R monoarch
 
-
 # grub
 cd ~/dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
@@ -313,9 +301,10 @@ mkdir /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -Qtdq > orphans.txt # remove orphans but tell you what is removed
-sudo pacman -Qtdq | pacman -Rns -
-# may use pacman -Qqd | pacman -Rsu -
+# remove pacman stuff
+sudo pacman -Qttdq | pacman -Rns - # remove orphans
+sudo pacman -Qqd | pacman -Rsu -
+sudo paccache -rk1
 
 cd ~
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
