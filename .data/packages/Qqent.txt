@@ -2,7 +2,6 @@ adobe-source-han-sans-hk-fonts
 adobe-source-han-sans-kr-fonts
 alsa-utils
 amd-ucode
-arandr
 base
 base-devel
 bat
@@ -11,7 +10,6 @@ bluez-utils
 btop
 cliphist
 cmatrix
-code
 firefox
 github-cli
 graphicsmagick
@@ -30,7 +28,6 @@ noto-fonts-emoji
 nvidia-dkms
 pacman-contrib
 pamixer
-papirus-icon-theme
 pavucontrol
 pdftricks
 polkit-gnome
@@ -41,7 +38,6 @@ qt5-quickcontrols2
 qt5ct
 qt6ct
 sddm
-starship
 swappy
 waybar
 wget

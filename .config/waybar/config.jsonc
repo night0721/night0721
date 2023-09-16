@@ -11,8 +11,8 @@
         "custom/updates"
     ],
     "modules-right": [
-        "pulseaudio",
-        "pulseaudio#microphone",
+        //"pulseaudio",
+        //"pulseaudio#microphone",
         "tray",
         "battery"
     ],

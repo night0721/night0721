@@ -4,5 +4,4 @@ libva-nvidia-driver-git
 nwg-look-bin
 swaylock-effects
 swww
-wlogout
 yay
