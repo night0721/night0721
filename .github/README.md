@@ -49,6 +49,14 @@ Files for theming:
 ~/.icons/default/index.theme
 ~/.config/xsettingsd/xsettingsd.conf
 
+## Setup
+
+git init --bare $HOME/dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
+
+Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
+
 ## Default Keybinds
 
 SUPER + S = Start Kitty
