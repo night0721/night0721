@@ -1,4 +1,5 @@
 adobe-source-han-sans-hk-fonts
+adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 alsa-utils
 amd-ucode
@@ -11,6 +12,7 @@ btop
 cliphist
 cmatrix
 firefox
+fzf
 github-cli
 graphicsmagick
 grub-customizer
@@ -21,6 +23,7 @@ mako
 man-db
 mpv
 nano
+ncdu
 neofetch
 neovim
 network-manager-applet
@@ -30,6 +33,7 @@ pacman-contrib
 pamixer
 pavucontrol
 pdftricks
+plymouth
 polkit-gnome
 python-requests
 qt5-multimedia
@@ -39,8 +43,9 @@ qt5ct
 qt6ct
 sddm
 swappy
+sxiv
+ttf-jetbrains-mono-nerd
 waybar
 wget
 wofi
 xfce4-settings
-zsh

@@ -40,6 +40,8 @@ nvidia_stage=(
 
 # the main packages
 install_stage=(
+    node
+    npm
     ntfs-3g
     catppuccin-gtk-theme-mocha
     autojump
