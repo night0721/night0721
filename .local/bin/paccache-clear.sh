@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 # Script to clean pacman and paru (or your favorite aur helper) cache
