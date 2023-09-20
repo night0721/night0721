@@ -9,11 +9,14 @@ vim.opt.relativenumber = true
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case
 
+vim.opt.number = true
 vim.opt.numberwidth = 2
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.wrap = true
+vim.opt.breakindent = true
 
 vim.opt.smartindent = true
 
