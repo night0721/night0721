@@ -50,12 +50,26 @@ Files for theming:
 ~/.config/xsettingsd/xsettingsd.conf
 
 ## Setup
-
+```
+iwctl
+device list # find device name
+station [device name] scan
+station [device name] get-networks
+station [device name] connect [network name]
+exit
+```
+```
 git init --bare $HOME/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
-
+```
 Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
+
+## Post setup
+```
+nmcli device wifi connect [network name] password [password]
+sudo pacman -Syu
+```
 
 ## Default Keybinds
 
