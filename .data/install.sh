@@ -1,139 +1,5 @@
 #!/bin/bash
 
-# Need some prep work
-prep_stage=(
-    qt5-wayland 
-    qt5ct
-    qt6-wayland 
-    qt6ct
-    qt5-svg
-    qt5-quickcontrols
-    qt5-quickcontrols2
-    qt5-graphicaleffects
-    qt5-multimedia
-    phonon-qt5-gstreamer
-    gst-libav
-    gst-plugins-good
-    gtk3 
-    polkit-gnome 
-    pipewire 
-    wireplumber 
-    jq 
-    wl-clipboard 
-    cliphist 
-    python-requests 
-    pacman-contrib
-)
-
-# software for nvidia GPU only
-nvidia_stage=(
-    linux-headers 
-    nvidia-dkms 
-    nvidia-settings 
-    libva 
-    libva-nvidia-driver-git
-)
-
-# not sure do i still need lxappearance when nwg-look exist
-# thunar-archive-plugin can be removed
-# maybe need to swap sddm to sddm-git
-
-# the main packages
-install_stage=(
-    node
-    npm
-    ntfs-3g
-    catppuccin-gtk-theme-mocha
-    autojump
-    cmatrix
-    pipes.sh
-    plymouth
-    adobe-source-han-sans-hk-fonts 
-    adobe-source-han-sans-jp-fonts 
-    adobe-source-han-sans-kr-fonts
-    os-prober
-    ncdu
-    bat
-    zsh
-    lf
-    graphicsmagick
-    pdftricks
-    man-db
-    kitty 
-    mako 
-    waybar 
-    swww 
-    swaylock-effects 
-    wofi 
-    xdg-desktop-portal-hyprland 
-    swappy 
-    grim 
-    slurp 
-    thunar 
-    btop
-    firefox
-    mpv
-    pamixer 
-    pavucontrol 
-    bluez 
-    bluez-utils 
-    blueman 
-    network-manager-applet 
-    gvfs 
-    thunar-archive-plugin 
-    file-roller
-    ttf-jetbrains-mono-nerd 
-    noto-fonts-emoji 
-    lxappearance 
-    xfce4-settings
-    nwg-look-bin
-    sddm-git
-)
-
-# set some colors
-CNT="[\e[1;36mNOTE\e[0m]"
-COK="[\e[1;32mOK\e[0m]"
-CER="[\e[1;31mERROR\e[0m]"
-CAT="[\e[1;37mATTENTION\e[0m]"
-CWR="[\e[1;35mWARNING\e[0m]"
-CAC="[\e[1;33mACTION\e[0m]"
-INSTLOG="install.log"
-
-######
-# functions go here
-
-# function that would show a progress bar to the user
-show_progress() {
-    while ps | grep $1 &> /dev/null;
-    do
-        echo -n "."
-        sleep 2
-    done
-    echo -en "Done!\n"
-    sleep 2
-}
-
-# function that will test for a package and if not found it will attempt to install it
-install_software() {
-    # First lets see if the package is there
-    if yay -Q $1 &>> /dev/null ; then
-        echo -e "$COK - $1 is already installed."
-    else
-        # no package found so installing
-        echo -en "$CNT - Now installing $1 ."
-        yay -S --noconfirm $1 &>> $INSTLOG &
-        show_progress $!
-        # test to make sure package installed
-        if yay -Q $1 &>> /dev/null ; then
-            echo -e "\e[1A\e[K$COK - $1 was installed."
-        else
-            # if this is hit then a package is missing, exit to review log
-            echo -e "\e[1A\e[K$CER - $1 install had failed, please check the install.log"
-            exit
-        fi
-    fi
-}
-
 # clear the screen
 clear
 
@@ -144,140 +10,106 @@ else
     ISNVIDIA=false
 fi
 
+echo "Enter EFI Partition"
+read efipart
+echo "Enter Windows Partition"
+read windowspart
+mount -mkdir $efipart /boot/efi
+mount -mkdir $windowspart /run/media/N
+echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user,auto,fmask=133,dmask=022,uid=1000\t0 0" | sudo tee -a /etc/fstab
+genfstab -U / >> /etc/fstab
+echo "Enter root password"
+passwd
+useradd -m night -aG wheel,storage,power night
+sudo sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_time=600/" /etc/sudoers
+sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+echo "Enter hostname: "
+read hostname
+echo $hostname > /etc/hostname
+cat > /mnt/etc/hosts <<EOF
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   $hostname.localdomain   localhost
+EOF
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock —systohc
+
+
 ### Disable wifi powersave mode ###
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave? (y,n) ' WIFI
-if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
-    LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-    echo -e "$CNT - The following file has been created $LOC.\n"
-    echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
-    echo -en "$CNT - Restarting NetworkManager service, Please wait."
-    sleep 2
-    sudo systemctl restart NetworkManager &>> $INSTLOG
-    
-    #wait for services to restore (looking at you DNS)
-    for i in {1..6} 
-    do
-        echo -n "."
-        sleep 1
-    done
-    echo -en "Done!\n"
-    sleep 2
-    echo -e "\e[1A\e[K$COK - NetworkManager restart completed."
+LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
+touch $LOC
+echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
+sleep 2
+sudo systemctl restart NetworkManager 
+#wait for services to restore (looking at you DNS)
+for i in {1..6} 
+do
+    echo -n "."
+    sleep 1
+done
+sleep 2
+
+# yay AUR helper
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+if [ -f /sbin/yay ]; then
+    cd ..    
+    # update the yay database
+    yay -Suy --noconfirm
+else
+    # if this is hit then a package is missing, exit to review log
+    exit
 fi
-
-#### Check for package manager ####
-if [ ! -f /sbin/yay ]; then  
-    echo -en "$CNT - Configuering yay."
-    git clone https://aur.archlinux.org/yay.git &>> $INSTLOG
-    cd yay
-    makepkg -si --noconfirm &>> ../$INSTLOG &
-    show_progress $!
-    if [ -f /sbin/yay ]; then
-        echo -e "\e[1A\e[K$COK - yay configured"
-        cd ..
-        
-        # update the yay database
-        echo -en "$CNT - Updating yay."
-        yay -Suy --noconfirm &>> $INSTLOG &
-        show_progress $!
-        echo -e "\e[1A\e[K$COK - yay updated."
-    else
-        # if this is hit then a package is missing, exit to review log
-        echo -e "\e[1A\e[K$CER - yay install failed, please check the install.log"
-        exit
-    fi
-fi
-
-
 
 ### Install all of the above pacakges ####
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
-if [[ $INST == "Y" || $INST == "y" ]]; then
-
-    # Prep Stage - Bunch of needed items
-    echo -e "$CNT - Prep Stage - Installing needed components, this may take a while..."
-    for SOFTWR in ${prep_stage[@]}; do
-        install_software $SOFTWR 
-    done
-
-    # Setup Nvidia if it was found
-    if [[ "$ISNVIDIA" == true ]]; then
-        echo -e "$CNT - Nvidia GPU support setup stage, this may take a while..."
-        for SOFTWR in ${nvidia_stage[@]}; do
-            install_software $SOFTWR
-        done
-    
-        # update config
-        sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-        sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
-        sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-        echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf &>> $INSTLOG
-    fi
-
-    # Install the correct hyprland version
-    echo -e "$CNT - Installing Hyprland, this may take a while..."
-    if [[ "$ISNVIDIA" == true ]]; then
-        #check for hyprland and remove it so the -nvidia package can be installed
-        if yay -Q hyprland &>> /dev/null ; then
-            yay -R --noconfirm hyprland &>> $INSTLOG &
-        fi
-        install_software hyprland-nvidia
-    else
-        install_software hyprland
-    fi
-
-    # Stage 1 - main components
-    echo -e "$CNT - Installing main components, this may take a while..."
-    for SOFTWR in ${install_stage[@]}; do
-        install_software $SOFTWR 
-    done
-
-    # Start the bluetooth service
-    echo -e "$CNT - Starting the Bluetooth Service..."
-    sudo systemctl enable --now bluetooth.service &>> $INSTLOG
-    sleep 2
-
-    # Enable the sddm login manager service
-    echo -e "$CNT - Enabling the SDDM Service..."
-    sudo systemctl enable sddm &>> $INSTLOG
-    sleep 2
-    
-    # Clean out other portals
-    echo -e "$CNT - Cleaning out conflicting xdg portals..."
-    yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
+yay -S --needed --noconfirm adobe-source-hans-sans-hk-fonts adobe-source-hans-jp-fonts adobe-source-hans-kr-fonts \
+    autojump bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
+    firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs jq kitty lf libva \
+    libva-nvidia-driver-git linux-headers mako man-db mpv ncdu neofetch neovim network-manager-applet node \
+    noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
+    pavucontrol pdftricks pipewire phonon-qt5-gstreamer pipes.sh plymouth python-requests qt5-graphicaleffects \
+    qt5-multimedia qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git slurp \
+    swappy swaylock-effects swww sxiv thunar ttf-jetbrains-mono-nerd waybar wget wireplumber wl-clipboard wofi xdg-desktop-portal-hyprland zsh
+# update config
+sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
+sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
+# Install the correct hyprland version
+#check for hyprland and remove it so the -nvidia package can be installed
+if yay -Q hyprland &>> /dev/null ; then
+    yay -R --noconfirm hyprland
 fi
+install_software hyprland-nvidia
+# Start the bluetooth service
+sudo systemctl enable --now bluetooth
+sleep 2
+# Enable the sddm login manager service
+sudo systemctl enable sddm
+sleep 2 
+# Clean out other portals
+yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
 
 ### Copy Config Files ###
 cp -R .config ~/.config/
 
-# add the Nvidia env file to the config (if needed)
-if [[ "$ISNVIDIA" == true ]]; then
-    echo -e "\nsource = ~/.config/hypr/env_var_nvidia.conf" >> ~/.config/hypr/hyprland.conf
-fi
-
 # Copy the SDDM theme
-echo -e "$CNT - Setting up the login screen."
 cd ~
 git clone https://github.com/3ximus/aerial-sddm-theme aerial
 sudo cp -R aerial /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
 cd /usr/share/sddm/themes/aerial
-rm -rf playlists screens
-rm README.md LICENSE .gitignore theme.conf.user background.jpg
-cp ~/dotfiles/.data/aerial/night.m3u .
-cp ~/dotfiles/.data/aerial/theme.conf.user .
-cp ~/dotfiles/.config/background.jpg .
+rm -rf playlists screens README.md LICENSE .gitnore theme.conf.user background.jpg
+cp ~/dotfiles/.data/aerial/night.m3u ~/dotfiles/.data/aerial/theme.conf.user ~/dotfiles/.config/background.png .
 sudo mkdir /etc/sddm.conf.d
 echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
-WLDIR=/usr/share/wayland-sessions
-if [ -d "$WLDIR" ]; then
-    echo -e "$COK - $WLDIR found"
-else
-    echo -e "$CWR - $WLDIR NOT found, creating..."
-    sudo mkdir $WLDIR
-fi 
-    
+
 # stage the .desktop file
+sudo mkdir /usr/share/wayland-sessions  
 sudo cp ~/dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
@@ -304,27 +136,17 @@ sudo cp .data/misc/grub /etc/default/grub
 mkdir /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+grub-install —target=x86_64-efi —bootloader-id=GRUB —recheck
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # remove pacman stuff
-sudo pacman -Qttdq | pacman -Rns - # remove orphans
-sudo pacman -Qqd | pacman -Rsu -
-sudo paccache -rk1
+sudo pacman -Rns $(pacman -Qdttq) # remove orphans
+pacman -Qqd | pacman -Rsu -
+sudo paccache -dvuk1
 
 cd ~
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
-### Script is done ###
-echo -e "$CNT - Script had completed!"
-if [[ "$ISNVIDIA" == true ]]; then 
-    echo -e "$CAT - Since we attempted to setup an Nvidia GPU the script will now end and you should reboot.
-    Please type 'reboot' at the prompt and hit Enter when ready."
-    exit
-fi
-
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
-if [[ $HYP == "Y" || $HYP == "y" ]]; then
-    exec sudo systemctl start sddm &>> $INSTLOG
-else
-    exit
-fi
+systemctl enable NetworkManager
+echo "Install finished, type 'reboot'"
