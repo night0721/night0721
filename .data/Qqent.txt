@@ -1,9 +1,9 @@
-#alsa-utils
-#github-cli
-#lxappearance
-#nano
-#polkit-gnome
-#sddm
-#xfce4-settings
+alsa-utils
+github-cli
+lxappearance
+nano
+polkit-gnome
+sddm
+xfce4-settings
 file-roller
 thunar-archive-plugin
