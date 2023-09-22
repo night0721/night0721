@@ -10,6 +10,8 @@ efipart=/dev/nvme0n1p1
 #read windowspart
 windowspart=/dev/nvme0n1p3
 
+cd /home/night
+
 # yay AUR helper
 git clone https://aur.archlinux.org/yay.git
 cd yay
