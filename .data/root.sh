@@ -13,6 +13,16 @@ swappart=/dev/nvme0n1p7
 #echo "Enter EFI partition: "
 #read efipart
 efipart=/dev/nvme0n1p1
+
+echo "Enter night password"
+read nightpasswd
+
+echo "Enter root password"
+read rootpasswd
+
+echo "Enter hostname"
+read hostname
+
 mkfs.ext4 $rootpart
 mkfs.ext4 $homepart
 mkswap $swappart
@@ -29,25 +39,21 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -- << EOCHROOT
 useradd -m night
 usermod -aG wheel,storage,power night
-echo "Enter night password"
-passwd night
-wcho "Enter root password"
-passwd
+usermod --password $nightpasswd night
+echo $rootpasswd | passwd --stdin root
 sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
 sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
-echo "Enter hostname: "
-read hostname
 echo $hostname > /etc/hostname
-cat > /mnt/etc/hosts <<EOF
+cat > /etc/hosts <<EOF
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   $hostname.localdomain   localhost
 EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock —-systohc
+hwclock —w
 EOCHROOT
-cp install.sh /mnt/install.sh
+cp ~/dotfiles/.data/install.sh /mnt/install.sh
 arch-chroot /mnt -u night bash /install.sh
