@@ -54,6 +54,7 @@ cat > /etc/hosts <<EOF
 EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock —w
+sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 EOCHROOT
 cp ~/dotfiles/.data/install.sh /mnt/install.sh
 arch-chroot -u night /mnt bash /install.sh
