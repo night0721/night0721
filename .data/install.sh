@@ -21,7 +21,7 @@ genfstab -U / >> /etc/fstab
 echo "Enter root password"
 passwd
 useradd -m night -aG wheel,storage,power night
-sudo sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_time=600/" /etc/sudoers
+sudo sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -35,7 +35,7 @@ cat > /mnt/etc/hosts <<EOF
 127.0.1.1   $hostname.localdomain   localhost
 EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock —systohc
+hwclock —-systohc
 
 
 ### Disable wifi powersave mode ###
