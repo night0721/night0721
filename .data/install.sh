@@ -20,7 +20,8 @@ echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user
 genfstab -U / >> /etc/fstab
 echo "Enter root password"
 passwd
-useradd -m night -aG wheel,storage,power night
+useradd -m night
+usermod -aG wheel,storage,power night
 sudo sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
