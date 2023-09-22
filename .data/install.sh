@@ -3,48 +3,12 @@
 # clear the screen
 clear
 
-echo "Enter EFI Partition"
-read efipart
-echo "Enter Windows Partition"
-read windowspart
-mount --mkdir $efipart /boot/efi
-mount --mkdir $windowspart /run/media/N
-echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user,auto,fmask=133,dmask=022,uid=1000\t0 0" | sudo tee -a /etc/fstab
-genfstab -U / >> /etc/fstab
-echo "Enter root password"
-passwd
-useradd -m night
-usermod -aG wheel,storage,power night
-sudo sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
-sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
-export LANG=en_US.UTF-8
-echo "Enter hostname: "
-read hostname
-echo $hostname > /etc/hostname
-cat > /mnt/etc/hosts <<EOF
-127.0.0.1   localhost
-::1         localhost
-127.0.1.1   $hostname.localdomain   localhost
-EOF
-ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock —-systohc
-
-
-### Disable wifi powersave mode ###
-LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-touch $LOC
-echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
-sleep 2
-sudo systemctl restart NetworkManager 
-#wait for services to restore (looking at you DNS)
-for i in {1..6} 
-do
-    echo -n "."
-    sleep 1
-done
-sleep 2
+#echo "Enter EFI Partition"
+#read efipart
+efipart=/dev/nvme0n1p1
+#echo "Enter Windows Partition"
+#read windowspart
+windowspart=/dev/nvme0n1p3
 
 # yay AUR helper
 git clone https://aur.archlinux.org/yay.git
@@ -87,6 +51,26 @@ sudo systemctl enable sddm
 sleep 2 
 # Clean out other portals
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+
+### Disable wifi powersave mode ###
+LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
+mkdir -p /etc/NetworkManager/conf.d
+touch $LOC
+echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
+sleep 2
+sudo systemctl restart NetworkManager 
+#wait for services to restore (looking at you DNS)
+for i in {1..6} 
+do
+    echo -n "."
+    sleep 1
+done
+sleep 2
+
+mount --mkdir $efipart /boot/efi
+mount --mkdir $windowspart /run/media/N
+echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user,auto,fmask=133,dmask=022,uid=1000\t0 0" | sudo tee -a /etc/fstab
+genfstab -U / >> /etc/fstab
 
 ### Copy Config Files ###
 cp -R .config ~/.config/
