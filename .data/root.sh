@@ -57,4 +57,4 @@ hwclock —w
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 EOCHROOT
 cp ~/dotfiles/.data/install.sh /mnt/install.sh
-arch-chroot -u night /mnt bash /install.sh
+arch-chroot -u night /mnt su -c /install.sh -s /bin/sh night
