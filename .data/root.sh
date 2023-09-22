@@ -1,24 +1,53 @@
 timedatectl set-timezone Europe/London
-cfdisk /dev/nvme0n1
-echo "Enter root partition: "
-read rootpart
-echo "Enter home partition: "
-read homepart
-echo "Enter swap partition: "
-read swappart
-echo "Enter EFI partition: "
-read efipart
+sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
+#cfdisk /dev/nvme0n1
+#echo "Enter root partition: "
+#read rootpart
+rootpart=/dev/nvme0n1p4
+#echo "Enter home partition: "
+#read homepart
+homepart=/dev/nvme0n1p6
+#echo "Enter swap partition: "
+#read swappart
+swappart=/dev/nvme0n1p7
+#echo "Enter EFI partition: "
+#read efipart
+efipart=/dev/nvme0n1p1
 mkfs.ext4 $rootpart
 mkfs.ext4 $homepart
 mkswap $swappart
 swapon $swappart
 mount $rootpart /mnt
-mount -mkdir $homepart /mnt/home
-mount -mkdir $efipart /mnt/boot/efi/
+mount --mkdir $homepart /mnt/home
+mount --mkdir $efipart /mnt/boot/efi/
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 pacman -Syu
-pacman -S pacman-contrib
+pacman -S --noconfirm pacman-contrib
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
-pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager pulseaudio grub efibootmgr dosfstools mtools os-prober
+pacstrap -i --noconfirm /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager pulseaudio grub efibootmgr dosfstools mtools os-prober
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt ./install.sh
+arch-chroot /mnt /bin/bash -- << EOCHROOT
+useradd -m night
+usermod -aG wheel,storage,power night
+echo "Enter night password"
+passwd night
+wcho "Enter root password"
+passwd
+sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
+sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+echo "Enter hostname: "
+read hostname
+echo $hostname > /etc/hostname
+cat > /mnt/etc/hosts <<EOF
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   $hostname.localdomain   localhost
+EOF
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock —-systohc
+EOCHROOT
+cp install.sh /mnt/install.sh
+arch-chroot /mnt -u night bash /install.sh
