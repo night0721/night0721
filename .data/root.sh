@@ -56,4 +56,4 @@ ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock —w
 EOCHROOT
 cp ~/dotfiles/.data/install.sh /mnt/install.sh
-arch-chroot /mnt -u night bash /install.sh
+arch-chroot -u night /mnt bash /install.sh
