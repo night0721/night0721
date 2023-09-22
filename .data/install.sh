@@ -3,19 +3,12 @@
 # clear the screen
 clear
 
-# find the Nvidia GPU
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    ISNVIDIA=true
-else
-    ISNVIDIA=false
-fi
-
 echo "Enter EFI Partition"
 read efipart
 echo "Enter Windows Partition"
 read windowspart
-mount -mkdir $efipart /boot/efi
-mount -mkdir $windowspart /run/media/N
+mount --mkdir $efipart /boot/efi
+mount --mkdir $windowspart /run/media/N
 echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user,auto,fmask=133,dmask=022,uid=1000\t0 0" | sudo tee -a /etc/fstab
 genfstab -U / >> /etc/fstab
 echo "Enter root password"
