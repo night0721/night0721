@@ -13,13 +13,13 @@ windowspart=/dev/nvme0n1p3
 cd /home/night
 
 # yay AUR helper
-git clone https://aur.archlinux.org/yay.git
+git clone https://aur.archlinux.org/yay.git > /dev/null
 cd yay
-makepkg -si --noconfirm
+makepkg -si --noconfirm > /dev/null
 if [ -f /sbin/yay ]; then
     cd ..    
     # update the yay database
-    yay -Syu --noconfirm
+    yay -Syu --noconfirm > /dev/null
 else
     # if this is hit then a package is missing, exit to review log
     exit
@@ -28,13 +28,13 @@ fi
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-hans-sans-hk-fonts adobe-source-hans-jp-fonts adobe-source-hans-kr-fonts \
     autojump bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
-    firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs jq \
-    kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv ncdu neofetch neovim \
-    network-manager-applet node noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings \
-    nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire phonon-qt5-gstreamer \
-    pipes.sh plymouth python-requests qt5-graphicaleffects qt5-multimedia qt5-quickcontrols \
-    qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git slurp swappy \
-    swaylock-effects swww sxiv thunar ttf-jetbrains-mono-nerd waybar wget wireplumber \
+    firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs \
+    hyprland-nvidia jq kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv \
+    ncdu neofetch neovim network-manager-applet node noto-fonts-emoji npm ntfs-3g nvidia-dkms \
+    nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
+    phonon-qt5-gstreamer pipes.sh plymouth python-requests qt5-graphicaleffects qt5-multimedia \
+    qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git \
+    slurp swappy swaylock-effects swww sxiv thunar ttf-jetbrains-mono-nerd waybar wget wireplumber \
     wl-clipboard wofi xdg-desktop-portal-hyprland zsh --noconfirm > /dev/null
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -44,9 +44,8 @@ echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 # Install the correct hyprland version
 #check for hyprland and remove it so the -nvidia package can be installed
 if yay -Q hyprland &>> /dev/null ; then
-    yay -R --noconfirm hyprland
+    yay -R hyprland --noconfirm > /dev/null
 fi
-install_software hyprland-nvidia
 # Start the bluetooth service
 sudo systemctl enable --now bluetooth
 sleep 2
@@ -54,7 +53,7 @@ sleep 2
 sudo systemctl enable sddm
 sleep 2 
 # Clean out other portals
-yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk > /dev/null
 
 ### Disable wifi powersave mode ###
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
