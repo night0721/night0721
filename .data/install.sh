@@ -24,7 +24,7 @@ fi
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    autojump bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
+    bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
     firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs \
     hyprland-nvidia jq kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv \
     ncdu neofetch neovim network-manager-applet node noto-fonts-emoji npm ntfs-3g nvidia-dkms \
@@ -73,6 +73,12 @@ sudo mkdir /etc/sddm.conf.d
 sudo touch /etc/sddm.conf.d/10-theme.conf
 echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
+# autojump
+cd /home/night
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py
+
 # stage the .desktop file
 sudo mkdir /usr/share/wayland-sessions  
 sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
@@ -80,13 +86,8 @@ sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 # setup the first look and feel as dark
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-<<<<<<< HEAD
 xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-Dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-=======
-xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-dark"
-gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
->>>>>>> 53c41c1 (init from new laptop)
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
