@@ -76,7 +76,7 @@ echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user
 genfstab -U / >> /etc/fstab
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config ~/.config/
+cp -R /dotfiles/.config /home/night/.config/
 
 # Copy the SDDM theme
 cd /dordiles
