@@ -1,6 +1,12 @@
 #!/bin/bash
 efipart=/dev/nvme0n1p1
 windowspart=/dev/nvme0n1p3
+
+echo "Enter night password"
+read nightpasswd
+
+echo "$nightpasswd" | sudo
+
 # clear the screen
 clear
 
