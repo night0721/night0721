@@ -80,8 +80,13 @@ sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 # setup the first look and feel as dark
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
+<<<<<<< HEAD
 xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-Dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+=======
+xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-dark"
+gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
+>>>>>>> 53c41c1 (init from new laptop)
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
