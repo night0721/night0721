@@ -75,22 +75,22 @@ echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user
 genfstab -U / >> /etc/fstab
 
 ### Copy Config Files ###
-cp -R .config ~/.config/
+cp -R /dotfiles/.config ~/.config/
 
 # Copy the SDDM theme
-cd ~
+cd /dordiles
 git clone https://github.com/3ximus/aerial-sddm-theme aerial
 sudo cp -R aerial /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
 cd /usr/share/sddm/themes/aerial
 rm -rf playlists screens README.md LICENSE .gitnore theme.conf.user background.jpg
-cp ~/dotfiles/.data/aerial/night.m3u ~/dotfiles/.data/aerial/theme.conf.user ~/dotfiles/.config/background.png .
+cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
 sudo mkdir /etc/sddm.conf.d
 echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
 
 # stage the .desktop file
 sudo mkdir /usr/share/wayland-sessions  
-sudo cp ~/dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
+sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
@@ -110,7 +110,7 @@ sudo git clone https://github.com/farsil/monoarch
 plymouth-set-default-theme -R monoarch
 
 # grub
-cd ~/dotfiles
+cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
 mkdir /boot/grub/themes/
