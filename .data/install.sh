@@ -19,21 +19,21 @@ makepkg -si --noconfirm
 if [ -f /sbin/yay ]; then
     cd ..    
     # update the yay database
-    yay -Suy --noconfirm
+    yay -Syu --noconfirm
 else
     # if this is hit then a package is missing, exit to review log
     exit
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed --noconfirm adobe-source-hans-sans-hk-fonts adobe-source-hans-jp-fonts adobe-source-hans-kr-fonts \
+yay -S --needed adobe-source-hans-sans-hk-fonts adobe-source-hans-jp-fonts adobe-source-hans-kr-fonts \
     autojump bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
     firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs jq kitty lf libva \
     libva-nvidia-driver-git linux-headers mako man-db mpv ncdu neofetch neovim network-manager-applet node \
     noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
     pavucontrol pdftricks pipewire phonon-qt5-gstreamer pipes.sh plymouth python-requests qt5-graphicaleffects \
     qt5-multimedia qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git slurp \
-    swappy swaylock-effects swww sxiv thunar ttf-jetbrains-mono-nerd waybar wget wireplumber wl-clipboard wofi xdg-desktop-portal-hyprland zsh
+    swappy swaylock-effects swww sxiv thunar ttf-jetbrains-mono-nerd waybar wget wireplumber wl-clipboard wofi xdg-desktop-portal-hyprland zsh --noconfirm
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
