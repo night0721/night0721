@@ -68,8 +68,16 @@ nmcli device wifi connect [network name] password [password]
 yay
 nwg-look
 grub-customizer
->>>>>>> 53c41c1 (init from new laptop)
 ```
+For firefox
+
+goto about:profiles and create a new profile with custom folder
+
+cd into the folder and create user.js
+
+copy [betterfox](https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js) into user.js
+
+restart firefox
 
 ## Default Keybinds
 
