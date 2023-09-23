@@ -79,7 +79,7 @@ genfstab -U / >> /etc/fstab
 cp -R /dotfiles/.config /home/night/.config/
 
 # Copy the SDDM theme
-cd /dordiles
+cd /dotfiles
 git clone https://github.com/3ximus/aerial-sddm-theme aerial
 sudo cp -R aerial /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
