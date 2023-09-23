@@ -63,7 +63,7 @@ done
 sleep 2
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config /home/night/.config/
+cp -R /dotfiles/.config /home/night
 
 # Copy the SDDM theme
 cd /dotfiles
