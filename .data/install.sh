@@ -121,13 +121,13 @@ grub-install —target=x86_64-efi —bootloader-id=GRUB —recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # remove pacman stuff
-sudo pacman -Rns $(pacman -Qdttq) # remove orphans
-pacman -Qqd | pacman -Rsu -
-sudo paccache -dvuk1
+sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
+pacman -Qqd | pacman -Rsu - > /dev/null
+sudo paccache -dvuk1 > /dev/null
 
 cd ~
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
-systemctl enable NetworkManager
+suso systemctl enable NetworkManager
 echo "Install finished, type 'reboot'"
