@@ -40,7 +40,7 @@ arch-chroot /mnt /bin/bash -- << EOCHROOT
 useradd -m night
 usermod -aG wheel,storage,power night
 usermod --password $nightpasswd night
-echo $rootpasswd | passwd --stdin root
+printf "$rootpasswd\n$rootpasswd" | passwd root
 sed -i "s/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
 sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
