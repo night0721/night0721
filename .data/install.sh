@@ -108,13 +108,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting
 # plymouth
 cd /usr/share/plymouth/themes/
 sudo git clone https://github.com/farsil/monoarch
-plymouth-set-default-theme -R monoarch
+sudo plymouth-set-default-theme -R monoarch > /dev/null
 
 # grub
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
-mkdir /boot/grub/themes/
+mkdir -p /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 grub-install —target=x86_64-efi —bootloader-id=GRUB —recheck
