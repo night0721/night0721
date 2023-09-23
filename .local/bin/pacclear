@@ -6,7 +6,7 @@
 # https://gist.github.com/luukvbaal/2c697b5e068471ee989bff8a56507142
 
 sudo pacman -Rns $(pacman -Qdttq) # remove orphans
-pacman -Qqd | pacman -Rsu -
+pacman -Qqd | sudo pacman -Rsu -
 sudo paccache -dvuk2
 paccache -r
 
