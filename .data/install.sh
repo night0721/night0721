@@ -1,5 +1,6 @@
 #!/bin/bash
-
+efipart=/dev/nvme0n1p1
+windowspart=/dev/nvme0n1p3
 # clear the screen
 clear
 
@@ -98,13 +99,15 @@ sudo git clone https://github.com/farsil/monoarch
 sudo plymouth-set-default-theme -R monoarch > /dev/null
 
 # grub
+mount --mkdir $efipart /boot/efi/
+mount --mkdir $windowspart /run/media/N
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
 mkdir -p /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-grub-install —target=x86_64-efi —bootloader-id=GRUB —recheck
+grub-install —-target=x86_64-efi —-bootloader-id=Arch —-recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # remove pacman stuff
