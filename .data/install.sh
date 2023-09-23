@@ -5,7 +5,7 @@ windowspart=/dev/nvme0n1p3
 echo "Enter night password"
 read nightpasswd
 
-echo "$nightpasswd" | sudo
+echo "$nightpasswd\n" | sudo
 
 # clear the screen
 clear
@@ -92,7 +92,7 @@ xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavend
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
 
 # zsh
-ln -sf /home/night/config/zsh/.zshenv /home/night/.zshenv
+ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
 # cd /home/.config/zsh
 # git clone https://github.com/zsh-users/zsh-autosuggestions
 #git clone https://github.com/zsh-users/zsh-syntax-highlighting
