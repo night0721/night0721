@@ -57,25 +57,17 @@ LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
 sudo mkdir -p /etc/NetworkManager/conf.d
 sudo touch $LOC
 echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
-sleep 2
-sudo systemctl restart NetworkManager 
-#wait for services to restore (looking at you DNS)
-for i in {1..6} 
-do
-    sleep 1
-done
-sleep 2
 
 ### Copy Config Files ###
 cp -R /dotfiles/.config /home/night
 
 # Copy the SDDM theme
 cd /dotfiles
-git clone https://github.com/3ximus/aerial-sddm-theme aerial
+sudo git clone https://github.com/3ximus/aerial-sddm-theme aerial
 sudo cp -R aerial /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
 cd /usr/share/sddm/themes/aerial
-rm -rf playlists screens README.md LICENSE .gitnore theme.conf.user background.jpg
+rm -rf playlists screens .git README.md LICENSE .gitignore theme.conf.user background.jpg
 cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
 sudo mkdir /etc/sddm.conf.d
 sudo touch /etc/sddm.conf.d/10-theme.conf
@@ -110,7 +102,6 @@ sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
 suso mkdir -p /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
-sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
