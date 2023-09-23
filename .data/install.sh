@@ -119,5 +119,7 @@ cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
+printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
+
 sudo systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"

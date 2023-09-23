@@ -68,6 +68,7 @@ nmcli device wifi connect [network name] password [password]
 yay
 nwg-look
 grub-customizer
+git config --global credential.helper store
 ```
 For firefox
 
