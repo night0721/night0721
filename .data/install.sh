@@ -5,8 +5,11 @@ windowspart=/dev/nvme0n1p3
 echo "Enter night password"
 read nightpasswd
 
+<<<<<<< HEAD
 echo "$nightpasswd\n" | sudo
 
+=======
+>>>>>>> 53c41c1 (init from new laptop)
 # clear the screen
 clear
 
@@ -60,6 +63,11 @@ echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
 cp -R /dotfiles/.config /home/night
+<<<<<<< HEAD
+=======
+mkdir /home/night/.local/bin
+cp -R /dotfiles/.local/bin /home/night/.local
+>>>>>>> 53c41c1 (init from new laptop)
 
 # Copy the SDDM theme
 cd /dotfiles

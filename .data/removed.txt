@@ -1,0 +1,7 @@
+alsa-utils
+github-cli
+lxappearance
+polkit-gnome
+xfce4-settings
+file-roller
+thunar-archive-plugin
