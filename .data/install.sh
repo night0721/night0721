@@ -5,11 +5,6 @@ windowspart=/dev/nvme0n1p3
 echo "Enter night password"
 read nightpasswd
 
-<<<<<<< HEAD
-echo "$nightpasswd\n" | sudo
-
-=======
->>>>>>> 53c41c1 (init from new laptop)
 # clear the screen
 clear
 
@@ -28,7 +23,7 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-hans-sans-hk-fonts adobe-source-hans-jp-fonts adobe-source-hans-kr-fonts \
+yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
     autojump bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
     firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs \
     hyprland-nvidia jq kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv \
@@ -63,11 +58,8 @@ echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
 cp -R /dotfiles/.config /home/night
-<<<<<<< HEAD
-=======
 mkdir /home/night/.local/bin
 cp -R /dotfiles/.local/bin /home/night/.local
->>>>>>> 53c41c1 (init from new laptop)
 
 # Copy the SDDM theme
 cd /dotfiles
@@ -88,8 +80,8 @@ sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 # setup the first look and feel as dark
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-dark"
-gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
+xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-Dark"
+gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
