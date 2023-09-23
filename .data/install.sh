@@ -34,15 +34,13 @@ sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidi
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
-# Install the correct hyprland version
-#check for hyprland and remove it so the -nvidia package can be installed
+
 if yay -Q hyprland &>> /dev/null ; then
     yay -R hyprland --noconfirm > /dev/null
 fi
-# Start the bluetooth service
+
 sudo systemctl enable --now bluetooth
 sleep 2
-# Enable the sddm login manager service
 sudo systemctl enable sddm
 sleep 2 
 # Clean out other portals
@@ -58,7 +56,6 @@ sudo systemctl restart NetworkManager
 #wait for services to restore (looking at you DNS)
 for i in {1..6} 
 do
-    echo -n "."
     sleep 1
 done
 sleep 2
@@ -75,6 +72,7 @@ cd /usr/share/sddm/themes/aerial
 rm -rf playlists screens README.md LICENSE .gitnore theme.conf.user background.jpg
 cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
 sudo mkdir /etc/sddm.conf.d
+sudo touch /etc/sddm.conf.d/10-theme.conf
 echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # stage the .desktop file
@@ -89,13 +87,13 @@ gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-L
 
 # zsh
 ln -sf /home/night/config/zsh/.zshenv /home/night/.zshenv
-cd /home/.config/zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting
+# cd /home/.config/zsh
+# git clone https://github.com/zsh-users/zsh-autosuggestions
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
 # plymouth
 cd /usr/share/plymouth/themes/
-sudo git clone https://github.com/farsil/monoarch
+sudo git clone https://github.com/farsil/monoarch > /dev/null
 sudo plymouth-set-default-theme -R monoarch > /dev/null
 
 # grub
@@ -119,5 +117,5 @@ cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
-suso systemctl enable NetworkManager
+suso systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"
