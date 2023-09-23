@@ -55,7 +55,7 @@ EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock —w
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
-EOCHROOT > /dev/null
+EOCHROOT
 cp -r ~/dotfiles/ /mnt/dotfiles/
 # cp ~/dotfiles/.data/install.sh /mnt/install.sh
 arch-chroot -u night /mnt su -c /dotfiles/.data/install.sh -s /bin/sh night > /dev/null
