@@ -31,10 +31,10 @@ mount $rootpart /mnt
 mount --mkdir $homepart /mnt/home
 mount --mkdir $efipart /mnt/boot/efi/
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-pacman -Syu --noconfirm
-pacman -S pacman-contrib --noconfirm
+pacman -Syu --noconfirm > /dev/null
+pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
-pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager pulseaudio grub efibootmgr dosfstools mtools os-prober --noconfirm
+pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager pulseaudio grub efibootmgr dosfstools mtools os-prober --noconfirm > /dev/null
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -- << EOCHROOT
 useradd -m night
@@ -55,7 +55,7 @@ EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock —w
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
-EOCHROOT
+EOCHROOT > /dev/null
 cp -r ~/dotfiles/ /mnt/dotfiles/
 # cp ~/dotfiles/.data/install.sh /mnt/install.sh
-arch-chroot -u night /mnt su -c /dotfiles/.data/install.sh -s /bin/sh night
+arch-chroot -u night /mnt su -c /dotfiles/.data/install.sh -s /bin/sh night > /dev/null
