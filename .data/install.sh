@@ -54,8 +54,8 @@ yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk > /dev/null
 
 ### Disable wifi powersave mode ###
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-mkdir -p /etc/NetworkManager/conf.d
-touch $LOC
+sudo mkdir -p /etc/NetworkManager/conf.d
+sudo touch $LOC
 echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 sleep 2
 sudo systemctl restart NetworkManager 
@@ -103,16 +103,16 @@ sudo git clone https://github.com/farsil/monoarch > /dev/null
 sudo plymouth-set-default-theme -R monoarch > /dev/null
 
 # grub
-mount --mkdir $efipart /boot/efi/
-mount --mkdir $windowspart /run/media/N
+sudo mount --mkdir $efipart /boot/efi/
+sudo mount --mkdir $windowspart /run/media/N
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
-mkdir -p /boot/grub/themes/
+suso mkdir -p /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-grub-install —-target=x86_64-efi —-bootloader-id=Arch —-recheck
-grub-mkconfig -o /boot/grub/grub.cfg
+sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # remove pacman stuff
 sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
@@ -123,5 +123,5 @@ cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
-suso systemctl enable --now NetworkManager
+sudo systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"
