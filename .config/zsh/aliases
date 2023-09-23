@@ -12,7 +12,7 @@ alias grep='grep --color=always'
 alias ls='ls --color=auto'
 alias ll="ls -lah"
 alias :q="exit"
-alias j="autojump"
+
 # application aliases
 alias v="$EDITOR"
 alias vw="$EDITOR /run/media/N/.nky/Coding/Markdown/wiki/index.md"
