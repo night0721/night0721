@@ -75,7 +75,7 @@ cd /usr/share/sddm/themes/aerial
 rm -rf playlists screens README.md LICENSE .gitnore theme.conf.user background.jpg
 cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
 sudo mkdir /etc/sddm.conf.d
-echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
+echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # stage the .desktop file
 sudo mkdir /usr/share/wayland-sessions  
@@ -88,8 +88,8 @@ xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavend
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-dark"
 
 # zsh
-ln -sf ~/.config/zsh/.zshenv ~/.zshenv
-cd ~/.config/zsh
+ln -sf /home/night/config/zsh/.zshenv /home/night/.zshenv
+cd /home/.config/zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
