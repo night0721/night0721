@@ -3,15 +3,7 @@
 # clear the screen
 clear
 
-#echo "Enter EFI Partition"
-#read efipart
-efipart=/dev/nvme0n1p1
-#echo "Enter Windows Partition"
-#read windowspart
-windowspart=/dev/nvme0n1p3
-
 cd /home/night
-
 # yay AUR helper
 git clone https://aur.archlinux.org/yay.git > /dev/null
 cd yay
@@ -70,11 +62,6 @@ do
 done
 sleep 2
 
-mount --mkdir $efipart /boot/efi
-mount --mkdir $windowspart /run/media/N
-echo "# $windowspart\nUUID=94ACAFD1ACAFAC64\t\t\t\t/run/media/N\tntfs\t\trw,user,auto,fmask=133,dmask=022,uid=1000\t0 0" | sudo tee -a /etc/fstab
-genfstab -U / >> /etc/fstab
-
 ### Copy Config Files ###
 cp -R /dotfiles/.config /home/night/.config/
 
@@ -125,7 +112,7 @@ sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
 pacman -Qqd | pacman -Rsu - > /dev/null
 sudo paccache -dvuk1 > /dev/null
 
-cd ~
+cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
