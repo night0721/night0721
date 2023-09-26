@@ -1,10 +1,10 @@
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
 
-lsp.ensure_installed({
-    'tsserver',
-    'eslint',
+require('mason').setup({})
+require("mason-lspconfig").setup({
+    ensure_installed = {'tsserver', 'eslint'}
 })
+lsp.preset('recommended')
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
@@ -27,7 +27,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<A-x>"] = cmp.mapping.close()
 })
 
-lsp.setup_nvim_cmp({
+cmp.setup({
     mapping = cmp_mappings
 })
 
