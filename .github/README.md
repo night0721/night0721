@@ -39,7 +39,7 @@ npm i -g tldr
 ```
 Windws partition in fstab should have these properties
 ```
-UUID=94ACAFD1ACAFAC64				/run/media/N	ntfs		rw,user,auto,fmask=133,dmask=022,uid=1000	0 0
+UUID=94ACAFD1ACAFAC64   /run/media/N    ntfs        rw,user,auto,fmask=133,dmask=022,uid=1000,gid=1000  0 0
 ```
 
 ## Install

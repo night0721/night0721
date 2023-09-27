@@ -39,6 +39,8 @@ pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
 pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager pulseaudio grub efibootmgr dosfstools mtools os-prober --noconfirm > /dev/null
 genfstab -U /mnt >> /mnt/etc/fstab
+rmmod pcspkr
+rmmod snd_pcsp # speaker for no beeping as it is annoying
 arch-chroot /mnt /bin/bash -- << EOCHROOT
 useradd -m night
 usermod -aG wheel,storage,power night
