@@ -73,6 +73,8 @@ yay
 nwg-look
 grub-customizer
 git config --global credential.helper store
+rmmod pcspkr
+rmmod snd_pcsp
 ```
 For firefox
 
