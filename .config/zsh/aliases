@@ -28,6 +28,7 @@ alias pipes="pipes.sh"
 alias icat="kitty +kitten icat"
 alias foldersize="sudo du -shc"
 alias findfiles="grep -Rnwi"
+alias files="find / -type f | fzf"
 
 # Change directory aliases
 alias .='cd ~'

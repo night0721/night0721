@@ -1,0 +1,1 @@
+nvim $(find / -type f | fzf)

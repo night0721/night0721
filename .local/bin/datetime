@@ -1,0 +1,9 @@
+#!/bin/bash
+while true; do
+    clear
+    current_time=$(date +"%T")
+    banner_text=$(figlet "$current_time")
+    echo "$banner_text"
+    sleep 1
+done
+

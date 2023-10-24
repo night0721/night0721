@@ -79,6 +79,9 @@ return require('packer').startup(function(use)
 
     -- autoclose html tags
     use 'alvan/vim-closetag'
+    
+    -- indent blankline
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- lsp
     use {
