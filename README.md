@@ -1,6 +1,6 @@
 # Hi, I'm Night
-### Developer from Hong Kong
-#### "*Free as in Freedom* - Richard Stallman"
+** Developer from Hong Kong **
+"*Free as in Freedom* - Richard Stallman"
 
 > For more information, please check my [website](https://night0721.xyz)
 
