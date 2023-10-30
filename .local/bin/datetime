@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 while true; do
     clear
     current_time=$(date +"%T")

@@ -1,8 +1,9 @@
+#!/bin/sh
+
 videos_dir="$HOME/.nky/Video"
 timestamp=$(date +"%Y%m%d%H%M%S")
 recording_file="$videos_dir/$timestamp.mp4"
 wf-recorder -g "$(slurp)" -f "$recording_file"
 notify-send "Screen recording started"
-read -p "Press Enter to stop recording..."
+read -p "Press Ctrl C to stop recording..."
 pkill wf-recorder
-notify-send "Screen recording stopped"
