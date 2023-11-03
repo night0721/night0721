@@ -18,6 +18,11 @@ cmd mkfile ${{
   read ans
   $EDITOR $ans
 }}
+cmd rm ${{
+    printf "File Name: "
+    read ans
+    rm $ans
+}}
 
 # Archive bindings
 cmd unarchive ${{
@@ -49,9 +54,8 @@ map R reload
 map mf mkfile
 map md mkdir
 map C clear
+map d rm
 
 # Movement
-map gw cd /run/media/N/.nky/Coding/Markdown/website
 map gc cd ~/.config
-map gr cd ~/.repos
 map gs cd ~/.local/bin
