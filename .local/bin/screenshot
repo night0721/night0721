@@ -1,6 +1,5 @@
 #!/bin/sh -e
 
-. ~/.config/n.conf
 auth=$EZAPIKEY
 url="https://api.e-z.host/files"
 
