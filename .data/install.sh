@@ -116,6 +116,9 @@ sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
 pacman -Qqd | pacman -Rsu - > /dev/null
 sudo paccache -dvuk1 > /dev/null
 
+# npm
+npm config set prefix '~/.local/npm'
+
 cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
