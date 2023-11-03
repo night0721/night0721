@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Type the pattern you want to replace"
+read pattern
+echo "Type the phrase you want to replace with"
+read replacewith
+
+find . -type f -exec sed -i "s/$pattern/$replacewith/g" {} \;
