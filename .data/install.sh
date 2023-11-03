@@ -31,8 +31,8 @@ yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts ad
     nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
     phonon-qt5-gstreamer pipes.sh plymouth python-requests qt5-graphicaleffects qt5-multimedia \
     qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git \
-    slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip waybar wget wireplumber \
-    wl-clipboard wofi xdg-desktop-portal-hyprland zip zsh --noconfirm > /dev/null
+    slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip waybar wf-recorder wget wireplumber \
+    wl-clipboard wofi xdg-desktop-portal-hyprland yt-dlp zip zsh --noconfirm > /dev/null
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
