@@ -7,7 +7,7 @@ xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavend
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 
 # change background
-swww img ~/.nky/Photo/Background/champ.png --transition-fps 60 --transition-type wipe --transition-duration 1
+swww img ~/.nky/Photo/Background/champ.jpg --transition-fps 60 --transition-type wipe --transition-duration 1
  
 #reset mako
 sleep 1
