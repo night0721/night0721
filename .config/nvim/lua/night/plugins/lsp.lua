@@ -1,9 +1,22 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local function setup(server)
+    lspconfig[server].setup({
+        capabilities = capabilities
+    })
+end
 
 require('mason').setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = {'tsserver', 'eslint'}
+    ensure_installed = {'tsserver', 'eslint', 'lua_ls', 'rust_analyzer', 'pylsp'}
 })
+
+require("mason-lspconfig").setup_handlers({
+    setup
+})
+
 lsp.preset('recommended')
 
 -- Fix Undefined global 'vim'

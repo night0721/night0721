@@ -79,7 +79,7 @@ return require('packer').startup(function(use)
 
     -- autoclose html tags
     use 'alvan/vim-closetag'
-    
+
     -- indent blankline
     use 'lukas-reineke/indent-blankline.nvim'
 
@@ -105,6 +105,12 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         },
         config = function() require('night.plugins.lsp') end
+    }
+
+    -- rust formatter
+    use {
+        'rust-lang/rust.vim',
+        ft = "rust",
     }
 
     -- automatically set up the configuration after cloning packer.nvim

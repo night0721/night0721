@@ -11,10 +11,12 @@ require("zen-mode").setup({
     -- actions to execute when the Zen window opens
     on_open = function()
         vim.opt.linebreak = true
+        vim.cmd([[
+        set spell
+        ]])
     end,
     -- actions to execute when the Zen window closes
     on_close = function()
         vim.opt.linebreak = false
     end,
-
 })

@@ -51,4 +51,5 @@ let g:closetag_regions = {
   \ 'javascript.jsx': 'jsxRegion',
   \ }
 let g:closetag_shortcut = '>'
+let g:rustfmt_autosave = 1
 ]])
