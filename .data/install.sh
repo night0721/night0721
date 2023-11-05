@@ -24,12 +24,12 @@ fi
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist cmatrix \
+    bat blueman bluez bluez-utils btop catppuccin-gtk-theme-mocha cliphist figlet \
     firefox fzf graphicsmagick grub-customizer grim gst-libav gst-plugins-good gtk3 gvfs \
     hyprland-nvidia jq kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv \
-    ncdu neofetch neovim network-manager-applet node noto-fonts-emoji npm ntfs-3g nvidia-dkms \
+    ncdu neofetch neovim network-manager-applet newsboat nginx node noto-fonts-emoji npm nvidia-dkms \
     nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
-    phonon-qt5-gstreamer pipes.sh plymouth python-requests qt5-graphicaleffects qt5-multimedia \
+    phonon-qt5-gstreamer plymouth python-requests qt5-graphicaleffects qt5-multimedia \
     qt5-quickcontrols qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland sddm-git \
     slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip waybar wf-recorder wget wireplumber \
     wl-clipboard wofi xdg-desktop-portal-hyprland yt-dlp zip zsh --noconfirm > /dev/null
