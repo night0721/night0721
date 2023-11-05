@@ -35,6 +35,9 @@ cmd unarchive ${{
   esac
 }}
 
+cmd nvim ${{
+    $EDITOR "$f"
+}}
 
 # Bindings
 map d
