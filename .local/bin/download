@@ -1,0 +1,29 @@
+#!/bin/sh
+
+cd ~/Downloads
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied"
+    exit 1
+fi
+echo "Choose your options:"
+echo "1. wget"
+echo "2. yt-dlp (audio)"
+echo "3. yt-dlp (video)"
+read -p "> " _option
+case $_option in
+  1)
+    wget $@
+    ;;
+  2)
+    yt-dlp -x -f ba $@
+    ;;
+  3)
+    yt-dlp $@
+    ;;
+  *)
+    echo "No such option"
+    exit 1
+    ;;
+esac
+echo "Saved at ~/Downloads/"
+read _exit
