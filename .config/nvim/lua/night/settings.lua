@@ -40,6 +40,8 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
 
+vim.g.rustfmt_autosave = 1
+
 vim.cmd([[
 let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
@@ -51,5 +53,4 @@ let g:closetag_regions = {
   \ 'javascript.jsx': 'jsxRegion',
   \ }
 let g:closetag_shortcut = '>'
-let g:rustfmt_autosave = 1
 ]])
