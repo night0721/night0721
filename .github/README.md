@@ -8,7 +8,7 @@ Using [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/t
 WM - Hyprland
 *Based on [HyprV4](https://github.com/SolDoesTech/HyprV4)*
 
-DM - SDDM
+DM - SDDM (Removed)
 Using [aerial](https://github.com/3ximus/aerial-sddm-theme)
 Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
@@ -51,8 +51,6 @@ station [device name] connect [network name]
 exit
 pacman -Sy git
 git clone https://github.com/night0721/dotfiles
-chmod +x dotfiles/.data/install.sh
-chmod +x dotfiles/.data/root.sh
 bash dotfiles/.data/root.sh
 ```
 
@@ -72,7 +70,6 @@ nmcli device wifi connect [network name] password [password]
 yay
 nwg-look
 grub-customizer
-git config --global credential.helper store
 rmmod pcspkr
 rmmod snd_pcsp
 ```
@@ -109,5 +106,3 @@ SUPER + J = Toggle Split
 SUPER + SPACE = App Launcher
 
 SUPER + SHIFT + S = Screenshot
-
-ALT + V = Open clipboard manager
