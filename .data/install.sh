@@ -24,18 +24,19 @@ fi
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    bat blueman bluez bluez-utils brillo btop catppuccin-gtk-theme-mocha cliphist figlet \
+    bat bridge-utils blueman bluez bluez-utils brillo btop catppuccin-gtk-theme-mocha certbot-nginx dos2unix figlet \
     firefox fzf graphicsmagick grub-customizer grim gtk3 gvfs \
-    hyprland-nvidia jq kitty lf libva libva-nvidia-driver-git linux-headers mako man-db mpv \
+    hugo hyprland-nvidia jq kitty lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv \
     ncdu neofetch neovim network-manager-applet newsboat nginx node noto-fonts-emoji npm nvidia-dkms \
     nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
     plymouth python-requests \
-    qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland \
-    slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip waybar wf-recorder wget wireplumber \
-    wl-clipboard wofi xdg-desktop-portal-hyprland yt-dlp zip zsh --noconfirm > /dev/null
+    qemu-full qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland \
+    slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget wireplumber \
+    wl-clipboard wofi xdg-desktop-portal-hyprland xorg-xhost yt-dlp zip zsh --noconfirm > /dev/null
 # update config
-sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
+# add modconf to HOOKS
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
