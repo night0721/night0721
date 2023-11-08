@@ -45,8 +45,8 @@ fi
 
 sudo systemctl enable --now bluetooth
 sleep 2
-sudo systemctl enable sddm
-sleep 2 
+#sudo systemctl enable sddm
+#sleep 2 
 # Clean out other portals
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk > /dev/null
 
@@ -62,20 +62,21 @@ mkdir /home/night/.local/bin
 cp -R /dotfiles/.local/bin /home/night/.local
 
 # Copy the SDDM theme
-cd /dotfiles
-sudo git clone https://github.com/3ximus/aerial-sddm-theme aerial
-sudo cp -R aerial /usr/share/sddm/themes/
-sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
-cd /usr/share/sddm/themes/aerial
-rm -rf playlists screens .git README.md LICENSE .gitignore theme.conf.user background.jpg
-cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
-sudo mkdir /etc/sddm.conf.d
-sudo touch /etc/sddm.conf.d/10-theme.conf
-echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
+#cd /dotfiles
+#sudo git clone https://github.com/3ximus/aerial-sddm-theme aerial
+#sudo cp -R aerial /usr/share/sddm/themes/
+#sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
+#cd /usr/share/sddm/themes/aerial
+#rm -rf playlists screens .git README.md LICENSE .gitignore theme.conf.user background.jpg
+#cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
+#sudo mkdir /etc/sddm.conf.d
+#sudo touch /etc/sddm.conf.d/10-theme.conf
+#echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # /etc/hosts
 cd /dotfiles
 sudo cp ./misc/hosts /etc/hosts
+
 # autojump
 cd /home/night
 git clone git://github.com/wting/autojump.git
@@ -105,7 +106,7 @@ sudo plymouth-set-default-theme -R monoarch > /dev/null
 
 # grub
 sudo mount --mkdir $efipart /boot/efi/
-sudo mount --mkdir $windowspart /run/media/N
+#sudo mount --mkdir $windowspart /run/media/N
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub

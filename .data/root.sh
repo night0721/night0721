@@ -15,7 +15,7 @@ swappart=/dev/nvme0n1p7
 efipart=/dev/nvme0n1p1
 #echo "Enter Windows Partition"
 #read windowspart
-windowspart=/dev/nvme0n1p3
+#windowspart=/dev/nvme0n1p3
 
 echo "Enter night password"
 read nightpasswd
@@ -33,7 +33,7 @@ swapon $swappart
 mount $rootpart /mnt
 mount --mkdir $homepart /mnt/home
 mount --mkdir $efipart /mnt/boot/efi/
-mount --mkdir $windowspart /mnt/run/media/N
+#mount --mkdir $windowspart /mnt/run/media/N
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
