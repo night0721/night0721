@@ -27,7 +27,7 @@ yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts ad
     bat bridge-utils blueman bluez bluez-utils brillo btop catppuccin-gtk-theme-mocha certbot-nginx dos2unix figlet \
     firefox fzf graphicsmagick grub-customizer grim gtk3 gvfs \
     hugo hyprland-nvidia jq kitty lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv \
-    ncdu neofetch neovim network-manager-applet newsboat nginx node noto-fonts-emoji npm nvidia-dkms \
+    ncdu neofetch neovim network-manager-applet newsboat nginx nodejs noto-fonts-emoji npm nvidia-dkms \
     nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
     plymouth python-requests \
     qemu-full qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland \
@@ -89,9 +89,7 @@ sudo mkdir /usr/share/wayland-sessions
 sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
-xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-Dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 
 # zsh
@@ -111,7 +109,7 @@ sudo mount --mkdir $efipart /boot/efi/
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
-suso mkdir -p /boot/grub/themes/
+sudo mkdir -p /boot/grub/themes/
 sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
