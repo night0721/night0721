@@ -1,0 +1,14 @@
+# "query:Unread Articles:unread = \"yes\""
+"query:Blog Posts:tags # \"blog\""
+"query:Videos:tags # \"video\""
+
+# Blogs
+https://lukesmith.xyz/rss.xml blog
+https://opensourcemusings.com/feed/ blog
+https://files-alpha-pied.vercel.app/index.xml blog
+# YouTube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5KDiSAFxrDWhmysBcNqtMA video tech # Eric Murphy
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA video tech # Luke Smith
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA video tech # Mental Outlaw
+https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA video tech # Brodie Robertson
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw video tech # The Linux Experiment
