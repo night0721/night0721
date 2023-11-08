@@ -2,20 +2,20 @@
 
 ## Specifications
 
-Bootloader: Grub
+## Bootloader - Grub
 Using [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara)
 
-WM - Hyprland
+## WM - Hyprland
 *Based on [HyprV4](https://github.com/SolDoesTech/HyprV4)*
 
-DM - SDDM (Removed)
+# DM - SDDM (Removed)
 Using [aerial](https://github.com/3ximus/aerial-sddm-theme)
 Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
-Shell - zsh
-Using [powerlevel10k](https://github.com/romkatv/powerlevel10k) for theme, zsh-auto-notify when process finished, zsh-autosuggestions for auto complete and zsh-history-substring-search for finding previously used commands, zsh-syntax-highlighting for showing syntax errors
+# Shell - zsh
+Using [powerlevel10k](https://github.com/romkatv/powerlevel10k) for theme, zsh-autosuggestions for auto complete and zsh-history-substring-search for finding previously used commands, zsh-syntax-highlighting for showing syntax errors
 
-Terminal File Manager - lf
+# File Manager - lf
 Using [lf-gadgets](https://github.com/slavistan/lf-gadgets) with lf-kitty to provide image preview support in lf
 pdftricks - PDF preview
 graphicsmagick - SVG and GIF preview
