@@ -1,13 +1,11 @@
 #!/bin/sh
 
 #set the xfce and GTK theme
-xfconf-query -c xsettings -p /Net/IconThemeName -s "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-xfconf-query -c xsettings -p /Net/ThemeName -s "Catppuccin-Mocha-Standard-Lavender-Dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 
 # change background
-swww img ~/.nky/Photo/Background/champ.jpg --transition-fps 60 --transition-type wipe --transition-duration 1
+swww img ~/.nky/Photo/Banner/nights-yt-banner.png --transition-fps 60 --transition-type wipe --transition-duration 1
  
 #reset mako
 sleep 1
