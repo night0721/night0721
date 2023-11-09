@@ -24,11 +24,11 @@ fi
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    bat bridge-utils blueman bluez bluez-utils brillo btop catppuccin-gtk-theme-mocha certbot-nginx dos2unix figlet \
+    bat bridge-utils blueman bluez-git brillo btop catppuccin-gtk-theme-mocha dos2unix figlet \
     firefox fzf graphicsmagick grub-customizer grim gtk3 gvfs \
     hugo hyprland-nvidia jq kitty lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv \
-    ncdu neofetch neovim network-manager-applet newsboat nginx nodejs noto-fonts-emoji npm nvidia-dkms \
-    nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire \
+    ncdu neofetch neovim network-manager-applet newsboat nodejs noto-fonts-emoji npm nvidia-dkms \
+    nvidia-settings nwg-look-bin pacman-contrib pamixer pavucontrol pdftricks pipewire pipewire-{jack,alsa,pulse} \
     plymouth python-requests \
     qemu-full qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland \
     slurp swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget wireplumber \
@@ -127,6 +127,6 @@ curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/C
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
-
+sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
 sudo systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"
