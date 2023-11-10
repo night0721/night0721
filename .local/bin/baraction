@@ -5,7 +5,7 @@ gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 
 # change background
-swww img ~/.nky/Photo/Banner/nights-yt-banner.png --transition-fps 60 --transition-type wipe --transition-duration 1
+swww img ~/.nky/Photo/Banner/night_banner_yt.png --transition-fps 60 --transition-type wipe --transition-duration 1
  
 #reset mako
 sleep 1
@@ -13,6 +13,5 @@ pkill mako
 mako &
 
 #restart the waybar
-#killall -SIGUSR2 waybar <-- start causing web brwsers to close so switched to below...
 pkill waybar
 waybar &

@@ -9,21 +9,26 @@ echo "Choose your options:"
 echo "1. wget"
 echo "2. yt-dlp (audio)"
 echo "3. yt-dlp (video)"
+echo "4. yt-dlp (playlist)"
 read -p "> " _option
 case $_option in
-  1)
-    wget $@
-    ;;
-  2)
-    yt-dlp -x -f ba $@
-    ;;
-  3)
-    yt-dlp $@
-    ;;
-  *)
-    echo "No such option"
-    exit 1
-    ;;
+    1)
+        wget $@
+        ;;
+    2)
+        yt-dlp -x -f ba $@
+        ;;
+    3)
+        yt-dlp $@
+        ;;
+    
+    4)
+        yt-dlp $@ -f ba --audio-format mp3 -o "%(title)s.%(ext)s" --no-write-description -x --embed-thumbnail --audio-quality 10 --embed-metadata --no-embed-chapters --restrect-filename
+        ;;
+    *)
+        echo "No such option"
+        exit 1
+        ;;
 esac
 echo "Saved at ~/Downloads/"
 read _exit

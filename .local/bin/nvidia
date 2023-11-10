@@ -1,0 +1,41 @@
+#!/bin/sh
+
+GRUB_FILE="/etc/default/grub"
+SEARCH_STRING="vfio-pci.ids=10de:1f95,10de:10fa"
+
+if [ "$1" == "pt" ]; then
+    if grep -q "$SEARCH_STRING" "$GRUB_FILE"; then
+        echo "The string is already present in $GRUB_FILE"
+    else
+        sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\(amd_iommu=on.*\) \(kvm.ignore_msrs=1 vfio_iommu_type1.allow_unsafe_interrupts=1 blacklist=nouveau\)/\1 vfio-pci.ids=10de:1f95,10de:10fa \2/' "$GRUB_FILE"
+        echo "String appended to $GRUB_FILE"
+    fi
+    FILE=/etc/modprobe.d/vfio.conf
+    if [[ -f "$FILE" ]]; then
+        echo "$FILE exists already, skipping."
+    else
+        sudo mv /etc/vfio.conf /etc/modprobe.d/vfio.conf
+        echo "Moved $FILE to /etc"
+    fi
+else
+    if grep -q "$SEARCH_STRING" "$GRUB_FILE"; then
+        sudo sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=.*amd_iommu=on.*\) '"$SEARCH_STRING"'\(.*\)/\1\2/' "$GRUB_FILE"
+        sudo sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=.*\) "$/\1"/' "$GRUB_FILE"
+        echo "String removed from $GRUB_FILE"
+    else
+        echo "The string does not exist in $GRUB_FILE"
+    fi
+    FILE=/etc/modprobe.d/vfio.conf
+    if [[ -f "$FILE" ]]; then
+        echo "$FILE exists, moving to /etc."
+        sudo mv /etc/modprobe.d/vfio.conf /etc/vfio.conf
+    else
+        echo "$FILE doesn't exist, skipping"
+    fi
+fi
+
+# Update GRUB
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo mkinitcpio -p linux
+
+echo "Done. reboot."
