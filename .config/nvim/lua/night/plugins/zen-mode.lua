@@ -1,7 +1,7 @@
 require("zen-mode").setup({
     window = {
-        width = 80,
-        height = .85,
+        width = 1,
+        height = 1,
         options = {
             number = false, -- disable number column
             relativenumber = false, -- disable number column
@@ -18,5 +18,8 @@ require("zen-mode").setup({
     -- actions to execute when the Zen window closes
     on_close = function()
         vim.opt.linebreak = false
+        vim.cmd([[
+        set nospell
+        ]])
     end,
 })
