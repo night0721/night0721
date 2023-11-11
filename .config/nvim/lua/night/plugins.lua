@@ -113,6 +113,7 @@ return require('packer').startup(function(use)
         ft = "rust",
     }
 
+    use 'christoomey/vim-tmux-navigator'
     -- automatically set up the configuration after cloning packer.nvim
     if packer_bootstrap then
         require('packer').sync()
