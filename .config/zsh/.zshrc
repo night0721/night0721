@@ -22,6 +22,11 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
+HISTFILE=~/.config/zsh/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 autoload -U compinit 
 compinit
 
@@ -31,7 +36,11 @@ bindkey '^e' end-of-line
 # theme/plugins
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# history substring search options
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 zstyle ':completion:*' menu select
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
