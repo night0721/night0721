@@ -44,6 +44,8 @@ cmp.setup({
     mapping = cmp_mappings
 })
 
+vim.api.nvim_set_keymap('i', '<C-CR>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+
 lsp.set_preferences({
     suggest_lsp_servers = true,
     sign_icons = {
