@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Initialize total count
+total_lines=0
+
+# List of files to ignore
+ignore_files=(
+    "*/.git/*"
+    "*.log"
+    "*/LICENSE"
+    "*.gitattributes"
+    "*.vcxproj*"
+    "*.sln"
+    "*.gitignore"
+    "*.md"
+    "*.xml"
+    "*.iml"
+    "*.yml"
+    "*.jar"
+    "*.jpg"
+    "*.png"
+    "*.json"
+    "*.zip"
+    "*/Java/Utilities/*"
+    "*/cath-docs/*"
+    "*.ttf"
+    "*.woff2"
+    "*.exe"
+    "*/SkySkipped/*"
+    "*/master-ghosterbuster-9000/*"
+    "*/lib/json/*"
+    "*/node_modules/*"
+)
+
+for file in $(find . -type f); do
+ if [[ -d $file ]]; then
+   continue
+ fi
+
+ for ignore in "${ignore_files[@]}"; do
+   if [[ $file == $ignore ]]; then
+     continue 2
+   fi
+ done
+ lines=$(wc -l < "$file")
+ total_lines=$((total_lines + lines))
+done
+
+echo "Total lines: $total_lines"
