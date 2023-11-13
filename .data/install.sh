@@ -25,13 +25,12 @@ fi
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
     bat bridge-utils blueman bluez-git brillo btop catppuccin-gtk-theme-mocha dos2unix figlet firefox fzf \
-    graphicsmagick grub-customizer grim gtk3 gvfs hugo hyprland-nvidia jq kitty lf libnotify libva \
+    graphicsmagick grub-customizer grim gtk3 gvfs hugo hyprland-nvidia id3v2 jq kitty lf libnotify libva \
     libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu neofetch neovim network-manager-applet \
-    newsboat nodejs noto-fonts-emoji npm nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
-    pavucontrol pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth python-requests qemu-full \
-    qt5-quickcontrols2 qt5-svg qt5-wayland qt5ct qt6ct qt6-wayland ripgrep slurp swappy swaylock-effects swww \
-    sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget wireplumber \
-    wl-clipboard wofi xdg-desktop-portal-hyprland xorg-xhost yt-dlp zip zsh --noconfirm > /dev/null
+    newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
+    pavucontrol pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth python-mutagen python-pip python-requests qemu-full \
+    qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip \
+    virt-manager virt-viewer waybar wf-recorder wget wireplumber wl-clipboard wofi xdg-desktop-portal-hyprland xorg-xhost yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
