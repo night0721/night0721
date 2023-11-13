@@ -19,9 +19,7 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 cmd rm ${{
-    printf "File Name: "
-    read ans
-    rm $ans
+    rm -fr $f
 }}
 
 # Archive bindings
@@ -57,7 +55,9 @@ map R reload
 map mf mkfile
 map md mkdir
 map C clear
-map d rm
+map ddd ${{
+    rm -rf "$fx"    
+}}
 
 # Movement
 map gc cd ~/.config

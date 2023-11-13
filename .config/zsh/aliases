@@ -35,9 +35,14 @@ alias homefiles="find ~ -type d \( -path ~/.cargo -o -path ~/.local/share -o -pa
 alias gitfolders="find . -type d -name '.git'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
 alias hst="history 1 -1 | cut -c 8- | sort | uniq | fzf | tr -d '\n' | wl-copy"
+alias ncdu="ncdu --color dark -rr -x --exclude images"
+alias s="sudo systemctl"
 
 # Change directory aliases
 alias .='cd ~'
 alias ..='cd ..'
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias cad='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME add'
+alias cco='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME commit -m'
+alias cpu='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME push'
