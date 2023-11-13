@@ -30,6 +30,8 @@ ignore_files=(
     "*/master-ghosterbuster-9000/*"
     "*/lib/json/*"
     "*/node_modules/*"
+    "*/package.json"
+    "*/package-lock.json"
 )
 
 for file in $(find . -type f); do
