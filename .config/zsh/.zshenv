@@ -17,5 +17,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export ZDOTDIR="$HOME/.config/zsh"
+export GIT_CONFIG="$HOME/.config/git/config"
 
 export LC_ALL=en_US.UTF-8

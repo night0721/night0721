@@ -8,7 +8,7 @@
     "height": 20,
     "modules-center": [
         "clock",
-        "custom/updates"
+        //"custom/updates"
     ],
     "modules-right": [
         "pulseaudio",
