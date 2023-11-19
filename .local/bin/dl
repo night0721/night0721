@@ -1,0 +1,18 @@
+#!/bin/sh
+
+input_dir="$HOME/.nky/Music/"
+
+if [ ! -d "$input_dir" ]; then
+  echo "Input directory does not exist: $input_dir"
+  exit 1
+fi
+
+for text_file in "$input_dir"/*.txt; do
+  if [ -f "$text_file" ]; then
+    file_name=$(basename "$text_file" .txt)
+    
+    # Run yt-dlp on the text file
+    yt-dlp "$(cat "$text_file")" -f ba --audio-format opus -o "$input_dir/$file_name/%(title)s.%(ext)s" -x --no-write-description --no-write-comments --embed-thumbnail --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json --convert-thumbnails jpg -v > "$input_dir/${file_name}.log"
+    # id3v2 -d "$input_dir/$file_name"/*.mp3 > /dev/null 2>&1
+  fi
+done
