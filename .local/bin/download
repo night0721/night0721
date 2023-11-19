@@ -10,6 +10,7 @@ echo "1. wget"
 echo "2. yt-dlp (audio)"
 echo "3. yt-dlp (video)"
 echo "4. yt-dlp (playlist)"
+echo "5. subtitle"
 read -p "> " _option
 case $_option in
     1)
@@ -23,7 +24,24 @@ case $_option in
         ;;
     
     4)
-        yt-dlp $@ -f ba --audio-format mp3 -o "%(title)s.%(ext)s" --no-write-description -x --embed-thumbnail --audio-quality 10 --embed-metadata --no-embed-chapters --restrect-filename
+        cd ~/.nky/Music
+        for text_file in ./*.txt; do
+            if [ -f "$text_file" ]; then
+                file_name=$(basename "$text_file" .txt)
+                yt-dlp "$(cat "$text_file")" -f ba --audio-format opus -o "$input_dir/$file_name/%(title)s.%(ext)s" -x --no-write-description --no-write-comments --embed-thumbnail --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json --convert-thumbnails jpg -v > "$input_dir/${file_name}.log"
+                # id3v2 -d "$input_dir/$file_name"/*.mp3 > /dev/null 2>&1
+            fi
+        done
+        ;;
+    5)
+        yt-dlp --write-sub --write-auto-sub --skip-download $@ -o sub
+        sed -i 's/<[^>]*>//g' sub.en.vtt
+        grep -v "^[0-9]*:[0-9]*:[0-9]*" sub.en.vtt | grep -v "^[[:space:]]*$" > subs.vtt
+        awk '!seen[$0]++' subs.vtt > subtitle.vtt
+        rm sub.en.vtt subs.vtt
+        echo ""
+        echo "Now ask ChatGPT to write a blog post for you"
+        echo '"Write me a blog in markdown based on this text which is a audio voice transcribe. If there is any command that need to be used, write it in block code."'
         ;;
     *)
         echo "No such option"
@@ -31,4 +49,4 @@ case $_option in
         ;;
 esac
 echo "Saved at ~/Downloads/"
-read _exit
+exit 0
