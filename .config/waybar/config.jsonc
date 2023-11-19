@@ -7,7 +7,7 @@
     "gtk-layer-shell": true,
     "height": 20,
     "modules-center": [
-        "clock",
+        "clock"
         //"custom/updates"
     ],
     "modules-right": [
