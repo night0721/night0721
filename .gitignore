@@ -30,3 +30,6 @@ dotfiles
 .config/zsh/.zsh_history
 .config/github-copilot
 .local/npm
+.password-store
+Downloads
+repos
