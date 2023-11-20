@@ -3,7 +3,7 @@
 ## Specifications
 
 ## Bootloader - Grub
-Using [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara)
+Using my theme, based on [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara)
 
 ## WM - Hyprland
 *Based on [HyprV4](https://github.com/SolDoesTech/HyprV4)*

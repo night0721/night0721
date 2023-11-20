@@ -1,0 +1,39 @@
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#000000"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
++ boot_menu {
+    left = 43%
+    top = 22%
+    width = 40%
+    height = 50%
+    item_font = "JetBrains Mono NL Regular 24"
+    item_color = "#f5e0dc"
+    selected_item_color = "#cba6f7"
+    item_spacing = 0
+    item_icon_space = 0
+}
+
++ progress_bar {
+    left = 40%
+    top = 82%
+    width = 250
+    height = 30
+    id = "__timeout__"
+    text = "Booting in %d..."
+    border_color = "#b4befe"
+}
+
++ image {
+    top = 100%-50
+    left = 50%-240
+    width = 480
+    height = 42
+    file = "info.png"
+}
+

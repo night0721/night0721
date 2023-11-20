@@ -73,8 +73,9 @@ cp -R /dotfiles/.local/bin /home/night/.local
 #echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # /etc/hosts
-cd /dotfiles
-sudo cp ./misc/hosts /etc/hosts
+cd /dotfiles/.data/misc
+curl -L -O https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+sudo cp hosts /etc/hosts
 
 # autojump
 cd /home/night
@@ -108,7 +109,7 @@ cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
 sudo mkdir -p /boot/grub/themes/
-sudo cp -r .data/misc/sayonara /boot/grub/themes/sayonara
+sudo cp -r .data/misc/n /boot/grub/themes/n
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
