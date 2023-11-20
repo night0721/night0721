@@ -1,10 +1,12 @@
 set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/clean
+#set cleaner ~/.config/lf/clean
 
 # Basic Settings
 set hidden true
 set ignorecase true
 set icons true
+set ratios 1:2:3
+set sixel
 
 # Custom Functions
 cmd mkdir ${{

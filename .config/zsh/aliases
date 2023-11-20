@@ -36,6 +36,7 @@ alias gitfolders="find . -type d -name '.git'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
 alias hst="history 1 -1 | cut -c 8- | sort | uniq | fzf | tr -d '\n' | wl-copy"
 alias ncdu="ncdu --color dark -x --exclude images"
+alias lf="lfrun"
 alias s="sudo systemctl"
 
 # Change directory aliases

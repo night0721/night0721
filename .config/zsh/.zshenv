@@ -1,7 +1,8 @@
 # defualt apps
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
-export TERMINAL="kitty"
+export TERMINAL="foot"
+export TERM="foot"
 export BROWSER="firefox"
 
 # Adds ~/.local/bin and subfolders to $PATH

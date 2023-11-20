@@ -17,9 +17,10 @@ Using [powerlevel10k](https://github.com/romkatv/powerlevel10k) for theme, zsh-a
 
 # File Manager - lf
 Using [lf-gadgets](https://github.com/slavistan/lf-gadgets) with lf-kitty to provide image preview support in lf
+Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
 pdftricks - PDF preview
 graphicsmagick - SVG and GIF preview
-Required packages: pdftricks grpahicsmagick
+Required packages: pdftricks grpahicsmagick chafa
 
 [Fontpreview](https://github.com/sdushantha/fontpreview) - To preview .otf, .ttf, .woff files in lf
 Required pacakges: xdotool fzf imagemagick sxiv
