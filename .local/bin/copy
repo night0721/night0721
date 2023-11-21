@@ -1,0 +1,8 @@
+#!/bin/sh
+
+file=$(find ~ -type f | fzf --reverse)
+
+if [ -n "$file" ]; then
+    cat "$file" | wl-copy
+fi
+
