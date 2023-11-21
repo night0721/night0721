@@ -24,8 +24,8 @@ fi
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    bat bridge-utils blueman bluez-git brillo btop catppuccin-gtk-theme-mocha dos2unix figlet firefox fzf \
-    graphicsmagick grub-customizer grim gtk3 gvfs hugo hyprland-nvidia id3v2 jq kitty lf libnotify libva \
+    bat bridge-utils blueman bluez-git brillo btop dos2unix figlet firefox fzf \
+    graphicsmagick grub-customizer grim gtk3 hugo hyprland-nvidia id3v2 jq kitty lf libnotify libva \
     libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu neofetch neovim network-manager-applet \
     newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
     pavucontrol pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth python-mutagen python-pip python-requests qemu-full \
@@ -84,12 +84,13 @@ cd autojump
 ./install.py
 
 # stage the .desktop file
-sudo mkdir /usr/share/wayland-sessions  
+sudo mkdir /usr/share/wayland-sessions 
 sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
@@ -101,6 +102,8 @@ ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
 cd /usr/share/plymouth/themes/
 sudo git clone https://github.com/farsil/monoarch > /dev/null
 sudo plymouth-set-default-theme -R monoarch > /dev/null
+cd monoarch
+sudo rm -rf .git LICENSE README.md
 
 # grub
 sudo mount --mkdir $efipart /boot/efi/
@@ -121,9 +124,18 @@ sudo paccache -dvuk1 > /dev/null
 # npm
 npm config set prefix '~/.local/npm'
 
+# gtk icons
 cd /home/night
 curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
+
+# gtk theme -> https://github.com/catppuccin/gtk
+curl -L -O https://github.com/catppuccin/gtk/releases/latest/download.Catppuccin-Mocha-Standard-Lavender-Dark.zip
+sudo unzip Catppuccin-Mocha-Standard-Lavender-Dark.zip -d /usr/share/themes
+
+# cursor theme -> https://github.com/catppuccin/cursors
+curl -L -O https://github.com/catppuccin/cursors/releases/latest/download/Catppuccin-Mocha-Lavender-Cursors.zip
+sudo unzip Catppuccin-Mocha-Lavender-Cursors.zip -d /usr/share/icons
 
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
 sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night

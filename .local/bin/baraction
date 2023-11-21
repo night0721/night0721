@@ -1,11 +1,11 @@
 #!/bin/sh
 
-#set the xfce and GTK theme
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # change background
-swww img ~/.nky/Photo/Banner/night_banner_yt.png --transition-fps 60 --transition-type wipe --transition-duration 1
+swww img ~/.nky/Photo/Wallpapers/minimalistic/dark-cat-rosewater.png
  
 #reset mako
 sleep 1

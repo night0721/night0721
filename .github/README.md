@@ -74,15 +74,19 @@ grub-customizer
 rmmod pcspkr
 rmmod snd_pcsp
 ```
-For firefox
+### Firefox
 
-goto about:profiles and create a new profile with custom folder
+Go to about:profiles and create a new profile with custom folder
 
 cd into the folder and create user.js
 
-copy [betterfox](https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js) into user.js
+Copy [betterfox](https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js) into user.js
 
-restart firefox
+Restart firefox
+
+Then follow https://github.com/catppuccin/userstyles/ to install stylus
+
+Downloading [codeberg](https://github.com/catppuccin/userstyles/tree/main/styles/codeberg) and [github](https://github.com/catppuccin/userstyles/tree/main/styles/github) css themes selecting mocha and lavender.
 
 ## Default Keybinds
 
