@@ -18,7 +18,7 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-HISTFILE=~/.config/zsh/.zsh_history
+HISTFILE=$XDG_CONFIG_HOME/zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
@@ -30,9 +30,11 @@ bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 
 # theme/plugins
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $XDG_CONFIG_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $XDG_CONFIG_HOME/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $XDG_CONFIG_HOME/zsh/n.zsh-theme
+
 # history substring search options
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -49,8 +51,3 @@ g() {
 	git commit -m "$1"
 	git push
 }
-
-source $XDG_CONFIG_HOME/zsh/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f $XDG_CONFIG_HOME/zsh/.p10k.zsh ]] || source $XDG_CONFIG_HOME/zsh/.p10k.zsh
