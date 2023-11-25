@@ -1,7 +1,7 @@
 typeset -A colors
 colors=(
   [time]="147"
-  [directory]="111"
+  [directory]="005"
   [branch]="183"
   [prompt]="069"
 )
