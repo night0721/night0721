@@ -5,7 +5,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-L
 gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # change background
-swww img ~/.nky/Photo/Wallpapers/minimalistic/dark-cat-rosewater.png
+swww img ~/.nky/Photo/Wallpapers/dark-cat-rosewater.png
  
 #reset mako
 sleep 1
