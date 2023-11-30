@@ -14,6 +14,7 @@ alias ll="ls -lah"
 alias l="ls -lah --color=auto"
 alias tree="tree -a -I .git -I node_modules"
 alias :q="exit"
+alias wt="curl https://wttr.in/Nottingham"
 
 # application aliases
 alias v="$EDITOR"

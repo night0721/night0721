@@ -23,14 +23,14 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts \
-    bat bridge-utils blueman bluez-git brillo btop chafa figlet firefox foot fzf \
-    graphicsmagick grub-customizer grim gtk3 hugo hyprland-nvidia id3v2 jq kitty lf libnotify libva \
-    libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu neofetch neovim network-manager-applet \
-    newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-dkms nvidia-settings nwg-look-bin pacman-contrib pamixer \
-    pavucontrol pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth python-{mutagen,pip,requests} qemu-full \
-    qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip \
-    virt-manager virt-viewer waybar wf-recorder wget wireplumber wl-clipboard wofi xdg-desktop-portal-hyprland xdotool xorg-xhost yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bridge-utils blueman bluez-git brillo \
+    btop chafa figlet firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo hyprland-nvidia \
+    jq kitty lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu \
+    neofetch neovim network-manager-applet newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
+    pacman-contrib pamixer pavucontrol pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
+    python-{mutagen,pip,requests} qemu-full qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects\
+    swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget \
+    wireplumber wl-clipboard wofi xdg-desktop-portal-{hyprland,wlr} wdisplays wlr-randr ydotool xorg-xhost yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
@@ -111,7 +111,7 @@ sudo mount --mkdir $efipart /boot/efi/
 cd /dotfiles
 sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
-sudo mkdir -p /boot/grub/themes/
+sudo mkdir -p /boot/grub/themes
 sudo cp -r .data/misc/n /boot/grub/themes/n
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg

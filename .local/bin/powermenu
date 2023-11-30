@@ -1,6 +1,6 @@
-#! /bin/sh
+#!/bin/sh
 
-op=$( echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | wofi -i --dmenu --hide-scroll --width 250 --height 210 --define=hide_search=true | awk '{print tolower($2)}' )
+op=$( echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | bemenu | awk '{print tolower($2)}' )
 
 case $op in 
         poweroff)

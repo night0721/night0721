@@ -1,0 +1,16 @@
+#!/bin/sh
+
+wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz --pos 0,0 --scale 1
+wlr-randr --output eDP-1 --mode 1920x1080@120.001999Hz --pos 2560,0
+sudo ydotoold -p /run/user/1000/.ydotool_socket -P 666
+dwl-bar &
+someblocks -s $XDG_RUNTIME_DIR/dwl-bar-0 &
+mako &
+swww init
+sudo rmmod pcspkr
+swww img ~/.nky/Photo/Wallpapers/hearts.png &
+/usr/lib/xdg-desktop-portal-wlr &
+sleep 2
+/usr/lib/xdg-desktop-portal &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

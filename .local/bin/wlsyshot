@@ -4,7 +4,7 @@ auth=$EZAPIKEY
 url="https://api.e-z.host/files"
 
 opts="Full Screen\nSelect Screen\nSelect Area"
-snipping=$(echo -e $opts | wofi --dmenu -p "Snipping tool")
+snipping=$(echo -e $opts | bemenu -p "Snipping tool")
 if [[ $snipping == "" ]]; then
     exit 0
 fi
@@ -14,8 +14,8 @@ fileName=$(echo "$temp/$(date +'%s_grim.png')")
 
 # function
 opts_mod(){
-    mods="Edit screenshot\nSave\nCopy clipboard\nUpload to e-z.host"
-    mods_la=$(echo -e $mods | wofi --dmenu -p "Options:")
+    mods="Edit screenshot\nSave\nCopy to clipboard\nUpload to e-z.host"
+    mods_la=$(echo -e $mods | bemenu -p "Options:")
     if [[ $mods_la == "" ]]; then
 	exit 0
     fi
@@ -23,7 +23,7 @@ opts_mod(){
     case $mods_la in
 	"Edit screenshot") swappy -f $1;;
 	"Save") cp $1 $PICTURE_DIR;;
-	"Copy to clipboard") wl-copy < $1 -t image/png;;
+	"Copy to clipboard") wl-copy < $1;;
     "Upload to e-z.host")
         image_url=$(curl -X POST -F "file=@"$1 -H "key: "$auth -v "$url" 2>/dev/null)
         echo $image_url > /tmp/upload.json
