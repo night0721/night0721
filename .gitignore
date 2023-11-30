@@ -29,6 +29,8 @@ dotfiles
 .config/libvirt/qemu/nvram
 .config/zsh/.zsh_history
 .config/github-copilot
+.config/MusicBrainz
+.config/QtProject.conf
 .local/npm
 .password-store
 Downloads
