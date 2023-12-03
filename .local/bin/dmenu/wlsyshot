@@ -3,7 +3,7 @@
 auth=$EZAPIKEY
 url="https://api.e-z.host/files"
 
-opts="Full Screen\nSelect Screen\nSelect Area"
+opts="Select Area\nSelect Screen\nFull Screen"
 snipping=$(echo -e $opts | bemenu -p "Snipping tool")
 if [[ $snipping == "" ]]; then
     exit 0
@@ -14,7 +14,7 @@ fileName=$(echo "$temp/$(date +'%s_grim.png')")
 
 # function
 opts_mod(){
-    mods="Edit screenshot\nSave\nCopy to clipboard\nUpload to e-z.host"
+    mods="Copy to clipboard\nEdit screenshot\nSave\nUpload to e-z.host"
     mods_la=$(echo -e $mods | bemenu -p "Options:")
     if [[ $mods_la == "" ]]; then
 	exit 0

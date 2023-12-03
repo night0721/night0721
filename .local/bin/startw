@@ -9,6 +9,9 @@ mako &
 swww init
 sudo rmmod pcspkr
 swww img ~/.nky/Photo/Wallpapers/hearts.png &
+gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
+gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 /usr/lib/xdg-desktop-portal-wlr &
 sleep 2
 /usr/lib/xdg-desktop-portal &
