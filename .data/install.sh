@@ -26,11 +26,11 @@ fi
 yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bridge-utils bluez-git brillo \
     btop chafa figlet firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo hyprland-nvidia \
     lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu \
-    neovim network-manager-applet newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
-    pacman-contrib pamixer pavucontrol pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
+    neovim network-manager-applet newsboat noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
+    pacman-contrib pamixer pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
     python-{mutagen,pip,requests} qemu-full qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects \
-    swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget \
-    wireplumber wl-clipboard wofi xdg-desktop-portal-{hyprland,wlr} wdisplays wlr-randr ydotool xorg-xhost \
+    swww tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget \
+    wireplumber wl-clipboard xdg-desktop-portal-{hyprland,wlr} wdisplays wlr-randr ydotool xorg-xhost \
     yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config
