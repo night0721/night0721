@@ -23,14 +23,16 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bridge-utils blueman bluez-git brillo \
+yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bridge-utils bluez-git brillo \
     btop chafa figlet firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo hyprland-nvidia \
-    jq kitty lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu \
-    neofetch neovim network-manager-applet newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
+    lf libnotify libva libva-nvidia-driver-git libvirt linux-headers mako man-db mpv ncdu \
+    neovim network-manager-applet newsboat nodejs noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
     pacman-contrib pamixer pavucontrol pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
-    python-{mutagen,pip,requests} qemu-full qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects\
+    python-{mutagen,pip,requests} qemu-full qt6ct qt6-wayland ripgrep slurp socat swappy swaylock-effects \
     swww sxiv tmux tree ttf-jetbrains-mono-nerd unzip virt-manager virt-viewer waybar wf-recorder wget \
-    wireplumber wl-clipboard wofi xdg-desktop-portal-{hyprland,wlr} wdisplays wlr-randr ydotool xorg-xhost yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+    wireplumber wl-clipboard wofi xdg-desktop-portal-{hyprland,wlr} wdisplays wlr-randr ydotool xorg-xhost \
+    yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf

@@ -78,7 +78,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		bat --language=cpp "$1"
 		;;
 	*)
-        bat --color=always -pp "$1"
+        bat --color=always --style=plain --pager=never "$1"
 		;;
 esac
 exit 0

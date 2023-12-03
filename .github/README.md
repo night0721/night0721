@@ -1,43 +1,50 @@
-# My Arch Linux Setup
+# Night Dotfiles
 
-## Specifications
+Catppuccin themed dotfiles for Arch Linux
 
-## Bootloader - Grub
-Using my theme, based on [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara)
+# Specifications
+- OS: Arch Linux
+- WM: Hyprland (Will be replaced with dwl once stable)
+- Topbar: Waybar (Will be replaced with dwl-bar once stable)
+- Notifications: mako
+- Terminal: foot
+- Shell: zsh
+- Wallpaper daemon: swww
+- Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
+- File Manager: lf
+- Search menu: fzf, bemenu
+- Browser: firefox
+- Font: JetBrains Mono Nerd Font
+- Bootloader: grub
 
-## WM - Hyprland
-*Based on [HyprV4](https://github.com/SolDoesTech/HyprV4)*
+# Details
+*Note: Parts with hyprland and mako is made by SolDoesTech with their HyprV4*
 
-# DM - SDDM (Removed)
-Using [aerial](https://github.com/3ximus/aerial-sddm-theme)
-Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+1. Grub theme: `.data/grub/n` (Based on [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara))
 
-# Shell - zsh
-Using [powerlevel10k](https://github.com/romkatv/powerlevel10k) for theme, zsh-autosuggestions for auto complete and zsh-history-substring-search for finding previously used commands, zsh-syntax-highlighting for showing syntax errors
+2. Login: SDDM(Remvoed, logging in with tty)
+- Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
+- Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
-# File Manager - lf
-Using [lf-gadgets](https://github.com/slavistan/lf-gadgets) with lf-kitty to provide image preview support in lf
-Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
-pdftricks - PDF preview
-graphicsmagick - SVG and GIF preview
-Required packages: pdftricks grpahicsmagick chafa
+3. Shell: zsh
+- Theme: `.config/zsh/n.zsh-theme`
+- Plugins: zsh-autosuggestions, zsh-history-substring-search, zsh-syntax-highlighting
 
-[Fontpreview](https://github.com/sdushantha/fontpreview) - To preview .otf, .ttf, .woff files in lf
-Required pacakges: xdotool fzf imagemagick sxiv
+4. File Manager: lf
+- Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
+- pdftricks for PDF preview
+- graphicsmagick for SVG and GIF preview
+- [Fontpreview](https://github.com/sdushantha/fontpreview) for OTF TTF WOFF preview
+- Required packages: pdftricks grpahicsmagick chafa ydotool fzf imagemagick sxiv
 
+5. GTK Theme: [Catppuccin](https://github.com/ljmill/catppuccin-icons
+)
+Alternatively, you can use [papirus icons](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with [this Catpuccin icon theme](https://aur.archlinux.org/packages/papirus-folders-catppuccin-git)
 ## Additional Information
 
-You might need to install `grub-customizer` to remove other kernel options, if syntax error occured, most likely a `:` will solve the problem
+You might need to install `grub-customizer` to remove other boot options, if syntax error occured, most likely a `:` will solve the problem
 
-GTK Icon Theme: https://github.com/ljmill/catppuccin-icons
-You may use [papirus icons](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with [this Catpuccin icon theme](https://aur.archlinux.org/packages/papirus-folders-catppuccin-git) as an alternative.
-
-For firefox, you can set font to Nerd fonts to show some special symbols in case there is some.
-
-tldr can be installed using npm
-```bash
-npm i -g tldr
-```
+### Dual booting
 Windws partition in fstab should have these properties
 ```
 UUID=94ACAFD1ACAFAC64   /run/media/N    ntfs        rw,user,auto,fmask=133,dmask=022,uid=1000,gid=1000  0 0
@@ -69,45 +76,53 @@ Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 ```
 nmcli device wifi connect [network name] password [password]
 yay
-nwg-look
 grub-customizer
-rmmod pcspkr
-rmmod snd_pcsp
 ```
+
 ### Firefox
 
-Go to about:profiles and create a new profile with custom folder
-
-cd into the folder and create user.js
-
-Copy [betterfox](https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js) into user.js
-
-Restart firefox
-
-Then follow https://github.com/catppuccin/userstyles/ to install stylus
-
-Downloading [codeberg](https://github.com/catppuccin/userstyles/tree/main/styles/codeberg) and [github](https://github.com/catppuccin/userstyles/tree/main/styles/github) css themes selecting mocha and lavender.
+Go to about:profiles and create a new profile with custom folder  
+cd into the folder and create user.js  
+Copy [betterfox](https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js) into user.js   
+Restart firefox  
+Then follow https://github.com/catppuccin/userstyles/ to install stylus  
+Downloading [codeberg](https://github.com/catppuccin/userstyles/tree/main/styles/codeberg) and [github](https://github.com/catppuccin/userstyles/tree/main/styles/github) css themes selecting mocha and lavender.  
 
 ## Default Keybinds
 
-SUPER + S = Start Kitty
+SUPER + S = Start Terminal  
+SUPER + F = Start Firefox  
+SUPER + C = Kill Active Window  
+SUPER + L = Lock Screen  
+SUPER + M = Power menu  
+SUPER + [1-9] = Switch to tags  
+SUPER + SHIFT + [1-9] = Move active window to tag  
+SUPER + SHIFT + Q = Quit to tty  
+SUPER + O = Increase opacity  
+SUPER + SHIFT + O = Decrease opacity  
+SUPER + B = Toggle bar  
+SUPER + AD = Switch focus to window  
+SUPER + QE = Change window size  
+SUPER + [,.] = Focus next/previous monitor
+SUPER + SHIFT + [,.] = Move window to next/previous monitor
+SUPER + SHIFT + SPACE = Toggle floating  
+SUPER + ENTER = Toggle focus  
+SUPER + P = Password menu  
+SUPER + SPACE = App Launcher  
+SUPER + SHIFT + S = Screenshot menu  
 
-SUPER + F = Start Firefox
+# Packages
 
-SUPER + E = File Manager
-
-SUPER + C = Kill Active Window
-
-SUPER + L = Lock Screen
-
-SUPER + M = Logout menu
-
-SUPER + N = Refresh waybar
-
-SUPER + V = Toggle Float
-
-SUPER + J = Toggle Split
-
-SUPER + SPACE = App Launcher
-
-SUPER + SHIFT + S = Screenshot
+Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
+Shell softwares: bat btop chafa figlet fzf lf mpv ncdu neovim newsboat pass ripgrep socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
+Development: npm python-{mutagen,pip,requests}  
+Browser: firefox  
+Enviroment: gtk3 hyprland-nvidia mako network-manager-applet pdftricks plymouth qt6 qt6-wayland slurp swappy swaylock-effects swww waybar xdg-desktop-portal-{hyprland,wlr} wdisplays xorg-xhost zathura zathura-pdf-poppler  
+Audio: pamixer pipewire pipewire-{alsa,jack,pulse} wireplumber  
+Graphics: graphicsmagick  
+Bluetooth: bluez-git  
+Suckless: bemenu foot  
+VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
+Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
+Drivers: libva libva-nvidia-driver-git nvidia-{dkms,settings}  
+Kernel: linux linux-headers  
