@@ -29,9 +29,9 @@ export PASSWORD_STORE_DIR="$HOME/.nky/Me/pass"
 export LC_ALL=en_US.UTF-8
 
 # DE
-export XDG_CURRENT_DESKTOP=dwl
+export XDG_CURRENT_DESKTOP=wlroots
 export XDG_SESSION_TYPE=wayland
-export XDG_SESSION_DESKTOP=dwl
+export XDG_SESSION_DESKTOP=wlroots
 export XCURSOR_SIZE=24
 export WLR_NO_HARDWARE_CURSORS=1
 export LIBVA_DRIVER_NAME=nvidia
