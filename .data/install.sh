@@ -25,11 +25,11 @@ fi
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez-git brillo \
     btop chafa figlet firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo \
-    lf libnotify libva libva-nvidia-driver-git linux-headers mako man-db mpv ncdu \
+    lf libliftoff libnotify libva libva-nvidia-driver-git linux-headers mako man-db mpv ncdu \
     neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
     pacman-contrib pamixer pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
     python-{mutagen,pip,requests} ripgrep slurp socat swappy \
-    swww tmux tree ttf-jetbrains-mono-nerd unzip wf-recorder wget \
+    tllist tmux tree ttf-jetbrains-mono-nerd unzip wf-recorder wget \
     wireplumber wl-clipboard wdisplays wlr-randr ydotool xorg-xhost \
     yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
@@ -86,13 +86,31 @@ cd autojump
 ./install.py
 
 # stage the .desktop file
-sudo mkdir /usr/share/wayland-sessions 
-sudo cp /dotfiles/.data/misc/hyprland.desktop /usr/share/wayland-sessions/
+sudo mkdir /usr/share/wayland-sessions
+sudo cp /dotfiles/.data/misc/dwl.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
+
+# suckless stuff
+cd ~
+mkdir repos
+cd repos
+git clone https://codeberg.org/night0721/dwl
+cd dwl
+sudo make install
+cd ..
+git clone https://codeberg.org/night0721/dwl-bar
+sudo make install
+cd ..
+git clone https://codeberg.org/night0721/someblocks
+sudo make install
+cd ..
+git clone https://codeberg.org/dnkl/wbg
+sudo make install
+cd ..
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv

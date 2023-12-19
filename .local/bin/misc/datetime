@@ -2,9 +2,7 @@
 
 while true; do
     clear
-    current_time=$(date +"%T")
-    banner_text=$(figlet "$current_time")
-    echo "$banner_text"
+    echo $(date +"%T")
     sleep 1
 done
 
