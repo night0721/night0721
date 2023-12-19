@@ -4,12 +4,12 @@ Catppuccin themed dotfiles for Arch Linux
 
 # Specifications
 - OS: Arch Linux
-- WM: Hyprland (Will be replaced with dwl once stable)
-- Topbar: Waybar (Will be replaced with dwl-bar once stable)
+- WM: dwl
+- Topbar: dwl-bar
 - Notifications: mako
 - Terminal: foot
 - Shell: zsh
-- Wallpaper daemon: swww
+- Wallpaper daemon: wbg
 - Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
 - File Manager: lf
 - Search menu: fzf, bemenu
@@ -20,7 +20,7 @@ Catppuccin themed dotfiles for Arch Linux
 # Details
 *Note: Parts with hyprland and mako is made by SolDoesTech with their HyprV4*
 
-1. Grub theme: `.data/grub/n` (Based on [sayonara theme](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara))
+1. Grub theme: `.data/grub/n` (Based on [sayonara](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara))
 
 2. Login: SDDM(Remvoed, logging in with tty)
 - Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
@@ -32,13 +32,11 @@ Catppuccin themed dotfiles for Arch Linux
 
 4. File Manager: lf
 - Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
-- pdftricks for PDF preview
 - graphicsmagick for SVG and GIF preview
 - [Fontpreview](https://github.com/sdushantha/fontpreview) for OTF TTF WOFF preview
-- Required packages: pdftricks grpahicsmagick chafa ydotool fzf imagemagick sxiv
+- Required packages: grpahicsmagick chafa ydotool fzf imagemagick
 
-5. GTK Theme: [Catppuccin](https://github.com/ljmill/catppuccin-icons
-)
+5. GTK Theme: [Catppuccin](https://github.com/ljmill/catppuccin-icons)
 Alternatively, you can use [papirus icons](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with [this Catpuccin icon theme](https://aur.archlinux.org/packages/papirus-folders-catppuccin-git)
 ## Additional Information
 
