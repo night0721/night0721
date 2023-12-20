@@ -23,14 +23,13 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez-git brillo \
-    btop chafa figlet firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo \
-    lf libliftoff libnotify libva libva-nvidia-driver-git linux-headers mako man-db mpv ncdu \
-    neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-{dkms,settings} \
-    pacman-contrib pamixer pass pdftricks pipewire pipewire-{jack,alsa,pulse} plymouth \
-    python-{mutagen,pip,requests} ripgrep slurp socat swappy \
-    tllist tmux tree ttf-jetbrains-mono-nerd unzip wf-recorder wget \
-    wireplumber wl-clipboard wdisplays wlr-randr ydotool xorg-xhost \
+yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez-git brillo btop \
+    chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf libliftoff \
+    libnotify libva linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji \
+    npm ntfs-3g nvidia-dkms pacman-contrib pamixer pass pdftricks pipewire \
+    pipewire-{jack,alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy \
+    tllist tmux ttf-jetbrains-mono-nerd unzip wf-recorder wireplumber wl-clipboard \
+    wlroots-nvidia wlr-randr ydotool xdg-desktop-portal-wlr xorg-xhost \
     yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config
@@ -40,16 +39,11 @@ sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
-if yay -Q hyprland &>> /dev/null ; then
-    yay -R hyprland --noconfirm > /dev/null
-fi
 
 sudo systemctl enable --now bluetooth
 sleep 2
 #sudo systemctl enable sddm
 #sleep 2 
-# Clean out other portals
-yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk > /dev/null
 
 ### Disable wifi powersave mode ###
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
@@ -109,7 +103,9 @@ git clone https://codeberg.org/night0721/someblocks
 sudo make install
 cd ..
 git clone https://codeberg.org/dnkl/wbg
-sudo make install
+meson --buildtype=release build
+ninja -C build
+sudo ninja -C build install
 cd ..
 
 # zsh
@@ -150,7 +146,7 @@ curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/C
 sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
 
 # gtk theme -> https://github.com/catppuccin/gtk
-curl -L -O https://github.com/catppuccin/gtk/releases/latest/download.Catppuccin-Mocha-Standard-Lavender-Dark.zip
+curl -L -O https://github.com/catppuccin/gtk/releases/latest/download/Catppuccin-Mocha-Standard-Lavender-Dark.zip
 sudo unzip Catppuccin-Mocha-Standard-Lavender-Dark.zip -d /usr/share/themes
 
 # cursor theme -> https://github.com/catppuccin/cursors
