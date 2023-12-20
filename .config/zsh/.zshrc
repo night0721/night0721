@@ -43,7 +43,7 @@ zstyle ':completion:*' menu select
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # autojump
-[[ -s /home/night/.autojump/etc/profile.d/autojump.sh ]] && source /home/night/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 # push to github with the lazy way
 g() {
