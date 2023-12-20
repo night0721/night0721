@@ -63,6 +63,8 @@ bash dotfiles/.data/root.sh
 ## Setup
 
 ```
+git clone --bare git@codeberg.org:night0721/dotfiles
+# OR
 git init --bare $HOME/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
@@ -112,15 +114,15 @@ SUPER + SHIFT + S = Screenshot menu
 # Packages
 
 Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
-Shell softwares: bat btop chafa figlet fzf lf mpv ncdu neovim newsboat pass ripgrep socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
-Development: npm python-{mutagen,pip,requests}  
+Shell softwares: bat btop chafa fzf lf mpv ncdu neovim newsboat pass ripgrep socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
+Development: npm python-{mutagen,pip}  
 Browser: firefox  
-Enviroment: gtk3 hyprland-nvidia mako network-manager-applet pdftricks plymouth qt6 qt6-wayland slurp swappy swaylock-effects swww waybar xdg-desktop-portal-{hyprland,wlr} wdisplays xorg-xhost zathura zathura-pdf-poppler  
+Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura zathura-pdf-poppler  
 Audio: pamixer pipewire pipewire-{alsa,jack,pulse} wireplumber  
 Graphics: graphicsmagick  
-Bluetooth: bluez-git  
+Bluetooth: bluez bluez-{libs,utils}  
 Suckless: bemenu foot  
 VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
 Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
-Drivers: libva libva-nvidia-driver-git nvidia-{dkms,settings}  
+Drivers: libva nvidia-dkms   
 Kernel: linux linux-headers  

@@ -23,9 +23,9 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez-git brillo btop \
-    chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf libliftoff \
-    libnotify libva linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji \
+yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-{libs,utils} \
+    brillo btop chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf \
+    libliftoff libnotify libva linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji \
     npm ntfs-3g nvidia-dkms pacman-contrib pamixer pass pdftricks pipewire \
     pipewire-{jack,alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy \
     tllist tmux ttf-jetbrains-mono-nerd unzip wf-recorder wireplumber wl-clipboard \
