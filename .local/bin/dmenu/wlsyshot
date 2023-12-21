@@ -23,7 +23,7 @@ opts_mod(){
     case $mods_la in
 	"Edit screenshot") swappy -f $1;;
 	"Save") cp $1 $PICTURE_DIR;;
-	"Copy to clipboard") wl-copy < $1;;
+	"Copy to clipboard") wl-copy < $1 -t image/png;;
     "Upload to e-z.host")
         image_url=$(curl -X POST -F "file=@"$1 -H "key: "$auth -v "$url" 2>/dev/null)
         echo $image_url > /tmp/upload.json
