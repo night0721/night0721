@@ -46,3 +46,5 @@ alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias cad='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME add'
 alias cco='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME commit -m'
 alias cpu='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME push'
+alias cst='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME status -u'
+
