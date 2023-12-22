@@ -11,10 +11,10 @@ send_notification() {
 case $1 in
 up)
 	brightnessctl s +5%
-	send_notification "$1"
+	send_notification
 	;;
 down)
 	brightnessctl s 5%-
-	send_notification "$1"
+	send_notification
 	;;
 esac

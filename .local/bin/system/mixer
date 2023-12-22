@@ -1,0 +1,26 @@
+#!/bin/sh
+
+sinks=$(pactl list short sinks | awk '{print $1 " " $2}')
+
+sink_inputs=()
+process_names=()
+while IFS= read -r line; do
+    if [[ $line =~ ^Sink\ Input\ #[0-9]+ ]]; then
+        line=$(echo $line | awk '/Sink Input #/ {print $3}' | sed 's/\#//')
+        sink_inputs+=("$line")
+    elif [[ $line =~ media.name\ = ]]; then
+        line=$(echo $line | awk -F'"' '/media.name =/ {print $2}')
+        process_names+=("$line")
+    fi
+done < <(pactl list sink-inputs)
+
+combined=()
+for ((i = 0; i < ${#sink_inputs[@]}; i++)); do
+    combined+=("${sink_inputs[$i]} ${process_names[$i]}")
+done
+
+selected=$(printf '%s\n' "${combined[@]}" | bemenu -i -l 10 -p "Select a process to move to another sink:")
+selected_inputid=$(echo $selected | awk '{ print $1 }')
+selected_sink=$(printf '%s\n' "${sinks[@]}" | bemenu -i -l 10 -p "Select a sink to move the process to:" | awk '{print $1}')
+
+pactl move-sink-input "$selected_inputid" "$selected_sink"
