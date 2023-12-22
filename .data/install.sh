@@ -23,13 +23,12 @@ else
 fi
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils \
-    brillo btop chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf \
-    libliftoff libnotify linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji \
-    npm ntfs-3g nvidia-dkms pacman-contrib pamixer pass pdftricks pipewire-{alsa,pulse} \
-    plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux ttf-jetbrains-mono-nerd \
-    unzip wf-recorder wireplumber wl-clipboard wlroots-nvidia wlr-randr xdg-desktop-portal-wlr \
-    xorg-xhost ydotool yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
+    btop chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf libliftoff libnotify \
+    linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-dkms \
+    pacman-contrib pass pipewire-{alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy \
+    tllist tmux ttf-jetbrains-mono-nerd unzip wf-recorder wireplumber wl-clipboard wlroots-nvidia \
+    wlr-randr xdg-desktop-portal-wlr xorg-xhost ydotool yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
