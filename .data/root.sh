@@ -37,7 +37,7 @@ mount --mkdir $efipart /mnt/boot/efi/
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
-pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode sudo git networkmanager grub efibootmgr dosfstools mtools os-prober --noconfirm > /dev/null
+pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode git networkmanager grub efibootmgr dosfstools mtools os-prober --noconfirm > /dev/null
 genfstab -U /mnt >> /mnt/etc/fstab
 rmmod pcspkr
 rmmod snd_pcsp # speaker for no beeping as it is annoying

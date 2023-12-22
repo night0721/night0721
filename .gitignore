@@ -1,9 +1,9 @@
 dotfiles
 .nky
 .mozilla
+.zshenv
 .ssh
 .wakatime*
-.zshenv
 .local/state
 .local/share
 .autojump
