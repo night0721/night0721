@@ -1,0 +1,23 @@
+
+#!/bin/bash
+
+# Function to count unique packages
+count_packages() {
+    local package="$1"
+    local count=0
+
+    # Get dependencies recursively using pactree
+    deps=$(pactree -u "$package")
+
+    # Count unique dependencies
+    count=$(echo "$deps" | wc -l)
+
+    echo "$count"
+}
+
+# Get all explicitly installed packages and count their dependencies
+pacman -Qe | awk '{print $1}' | while read -r package; do
+    total_count=$(count_packages "$package")
+    echo "$package: $total_count"
+done
+
