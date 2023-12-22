@@ -4,17 +4,17 @@
 # and send a notification displaying the current brightness level after.
 
 send_notification() {
-	brightness=$(printf "%.0f\n" "$(brillo -G)")
+	brightness=$(printf "%.0f\n" "$(brightnessctl i | grep 'Current brightness' | awk -F'[(%]' '{print $2}')")
 	notify-send -a "brightness" -u low -r 9991 -h int:value:"$brightness" -h string:x-canonical-private-synchronous:sys-notify "Brightness: $brightness%" -t 2000
 }
 
 case $1 in
 up)
-	sudo brillo -A 5 -q
+	brightnessctl s +5%
 	send_notification "$1"
 	;;
 down)
-	sudo brillo -U 5 -q
+	brightnessctl s 5%-
 	send_notification "$1"
 	;;
 esac

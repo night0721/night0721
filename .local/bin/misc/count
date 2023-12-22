@@ -1,5 +1,4 @@
-
-#!/bin/bash
+#!/bin/sh
 
 # Function to count unique packages
 count_packages() {
@@ -20,4 +19,3 @@ pacman -Qe | awk '{print $1}' | while read -r package; do
     total_count=$(count_packages "$package")
     echo "$package: $total_count"
 done
-
