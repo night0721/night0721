@@ -34,3 +34,7 @@ export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=wlroots
 export XCURSOR_SIZE=24
 export WLR_NO_HARDWARE_CURSORS=1
+#export __GLX__VENDOR__LIBRARY_NAME=mesa
+#export MESA_LOADER_DRIVER_OVERRIDE=zink
+export WLR_RENDERER=gles2
+
