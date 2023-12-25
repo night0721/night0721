@@ -34,8 +34,6 @@ echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
 sudo systemctl enable --now bluetooth
 sleep 2
-#sudo systemctl enable sddm
-#sleep 2 
 
 ### Disable wifi powersave mode ###
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
@@ -45,18 +43,6 @@ echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
 cp -R /dotfiles/.config /dotfiles/.local /home/night/
-
-# Copy the SDDM theme
-#cd /dotfiles
-#sudo git clone https://github.com/3ximus/aerial-sddm-theme aerial
-#sudo cp -R aerial /usr/share/sddm/themes/
-#sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
-#cd /usr/share/sddm/themes/aerial
-#rm -rf playlists screens .git README.md LICENSE .gitignore theme.conf.user background.jpg
-#cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
-#sudo mkdir /etc/sddm.conf.d
-#sudo touch /etc/sddm.conf.d/10-theme.conf
-#echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # /etc/hosts
 cd /dotfiles/.data/misc
@@ -68,15 +54,6 @@ cd /home/night
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-
-# stage the .desktop file
-#sudo mkdir /usr/share/wayland-sessions
-#sudo cp /dotfiles/.data/misc/dwl.desktop /usr/share/wayland-sessions/
-
-# setup the first look and feel as dark
-#gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-#gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-#gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # suckless stuff
 cd ~
@@ -122,23 +99,9 @@ sudo cp -r .data/misc/n /boot/grub/themes/n
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# remove pacman stuff
-sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
-pacman -Qqd | pacman -Rsu - > /dev/null
-sudo paccache -dvuk1 > /dev/null
-
-# gtk icons
-cd /home/night
-curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
-sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
-
-# gtk theme -> https://github.com/catppuccin/gtk
-curl -L -O https://github.com/catppuccin/gtk/releases/latest/download/Catppuccin-Mocha-Standard-Lavender-Dark.zip
-sudo unzip Catppuccin-Mocha-Standard-Lavender-Dark.zip -d /usr/share/themes
-
-# cursor theme -> https://github.com/catppuccin/cursors
-curl -L -O https://github.com/catppuccin/cursors/releases/latest/download/Catppuccin-Mocha-Lavender-Cursors.zip
-sudo unzip Catppuccin-Mocha-Lavender-Cursors.zip -d /usr/share/icons
+# misc
+bat cache --build # catppuccin theme for bat
+sudo sed -i 's/dmenu-wl/bemenu/' /usr/bin/passmenu # fix passmenu not using bemenu
 
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
 sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
