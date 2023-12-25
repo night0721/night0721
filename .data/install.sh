@@ -102,7 +102,13 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # misc
 bat cache --build # catppuccin theme for bat
 sudo sed -i 's/dmenu-wl/bemenu/' /usr/bin/passmenu # fix passmenu not using bemenu
+echo -e 'if lsmod | grep -wq "pcspkr"; then                                     
+  sudo rmmod pcspkr # Remove annoying beep sound in tty
+fi
 
+if [[ $TTY == /dev/tty1 ]]; then
+    dwl -d &> ~/dwl.log # For no display manager
+fi' | sudo tee -a /etc/profile # profile to autostart  
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
 sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
 sudo systemctl enable --now NetworkManager
