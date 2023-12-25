@@ -13,14 +13,8 @@ cd /home/night
 git clone https://aur.archlinux.org/yay.git > /dev/null
 cd yay
 makepkg -si --noconfirm > /dev/null
-if [ -f /sbin/yay ]; then
-    cd ..    
-    # update the yay database
-    yay -Syu --noconfirm > /dev/null
-else
-    # if this is hit then a package is missing, exit to review log
-    exit
-fi
+cd ..    
+yay -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
@@ -40,8 +34,6 @@ echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
 sudo systemctl enable --now bluetooth
 sleep 2
-#sudo systemctl enable sddm
-#sleep 2 
 
 ### Disable wifi powersave mode ###
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
@@ -50,21 +42,7 @@ sudo touch $LOC
 echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config /home/night
-mkdir /home/night/.local/bin
-cp -R /dotfiles/.local/bin /home/night/.local
-
-# Copy the SDDM theme
-#cd /dotfiles
-#sudo git clone https://github.com/3ximus/aerial-sddm-theme aerial
-#sudo cp -R aerial /usr/share/sddm/themes/
-#sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial
-#cd /usr/share/sddm/themes/aerial
-#rm -rf playlists screens .git README.md LICENSE .gitignore theme.conf.user background.jpg
-#cp /dotfiles/.data/aerial/night.m3u /dotfiles/.data/aerial/theme.conf.user /dotfiles/.config/background.png .
-#sudo mkdir /etc/sddm.conf.d
-#sudo touch /etc/sddm.conf.d/10-theme.conf
-#echo -e "[Theme]\nCurrent=aerial" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
+cp -R /dotfiles/.config /dotfiles/.local /home/night/
 
 # /etc/hosts
 cd /dotfiles/.data/misc
@@ -73,18 +51,9 @@ sudo cp hosts /etc/hosts
 
 # autojump
 cd /home/night
-git clone git://github.com/wting/autojump.git
+git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-
-# stage the .desktop file
-sudo mkdir /usr/share/wayland-sessions
-sudo cp /dotfiles/.data/misc/dwl.desktop /usr/share/wayland-sessions/
-
-# setup the first look and feel as dark
-gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # suckless stuff
 cd ~
@@ -100,7 +69,7 @@ cd ..
 git clone https://codeberg.org/night0721/someblocks
 sudo make install
 cd ..
-git clone https://codeberg.org/dnkl/wbg
+git clone https://codeberg.org/night0721/wbg
 meson --buildtype=release build
 ninja -C build
 sudo ninja -C build install
@@ -130,27 +99,16 @@ sudo cp -r .data/misc/n /boot/grub/themes/n
 sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# remove pacman stuff
-sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
-pacman -Qqd | pacman -Rsu - > /dev/null
-sudo paccache -dvuk1 > /dev/null
+# misc
+bat cache --build # catppuccin theme for bat
+sudo sed -i 's/dmenu-wl/bemenu/' /usr/bin/passmenu # fix passmenu not using bemenu
+echo -e 'if lsmod | grep -wq "pcspkr"; then                                     
+  sudo rmmod pcspkr # Remove annoying beep sound in tty
+fi
 
-# npm
-npm config set prefix '~/.local/npm'
-
-# gtk icons
-cd /home/night
-curl -L -O https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2
-sudo tar -xf Catppuccin-SE.tar.bz2 -C /usr/share/icons
-
-# gtk theme -> https://github.com/catppuccin/gtk
-curl -L -O https://github.com/catppuccin/gtk/releases/latest/download/Catppuccin-Mocha-Standard-Lavender-Dark.zip
-sudo unzip Catppuccin-Mocha-Standard-Lavender-Dark.zip -d /usr/share/themes
-
-# cursor theme -> https://github.com/catppuccin/cursors
-curl -L -O https://github.com/catppuccin/cursors/releases/latest/download/Catppuccin-Mocha-Lavender-Cursors.zip
-sudo unzip Catppuccin-Mocha-Lavender-Cursors.zip -d /usr/share/icons
-
+if [[ $TTY == /dev/tty1 ]]; then
+    dwl -d &> ~/dwl.log # For no display manager
+fi' | sudo tee -a /etc/profile # profile to autostart  
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
 sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
 sudo systemctl enable --now NetworkManager
