@@ -2,14 +2,14 @@
 
 wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz --pos 0,0 --scale 1
 wlr-randr --output eDP-1 --mode 1920x1080@120.001999Hz --pos 2560,0
-sudo ydotoold -p /run/user/1000/.ydotool_socket -P 666
+#sudo ydotoold -p /run/user/1000/.ydotool_socket -P 666
 dwl-bar &
 someblocks -s $XDG_RUNTIME_DIR/dwl-bar-0 &
 mako &
 wbg ~/.nky/Photo/Wallpapers/cat_pacman.jpg &
-gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
+#gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
+#gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+#gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 /usr/lib/xdg-desktop-portal-wlr &
 sleep 2
 /usr/lib/xdg-desktop-portal &

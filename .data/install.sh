@@ -13,14 +13,8 @@ cd /home/night
 git clone https://aur.archlinux.org/yay.git > /dev/null
 cd yay
 makepkg -si --noconfirm > /dev/null
-if [ -f /sbin/yay ]; then
-    cd ..    
-    # update the yay database
-    yay -Syu --noconfirm > /dev/null
-else
-    # if this is hit then a package is missing, exit to review log
-    exit
-fi
+cd ..    
+yay -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
 yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
@@ -50,9 +44,7 @@ sudo touch $LOC
 echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config /home/night
-mkdir /home/night/.local/bin
-cp -R /dotfiles/.local/bin /home/night/.local
+cp -R /dotfiles/.config /dotfiles/.local /home/night/
 
 # Copy the SDDM theme
 #cd /dotfiles
@@ -73,18 +65,18 @@ sudo cp hosts /etc/hosts
 
 # autojump
 cd /home/night
-git clone git://github.com/wting/autojump.git
+git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
 
 # stage the .desktop file
-sudo mkdir /usr/share/wayland-sessions
-sudo cp /dotfiles/.data/misc/dwl.desktop /usr/share/wayland-sessions/
+#sudo mkdir /usr/share/wayland-sessions
+#sudo cp /dotfiles/.data/misc/dwl.desktop /usr/share/wayland-sessions/
 
 # setup the first look and feel as dark
-gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
-gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
+#gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
+#gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+#gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
 
 # suckless stuff
 cd ~
@@ -100,7 +92,7 @@ cd ..
 git clone https://codeberg.org/night0721/someblocks
 sudo make install
 cd ..
-git clone https://codeberg.org/dnkl/wbg
+git clone https://codeberg.org/night0721/wbg
 meson --buildtype=release build
 ninja -C build
 sudo ninja -C build install
@@ -134,9 +126,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo pacman -Rns $(pacman -Qdttq) --noconfirm > /dev/null # remove orphans
 pacman -Qqd | pacman -Rsu - > /dev/null
 sudo paccache -dvuk1 > /dev/null
-
-# npm
-npm config set prefix '~/.local/npm'
 
 # gtk icons
 cd /home/night
