@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=wlroots
-Comment=dwm for Wayland
-Exec=dwl
-Type=Application
