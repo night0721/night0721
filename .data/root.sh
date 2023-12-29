@@ -39,11 +39,9 @@ pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
 pacstrap -i /mnt base base-devel linux linux-headers linux-firmware amd-ucode git networkmanager grub efibootmgr dosfstools mtools os-prober --noconfirm > /dev/null
 genfstab -U /mnt >> /mnt/etc/fstab
-rmmod pcspkr
-rmmod snd_pcsp # speaker for no beeping as it is annoying
+rmmod pcspkr # speaker for no beeping as it is annoying
 arch-chroot /mnt /bin/bash -- << EOCHROOT
-useradd -m night
-usermod -aG wheel,storage,power night
+useradd -m -G wheel,audio,storage,power -s /bin/bash night
 printf "$nightpasswd\n$nightpasswd" | passwd night
 printf "$rootpasswd\n$rootpasswd" | passwd root
 sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL\nDefaults timestamp_timeout=600/" /etc/sudoers

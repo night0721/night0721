@@ -109,6 +109,10 @@ fi
 if [[ $TTY == /dev/tty1 ]]; then
     dwl -d &> ~/dwl.log # For no display manager
 fi' | sudo tee -a /etc/profile # profile to autostart  
+echo -e 'root ALL=(ALL:ALL) ALL
+n ALL=(ALL:ALL) ALL
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
 sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
 sudo systemctl enable --now NetworkManager
