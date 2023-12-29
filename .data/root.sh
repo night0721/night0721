@@ -1,39 +1,45 @@
 timedatectl set-timezone Europe/London
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
-#cfdisk /dev/nvme0n1
-#echo "Enter root partition: "
-#read rootpart
-rootpart=/dev/nvme0n1p4
-#echo "Enter home partition: "
-#read homepart
-homepart=/dev/nvme0n1p6
-#echo "Enter swap partition: "
-#read swappart
-swappart=/dev/nvme0n1p7
-#echo "Enter EFI partition: "
-#read efipart
-efipart=/dev/nvme0n1p1
-#echo "Enter Windows Partition"
-#read windowspart
-#windowspart=/dev/nvme0n1p3
-
-echo "Enter night password"
-read nightpasswd
-
-echo "Enter root password"
-read rootpasswd
-
-echo "Enter hostname"
-read hostname
-
+if [ ! -f "/dotparts" ]; then
+    echo "'dotparts' file not found, I have created one for you. Please edit the file with only one line and have fields"
+    echo "[EFI Partition] [Windows Partition] [Root Partition] [Home Partition]"
+    echo ""
+    echo "Example:"
+    echo "/dev/nvme0n1p1 /dev/nvme0n1p3 /dev/nvme0n1p6 /dev/nvme0n1p7"
+    touch /dotparts
+    exit
+fi
+efipart=$(awk -F' ' '{print $1}' /dotparts)
+windowspart=$(awk -F' ' '{print $2}' /dotparts)
+rootpart=$(awk -F' ' '{print $3}' /dotparts)
+homepart=$(awk -F' ' '{print $4}' /dotparts)
+if [ ! -f "/dotpass" ]; then
+    echo "'dotpass' file not found, I have created one for you. Please edit the file with only one line and have fields"
+    echo "[Night Password] [Root Password]"
+    echo ""
+    echo "Example:"
+    echo "123 123"
+    touch /dotpass
+    exit
+fi
+nightpasswd=$(awk -F' ' '{print $1}' /dotpass)
+rootpasswd=$(awk -F' ' '{print $2}' /dotpass)
+if [ ! -f "/dothostname" ]; then
+    echo "'dothostname' file not found, I have created one for you. Please edit the file with only one line and have fields"
+    echo "[Hostname]"
+    echo ""
+    echo "Example:"
+    echo "123"
+    touch /dothostname
+    exit
+fi
+hostname=$(cat /dothostname)
 mkfs.ext4 $rootpart
 mkfs.ext4 $homepart
-mkswap $swappart
-swapon $swappart
 mount $rootpart /mnt
 mount --mkdir $homepart /mnt/home
 mount --mkdir $efipart /mnt/boot/efi/
-#mount --mkdir $windowspart /mnt/run/media/N
+mount --mkdir $windowspart /mnt/mnt/windows
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 pacman -S pacman-contrib --noconfirm > /dev/null
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
@@ -50,15 +56,10 @@ locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 echo $hostname > /etc/hostname
-cat > /etc/hosts <<EOF
-127.0.0.1   localhost
-::1         localhost
-127.0.1.1   $hostname.localdomain   localhost
-EOF
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock —w
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 EOCHROOT
 cp -r dotfiles/ /mnt/
 # cp dotfiles/.data/install.sh /mnt/install.sh
-arch-chroot -u night /mnt su -c /dotfiles/.data/install.sh -s /bin/sh night > /dev/null
+arch-chroot -u night /mnt su -c /dotfiles/.data/install.sh -s /bin/sh night &> /dev/null

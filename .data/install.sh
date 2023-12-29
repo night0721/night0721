@@ -1,35 +1,31 @@
-#!/bin/bash
-efipart=/dev/nvme0n1p1
-windowspart=/dev/nvme0n1p3
+#!/bin/sh
 
-echo "Enter night password"
-read nightpasswd
+efipart=$(awk -F' ' '{print $1}' /dotparts)
+windowspart=$(awk -F' ' '{print $2}' /dotparts)
+
+nightpasswd=$(awk -F' ' '{print $1}' /dotpass)
 
 # clear the screen
 clear
 
 cd /home/night
-# yay AUR helper
-git clone https://aur.archlinux.org/yay.git > /dev/null
-cd yay
-makepkg -si --noconfirm > /dev/null
-cd ..    
-yay -Syu --noconfirm > /dev/null
+pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-yay -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
-    btop chafa firefox foot fzf graphicsmagick grub-customizer grim gtk3 hugo lf libliftoff libnotify \
-    linux-headers mako man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open \
-    pacman-contrib pass pipewire-{alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy \
-    tllist tmux ttf-jetbrains-mono-nerd unzip wf-recorder wireplumber wl-clipboard wlroots-nvidia \
-    wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
+    btop chafa firefox foot fzf graphicsmagick grub-customizer grim  hugo lf libliftoff libnotify mako \
+    man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
+    pipewire-{alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux unzip \
+    wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura \
+    zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config
-sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+# sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf # for qemu passthrough
 sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
 # add modconf to HOOKS
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
+echo -e "blacklist nouveau\noptions nvidia_drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
 
 sudo systemctl enable --now bluetooth
@@ -42,7 +38,7 @@ sudo touch $LOC
 echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config /dotfiles/.local /home/night/
+cp -R /dotfiles/.config /dotfiles/.local /dotfiles/.npmrc /dotfiles/.github /dotfiles/.gitignore /dotfiles/data /home/night/
 
 # /etc/hosts
 cd /dotfiles/.data/misc
@@ -77,9 +73,6 @@ cd ..
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
-# cd /home/.config/zsh
-# git clone https://github.com/zsh-users/zsh-autosuggestions
-#git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
 # plymouth
 cd /usr/share/plymouth/themes/
@@ -89,10 +82,7 @@ cd monoarch
 sudo rm -rf .git LICENSE README.md
 
 # grub
-sudo mount --mkdir $efipart /boot/efi/
-#sudo mount --mkdir $windowspart /run/media/N
 cd /dotfiles
-sudo mv /etc/default/grub /etc/default/grub.bak # use this in case grub breaks
 sudo cp .data/misc/grub /etc/default/grub
 sudo mkdir -p /boot/grub/themes
 sudo cp -r .data/misc/n /boot/grub/themes/n
@@ -113,7 +103,22 @@ echo -e 'root ALL=(ALL:ALL) ALL
 n ALL=(ALL:ALL) ALL
 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
 @includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers
+
+cd ~
+mkdir fonts
+curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monaspace.zip
+unzip Monaspace.zip
+unzip JetBrainsMono.zip
+sudo mkdir /usr/share/fonts/TTF
+sudo mv MonaspiceKrNerdFont* /usr/share/fonts/TTF
+sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
+cd ..
+rm -rf fonts
+
 printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
-sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night
+
+sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
+# sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu
 sudo systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"
