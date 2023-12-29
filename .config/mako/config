@@ -9,15 +9,13 @@ on-button-right=dismiss-all
 on-touch=dismiss
 
 # STYLE OPTIONS
-font=jetbrains mono nerd font 12
+font=Monaspice Kr Nerd Font 12
 width=300
 height=100
 margin=10
 padding=10
 border-size=1
-border-radius=10
 icons=0
-text-alignment=center
 default-timeout=5000
 ignore-timeout=0
 max-visible=5

@@ -23,7 +23,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8" # https://github.com/catppuccin/fzf
 export BAT_THEME="Catppuccin-mocha" # https://github.com/catppuccin/bat
-export BEMENU_OPTS='--fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e" -H 24 --cw 1 -i --fn "jetbrains mono nerd font" -p "Menu"'
+export BEMENU_OPTS='--fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e" -H 24 --cw 1 -i --fn "Monaspice Kr Nerd Font" -p "Menu"'
 export PASSWORD_STORE_DIR="$HOME/.nky/Me/pass"
 
 export LC_ALL=en_US.UTF-8
@@ -37,4 +37,3 @@ export WLR_NO_HARDWARE_CURSORS=1
 #export __GLX__VENDOR__LIBRARY_NAME=mesa
 #export MESA_LOADER_DRIVER_OVERRIDE=zink
 export WLR_RENDERER=gles2
-
