@@ -1,3 +1,5 @@
 [user]
 	email = night@night0721.xyz
 	name = night0721
+[pull]
+	rebase = false
