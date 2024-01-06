@@ -8,7 +8,7 @@ snipping=$(echo -e $opts | bemenu -p "Snipping tool")
 if [[ $snipping == "" ]]; then
     exit 0
 fi
-PICTURE_DIR="$HOME/.nky/Photo/Screenshot/"
+PICTURE_DIR="$HOME/.nky/Photo/Me/"
 temp="/tmp"
 fileName=$(echo "$temp/$(date +'%s_grim.png')")
 

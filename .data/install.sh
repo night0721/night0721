@@ -122,3 +122,5 @@ sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
 # sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu
 sudo systemctl enable --now NetworkManager
 echo "Install finished, type 'reboot'"
+
+# void https://github.com/elbachir-one/dotfiles/blob/main/install.sh
