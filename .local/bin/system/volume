@@ -28,7 +28,7 @@ case "$1" in
         notify_user
         ;;
 	"--toggle")
-        if pactl list sinks | grep -q "Mute: yes"; then
+        if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "Mute: yes"; then
 		    pactl set-sink-mute @DEFAULT_SINK@ 0
             notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Volume ON"
 	    else
@@ -37,7 +37,7 @@ case "$1" in
 	    fi
         ;;
 	"--toggle-mic") 
-        if pactl list sources | grep -q "Mute: yes"; then
+        if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "Mute: yes"; then
             pactl set-source-mute @DEFAULT_SOURCE@ 0
             notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Microphone ON"
         else
