@@ -1,5 +1,8 @@
 [user]
+    signingkey = 8E829D3381CFEBBE
 	email = night@night0721.xyz
 	name = night0721
 [pull]
-	rebase = false
+    rebase = false
+[commit]
+    gpgsign = true
