@@ -37,6 +37,8 @@ alias hst="history 1 -1 | cut -c 8- | sort | uniq | fzf | tr -d '\n' | wl-copy"
 alias ncdu="ncdu --color dark -x --exclude images"
 alias lf="lfrun"
 alias s="sudo systemctl"
+alias tmux="TERM=screen-256color-bce tmux"
+alias ipv4="echo $(curl -s ipinfo.io/ip)"
 
 # Change directory aliases
 alias .='cd ~'
