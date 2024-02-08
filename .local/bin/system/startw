@@ -6,7 +6,7 @@ wlr-randr --output eDP-1 --mode 1920x1080@120.001999Hz --pos 2560,0
 dwlb &
 someblocks -p | dwlb -status-stdin all &
 mako &
-wbg ~/.nky/Photo/Wallpapers/cat-boxes-arch-inverse.jpg &
+wbg ~/.nky/Photo/Wallpapers/cat_bunnies.jpg &
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 #gsettings set org.gnome.desktop.interface cursor-theme "Catppuccin-Mocha-Lavender-Cursors"
@@ -15,3 +15,4 @@ sleep 2
 /usr/lib/xdg-desktop-portal &
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dns &
