@@ -13,10 +13,10 @@ pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
 sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
-    btop chafa firefox foot fzf graphicsmagick grub-customizer grim  hugo lf libliftoff libnotify mako \
+    btop chafa dos2unix firefox foot fzf graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
     man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
-    pipewire-{alsa,pulse} plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux unzip \
-    wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura \
+    pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux tokei unzip \
+    wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp \
     zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config

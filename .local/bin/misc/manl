@@ -1,0 +1,3 @@
+#!/bin/sh
+
+man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fzf --preview='man {}')

@@ -39,6 +39,7 @@ alias lf="lfrun"
 alias s="sudo systemctl"
 alias tmux="TERM=screen-256color tmux"
 alias ipv4="echo $(curl -s ipinfo.io/ip)"
+alias cloc="cd ~/.nky/Coding && tokei . -e '*.json' -e '*gradlew' -e '*.xml' -e '*.yml' -e '*.toml' -e '*.md' -e '*.bat' -e '*.txt' -e 'Dockerfile' -e '*.svg' -e '*.org' -e '*.R' -e '*.ps1' -e 'json.c' -e 'HTML/cath-docs/*/*.html' -e 'HTML/cath-docs/*.html' --sort lines"
 
 # Change directory aliases
 alias .='cd ~'
