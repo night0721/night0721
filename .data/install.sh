@@ -16,7 +16,7 @@ sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils
     btop chafa dos2unix firefox foot graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
     man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
     pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux unzip \
-    wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp \
+    wf-recorder wireplumber wl-clipboard wlroots xdg-desktop-portal-wlr xorg-xhost yt-dlp \
     zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
 # update config
@@ -78,7 +78,7 @@ meson --buildtype=release build
 ninja -C build
 sudo ninja -C build install
 cd ..
-git clone https://git.sr.ht/~adnano/wmenu
+git clone https://git.sr.ht/~night0721/wmenu
 cd wmenu
 meson build
 ninja -C build
@@ -100,6 +100,14 @@ curl -L -O https://github.com/boyter/scc/releases/latest/download/scc_Linux_x86_
 tar -xvf scc_Linux_x86_64.tar.gz
 rm scc_Linux_x86_64.tar.gz LICENSE README.md
 sudo mv scc /usr/local/bin
+
+# wlr-randr
+git clone https://git.sr.ht/~night0721/wlr-randr
+cd wlr-randr
+meson build
+ninja -C build
+sudo ninja -C build install
+cd ..
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
