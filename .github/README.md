@@ -9,6 +9,7 @@ Catppuccin themed dotfiles for Arch Linux
 - Notifications: mako
 - Terminal: foot
 - Shell: zsh
+- AUR Helper: aureate
 - Wallpaper daemon: wbg
 - Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
 - File Manager: lf
@@ -121,7 +122,7 @@ Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroot
 Audio: pamixer pipewire-pulse wireplumber  
 Graphics: graphicsmagick  
 Bluetooth: bluez bluez-utils  
-Suckless: wmenu foot fnf  
+Suckless: wmenu foot fnf aureate  
 VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
 Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
 Drivers: libva nvidia-dkms   

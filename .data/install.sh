@@ -55,6 +55,11 @@ cd autojump
 cd ~
 mkdir repos
 cd repos
+git clone https://github.com/swindlesmccoop/aureate
+cd aureate
+make
+sudo make install
+cd ..
 git clone https://codeberg.org/night0721/dwl
 cd dwl
 sudo make install
