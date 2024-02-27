@@ -39,7 +39,8 @@ alias lf="lfrun"
 alias s="sudo systemctl"
 alias tmux="TERM=screen-256color tmux"
 alias ipv4="echo $(curl -s ipinfo.io/ip)"
-alias cloc="cd ~/.nky/Coding && tokei . -e '*.json' -e '*gradlew' -e '*.xml' -e '*.yml' -e '*.toml' -e '*.md' -e '*.bat' -e '*.txt' -e 'Dockerfile' -e '*.svg' -e '*.org' -e '*.R' -e '*.ps1' -e 'json.c' -e 'HTML/cath-docs/*/*.html' -e 'HTML/cath-docs/*.html' --sort lines"
+alias cloc="scc .nky/Coding -x LICENSE,ps1,toml,properties,xml,svg,yaml,gradle,json,txt,yml,batch,r,csv,ipynb,Dockerfile,.dockerignore,.gitignore,gradlew,bat,d.ts,md --exclude-dir cath-docs,env,cerveur,TerminalChat,rover --sort lines --no-complexity --no-gen --no-duplicates --no-gitignore --no-ignore --no-large --no-min --no-min-gen --no-size --no-cocomo"
+alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
 
 # Change directory aliases
 alias .='cd ~'

@@ -12,7 +12,7 @@ Catppuccin themed dotfiles for Arch Linux
 - Wallpaper daemon: wbg
 - Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
 - File Manager: lf
-- Search menu: fzf, bemenu
+- Search menu: fzf, wmenu
 - Browser: firefox
 - Font: JetBrains Mono Nerd Font
 - Bootloader: grub
@@ -117,11 +117,11 @@ Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mon
 Shell softwares: bat btop chafa fzf lf mpv ncdu neovim newsboat pass ripgrep socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
 Development: npm python-{mutagen,pip}  
 Browser: firefox  
-Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura zathura-pdf-poppler  
-Audio: pamixer pipewire pipewire-{alsa,jack,pulse} wireplumber  
+Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
+Audio: pamixer pipewire-pulse wireplumber  
 Graphics: graphicsmagick  
-Bluetooth: bluez bluez-{libs,utils}  
-Suckless: bemenu foot  
+Bluetooth: bluez bluez-utils  
+Suckless: menu foot  
 VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
 Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
 Drivers: libva nvidia-dkms   

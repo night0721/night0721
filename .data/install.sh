@@ -12,7 +12,7 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bemenu bluez bluez-utils brightnessctl \
+sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bluez bluez-utils brightnessctl \
     btop chafa dos2unix firefox foot fzf graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
     man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
     pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux tokei unzip \
@@ -59,17 +59,31 @@ git clone https://codeberg.org/night0721/dwl
 cd dwl
 sudo make install
 cd ..
-git clone https://codeberg.org/night0721/dwl-bar
+git clone https://codeberg.org/night0721/dwlb
+cd dwlb
 sudo make install
 cd ..
 git clone https://codeberg.org/night0721/someblocks
+cd someblocks
 sudo make install
 cd ..
 git clone https://codeberg.org/night0721/wbg
+cd wbg
 meson --buildtype=release build
 ninja -C build
 sudo ninja -C build install
 cd ..
+git clone https://git.sr.ht/~adnano/wmenu
+cd wmenu
+meson build
+ninja -C build
+sudo ninja -C build install
+
+# scc
+curl -L -O https://github.com/boyter/scc/releases/latest/download/scc_Linux_x86_64.tar.gz
+tar -xvf scc_Linux_x86_64.tar.gz
+rm scc_Linux_x86_64.tar.gz LICENSE README.md
+sudo mv scc /usr/local/bin
 
 # zsh
 ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
@@ -91,7 +105,9 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # misc
 bat cache --build # catppuccin theme for bat
-sudo sed -i 's/dmenu-wl/bemenu/' /usr/bin/passmenu # fix passmenu not using bemenu
+sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
+sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
+
 echo -e 'if lsmod | grep -wq "pcspkr"; then                                     
   sudo rmmod pcspkr # Remove annoying beep sound in tty
 fi
