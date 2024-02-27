@@ -2,7 +2,7 @@
 
 languages=$(echo "react nextjs javascript python java golang c cpp typescript rust" | tr " " "\n")
 core_utils=$(echo "find xargs sed awk" | tr " " "\n")
-selected=$(echo -e "$languages\n$core_utils" | fzf)
+selected=$(echo -e "$languages\n$core_utils" | fnf)
 
 read -p "What you want to learn: " query
 

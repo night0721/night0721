@@ -13,7 +13,7 @@ pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
 sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bluez bluez-utils brightnessctl \
-    btop chafa dos2unix firefox foot fzf graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
+    btop chafa dos2unix firefox foot graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
     man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
     pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux tokei unzip \
     wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp \
@@ -78,6 +78,12 @@ cd wmenu
 meson build
 ninja -C build
 sudo ninja -C build install
+cd ..
+git clone https://github.com/leo-arch/fnf
+cd fnf
+make
+sudo make install
+cd ..
 
 # scc
 curl -L -O https://github.com/boyter/scc/releases/latest/download/scc_Linux_x86_64.tar.gz

@@ -66,4 +66,4 @@ bindkey -s '^o' '^ulfcd\n'
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-bindkey -s '^f' '^ucd "$(dirname "$(find . -name .git -prune -o -type f | fzf)")"\n'
+bindkey -s '^f' '^ucd "$(dirname "$(find . -name .git -prune -o -type f | fnf)")"\n'
