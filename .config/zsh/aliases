@@ -6,7 +6,7 @@ alias mv="mv -iv"
 alias rm="rm -vI"
 alias bc="bc -ql"
 alias mkdir="mkdir -pv"
-alias cat='kat -t ~/.data/kat-theme'
+alias cat='kat -t ~/.data/misc/kat-theme'
 alias cls="clear"
 alias grep='grep --color=always'
 alias ls='ls --color=auto'
