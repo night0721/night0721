@@ -115,7 +115,7 @@ SUPER + SHIFT + S = Screenshot menu
 # Packages
 
 Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
-Shell softwares: bat btop chafa lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
+Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
 Development: npm python-{mutagen,pip}  
 Browser: firefox  
 Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  

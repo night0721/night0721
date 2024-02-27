@@ -75,10 +75,10 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
             image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
 	*.ino)
-		bat --language=cpp "$1"
+		kat "$1"
 		;;
 	*)
-        bat --color=always --style=plain --pager=never "$1"
+        kat "$1"
 		;;
 esac
 exit 0

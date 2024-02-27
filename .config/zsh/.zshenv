@@ -18,7 +18,6 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export ZDOTDIR="$HOME/.config/zsh"
 export GIT_CONFIG="$HOME/.config/git/config"
-export BAT_THEME="Catppuccin-mocha" # https://github.com/catppuccin/bat
 export PASSWORD_STORE_DIR="$HOME/.nky/Me/pass"
 export GPG_TTY=$(tty)
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"

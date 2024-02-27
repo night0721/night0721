@@ -12,10 +12,10 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bat bluez bluez-utils brightnessctl \
+sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils brightnessctl \
     btop chafa dos2unix firefox foot graphicsmagick grub-customizer grim hugo lf libliftoff libnotify libwebsockets mako \
     man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open pacman-contrib pass \
-    pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux tokei unzip \
+    pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist tmux unzip \
     wf-recorder wireplumber wl-clipboard wlroots wlr-randr xdg-desktop-portal-wlr xorg-xhost yt-dlp \
     zathura-pdf-poppler zip zsh --noconfirm > /dev/null
 
@@ -84,10 +84,15 @@ meson build
 ninja -C build
 sudo ninja -C build install
 cd ..
-git clone https://github.com/leo-arch/fnf
+git clone https://github.com/night0721/fnf
 cd fnf
 make
 sudo make install
+cd ..
+git clone https://github.com/night0721/kat
+cd kat
+make
+sudo mv kat /usr/local/bin
 cd ..
 
 # scc
@@ -115,7 +120,6 @@ sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # misc
-bat cache --build # catppuccin theme for bat
 sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
 sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
 
