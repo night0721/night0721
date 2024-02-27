@@ -55,7 +55,7 @@ cd autojump
 cd ~
 mkdir repos
 cd repos
-git clone https://github.com/swindlesmccoop/aureate
+git clone https://github.com/night0721/aureate
 cd aureate
 make
 sudo make install
