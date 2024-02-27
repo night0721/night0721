@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+source $HOME/.config/zsh/aliases
 
 notify-send "Getting list of available Wi-Fi networks..."
 # Get a list of available wifi connections and morph it into a nice-looking list
@@ -12,7 +14,7 @@ elif [[ "$connected" =~ "disabled" ]]; then
 fi
 
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list" | bemenu -i -p "Wi-Fi SSID: " )
+chosen_network=$(echo -e "$toggle\n$wifi_list" | wmenu -i -p "Wi-Fi SSID: " )
 # Get name of connection
 chosen_id=$(echo "${chosen_network:3}" | xargs)
 
@@ -31,7 +33,7 @@ else
 		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	else
 		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(echo "" | bemenu -p "Password: " )
+			wifi_password=$(echo "" | wmenu -p "Password: " )
 		fi
 		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	fi

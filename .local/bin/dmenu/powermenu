@@ -1,6 +1,8 @@
 #!/bin/sh
 
-op=$( echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | bemenu | awk '{print tolower($2)}' )
+source $HOME/.config/zsh/aliases
+
+op=$( echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | wmenu | awk '{print tolower($2)}' )
 
 case $op in 
         poweroff)

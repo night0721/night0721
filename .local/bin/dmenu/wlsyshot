@@ -1,10 +1,12 @@
 #!/bin/sh
 
+source $HOME/.config/zsh/aliases
+
 auth=$EZAPIKEY
 url="https://api.e-z.host/files"
 
 opts="Select Area\nSelect Screen\nFull Screen"
-snipping=$(echo -e $opts | bemenu -p "Snipping tool")
+snipping=$(echo -e $opts | wmenu -p "Snipping tool")
 if [[ $snipping == "" ]]; then
     exit 0
 fi
@@ -15,7 +17,7 @@ fileName=$(echo "$temp/$(date +'%s_grim.png')")
 # function
 opts_mod(){
     mods="Copy to clipboard\nEdit screenshot\nSave\nUpload to e-z.host"
-    mods_la=$(echo -e $mods | bemenu -p "Options:")
+    mods_la=$(echo -e $mods | wmenu -p "Options:")
     if [[ $mods_la == "" ]]; then
 	exit 0
     fi
