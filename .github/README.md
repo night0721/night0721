@@ -15,7 +15,7 @@ Catppuccin themed dotfiles for Arch Linux
 - File Manager: lf
 - Search menu: fnf, wmenu
 - Browser: firefox
-- Font: JetBrains Mono Nerd Font
+- Font: Monaspice Kr Nerd Font
 - Bootloader: grub
 
 # Details
@@ -118,7 +118,7 @@ Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mon
 Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
 Development: npm python-{mutagen,pip}  
 Browser: firefox  
-Enviroment: gtk3 mako plymouth slurp swappy waybar xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
+Enviroment: mako plymouth slurp swappy xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
 Audio: pamixer pipewire-pulse wireplumber  
 Graphics: graphicsmagick  
 Bluetooth: bluez bluez-utils  
