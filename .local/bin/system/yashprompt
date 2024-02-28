@@ -1,0 +1,25 @@
+#!/bin/sh
+# Function to display Git status
+GIT_BRANCH=""
+git_prompt() {
+  local git_info
+  git_info=$(git branch 2>/dev/null | sed 's/* //')
+  if [[ -n $git_info ]]; then
+    local ahead behind
+    ahead=$(git log --oneline @{u}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    behind=$(git log --oneline HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ')
+    if [[ $ahead -gt 0 && $behind -gt 0 ]]; then
+      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↑$ahead ↓$behind] "
+    elif [[ $ahead -gt 0 ]]; then
+      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↑$ahead] "
+    elif [[ $behind -gt 0 ]]; then
+      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↓$behind] "
+    else
+      GIT_BRANCH="\[\e[38;5;183m\][$git_info] "
+    fi
+  fi
+}
+git_prompt
+TIME=$(echo "$(date "+%H:%M:%S")")
+DIR=${PWD/$HOME/\~}
+echo '\[\e[38;5;147m\]['$TIME'] \[\e[38;5;005m\]['$DIR] $GIT_BRANCH'\[\e[38;5;069m\]» \[\e[0m\]'

@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# settings for common commands
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -vI"
+alias bc="bc -ql"
+alias mkdir="mkdir -pv"
+alias cat='kat -t ~/.data/misc/kat-theme'
+alias cls="clear"
+alias grep='grep --color=always'
+alias ls='ls --color=auto'
+alias ll="ls -lah"
+alias l="ls -lah --color=auto"
+alias tree="tree -a -I .git -I node_modules"
+alias :q="exit"
+alias wt="curl https://wttr.in/Nottingham"
+alias fnf="fnf -l 50"
+
+# application aliases
+alias v="$EDITOR"
+alias vw="$EDITOR ~/.nky/Coding/Markdown/wiki/index.md"
+alias vim="$EDITOR"
+alias p="sudo pacman"
+alias sd="shutdown now"
+alias nf="neofetch"
+alias cpc="clearcache"
+alias rmpkg="sudo pacman -Rcns"
+alias rmpkg-conf="sudo pacman -Runs"
+alias codingsize="ncdu ~/.nky/Coding --exclude .git --exclude image --exclude node_modules --exclude jnic.zip --exclude 'Machine Learning-A-Z-Codes-Datasets.zip'"
+alias foldersize="sudo du -shc"
+alias findfiles="grep --exclude-dir={.mozilla,.cache,share,dump,env,state,node_modules,pdfs,build,.git,npm,autojump,cargo,gnupg,zsh-autosuggestions,zsh-syntax-highlighting,zsh-history-substring-search,.wakatime} --exclude=.zcompdump --exclude=.git --exclude=.zsh_history -rnwinRIH . -e"
+alias homefiles="find ~ -type d \( -path ~/.cargo -o -path ~/.local/share -o -path ~/.local/state/nvim -o -path ~/.mozilla -o -path ~/.npm -o -path ~/.autojump -o -path ~/.cache -o -path ~/dotfiles -o -path ~/.gnupg -o -path ~/.config/zsh/zsh-syntax-highlighting -o -path ~/.config/zsh/zsh-autosuggestions -o -path ~/.config/zsh/powerlevel10k \) -prune -o -type f -not -path '*/.git/*' -not -path '*/node_modules/*' -print | fnf"
+alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
+alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
+alias hst="fc -n -l | cut -c 4- | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
+alias ncdu="ncdu --color dark -x --exclude images"
+alias lf="lfrun"
+alias s="sudo systemctl"
+alias tmux="TERM=screen-256color tmux"
+alias ipv4="echo $(curl -s ipinfo.io/ip)"
+alias cloc="scc .nky/Coding -x LICENSE,ps1,toml,properties,xml,svg,yaml,gradle,json,txt,yml,batch,r,csv,ipynb,Dockerfile,.dockerignore,.gitignore,gradlew,bat,d.ts,md --exclude-dir cath-docs,env,cerveur,TerminalChat,rover --sort lines --no-complexity --no-gen --no-duplicates --no-gitignore --no-ignore --no-large --no-min --no-min-gen --no-size --no-cocomo"
+alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
+
+# Change directory aliases
+alias .='cd ~'
+alias ..='cd ..'
+
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias cad='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME add'
+alias cco='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME commit -m'
+alias cpu='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME push'
+alias cst='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME status -u'

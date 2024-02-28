@@ -17,7 +17,7 @@ sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils
     libwebsockets mako man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open \
     pacman-contrib pass pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist \
     tmux unzip wf-recorder wireplumber wl-clipboard wlroots xdg-desktop-portal-wlr xorg-xhost yt-dlp \
-    zathura-pdf-poppler zip zsh --noconfirm > /dev/null
+    zathura-pdf-poppler zip --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -55,6 +55,12 @@ cd autojump
 cd ~
 mkdir repos
 cd repos
+git clone https://github.com/night0721/yash
+cd yash
+./configure
+make
+sudo make install
+cd ..
 git clone https://github.com/night0721/aureate
 cd aureate
 make
@@ -109,8 +115,8 @@ ninja -C build
 sudo ninja -C build install
 cd ..
 
-# zsh
-ln -sf /home/night/.config/zsh/.zshenv /home/night/.zshenv
+# yash
+ln -sf /home/night/.config/yash/.yashrc /home/night/.yashrc
 
 # plymouth
 cd /usr/share/plymouth/themes/
@@ -155,7 +161,7 @@ sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
 cd ..
 rm -rf fonts
 
-printf "$nightpasswd\n" | chsh -s /usr/bin/zsh
+printf "$nightpasswd\n" | chsh -s /usr/bin/yash
 
 sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
 # sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu

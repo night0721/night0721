@@ -2,6 +2,7 @@ dotfiles
 .nky
 .mozilla
 .zshenv
+.yashrc
 .ssh
 .wakatime*
 .local/state
@@ -19,6 +20,7 @@ dotfiles
 .config/btop
 .config/dconf
 .config/zsh/.zsh_history
+.config/yash/.yash_history
 .local/npm
 Downloads
 repos

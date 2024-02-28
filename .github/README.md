@@ -8,7 +8,7 @@ Catppuccin themed dotfiles for Arch Linux
 - Topbar: dwl-bar
 - Notifications: mako
 - Terminal: foot
-- Shell: zsh
+- Shell: yash
 - AUR Helper: aureate
 - Wallpaper daemon: wbg
 - Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
@@ -27,8 +27,8 @@ Catppuccin themed dotfiles for Arch Linux
 - Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
 - Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
-3. Shell: zsh
-- Theme: `.config/zsh/n.zsh-theme`
+3. Shell: zsh (Removed, using yash)
+- Theme: `.config/deprecated/zsh/n.zsh-theme`
 - Plugins: zsh-autosuggestions, zsh-history-substring-search, zsh-syntax-highlighting
 
 4. File Manager: lf
@@ -115,7 +115,7 @@ SUPER + SHIFT + S = Screenshot menu
 # Packages
 
 Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
-Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yt-dlp zip zsh  
+Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wl-clipboard wlr-randr ydotool yash yt-dlp zip  
 Development: npm python-{mutagen,pip}  
 Browser: firefox  
 Enviroment: mako plymouth slurp swappy xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
