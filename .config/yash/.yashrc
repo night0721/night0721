@@ -1,0 +1,152 @@
+. "${HOME}/.config/yash/.yashenv"
+
+if lsmod | grep -wq "pcspkr"; then
+  sudo rmmod pcspkr # Remove annoying beep sound in tty
+fi
+
+if ! pgrep -x "dwl" > /dev/null; then
+    dwl # run dwl if not running
+fi
+
+# color predictions as dim
+PROMPT_COMMAND="$(<<EOF cat -
+PS1='\$(yashprompt)';PS1P='\fi.'
+EOF
+)"
+
+# enable bash-like extended expansion
+set --brace-expand
+
+# enable recursive pathname expansion
+set --extended-glob
+
+# prevent redirections from overwriting existing files
+set --no-clobber
+
+# don't implicitly expand non-existent variables to empty strings
+set --no-unset
+
+# if yash is built with line-editing enabled...
+if command --identify --builtin-command bindkey >/dev/null; then
+
+  # print job status update ASAP, but only while line-editing
+  set --notify-le
+
+  # some terminfo data are broken; meta flags have to be ignored for UTF-8
+  set --le-no-conv-meta
+
+  # enable command line prediction
+  set --le-predict
+
+  # key bindings for vi mode, some of which are from emacs mode
+  bindkey --vi-insert '\^A' beginning-of-line
+  bindkey --vi-insert '\^E' end-of-line
+  bindkey --vi-insert '\^N' beginning-search-forward
+  bindkey --vi-insert '\^P' beginning-search-backward
+  bindkey --vi-insert '\N' complete-next-column
+  bindkey --vi-insert '\P' complete-prev-column
+  bindkey --vi-command '\^N' beginning-search-forward
+  bindkey --vi-command '\^P' beginning-search-backward
+
+fi
+
+# normally yash is more POSIX-compliant than /bin/sh :-)
+sh() { yash --posix "$@"; }
+yash() { command yash "$@"; }
+# By re-defining 'yash' using the 'command' built-in, the 'jobs' built-in
+# prints a command name that exposes the arguments like
+# 'yash --posix -n foo.sh' rather than a command name that hides the
+# arguments like 'yash --posix "${@}"'. This applies to the 'yash' command
+# invoked via the 'sh' function.
+
+# ensure job control works as expected
+case $- in (*m*)
+  trap - TSTP TTIN TTOU
+esac
+
+# variables needed for command history
+HISTFILE=~/.config/yash/.yash_history
+HISTSIZE=5000
+
+# push to github with the lazy way
+g() {
+	git add .
+	git commit -m "$1"
+	git push
+}
+
+lfcd() {
+    tmp="$(mktemp -uq)"
+    trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+lcd() {
+    cd "$(dirname $(find . -name .git -prune -o -type f | fnf))"
+}
+
+export AUTOJUMP_SOURCED=1
+
+# change pwd hook
+autojump_chpwd() {
+    if [[ -f "${AUTOJUMP_ERROR_PATH}" ]]; then
+        autojump --add "$(pwd)" > /dev/null 2>> ${AUTOJUMP_ERROR_PATH} & disown
+    else
+        autojump --add "$(pwd)" > /dev/null & disown
+    fi
+}
+
+array chpwd_functions
+array -i chpwd_functions 999 autojump_chpwd
+
+# default autojump command
+j() {
+    if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
+        autojump ${@}
+        return
+    fi
+
+    local output="$(autojump ${@})"
+    if [[ -d "${output}" ]]; then
+        if [ -t 1 ]; then  # if stdout is a terminal, use colors
+                echo "\\033[31m${output}\\033[0m"
+        else
+                echo "${output}"
+        fi
+        cd "${output}"
+    else
+        echo "autojump: directory '${@}' not found"
+        echo "\n${output}\n"
+        echo "Try \`autojump --help\` for more information."
+        false
+    fi
+}
+
+
+# jump to child directory (subdirectory of current path)
+jc() {
+    if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
+        autojump ${@}
+        return
+    else
+        j $(pwd) ${@}
+    fi
+}
+
+
+
+# open autojump results (child directory) in file browser
+jco() {
+    if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
+        autojump ${@}
+        return
+    else
+        jo $(pwd) ${@}
+    fi
+}
+
+. "${HOME}/.config/yash/aliases"
