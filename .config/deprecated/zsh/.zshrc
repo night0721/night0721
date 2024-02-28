@@ -63,6 +63,7 @@ lfcd () {
 }
 bindkey -s '^o' '^ulfcd\n'
 
+bindkey -s '^h' '^uhst\n'
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
