@@ -121,7 +121,7 @@ Browser: firefox
 Enviroment: mako plymouth slurp swappy xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
 Audio: pamixer pipewire-pulse wireplumber  
 Graphics: graphicsmagick  
-Bluetooth: bluez bluez-utils  
+Bluetooth: bluez  
 Suckless: wmenu foot fnf aureate  
 VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
 Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  

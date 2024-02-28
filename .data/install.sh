@@ -137,13 +137,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
 sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
 
-echo -e 'if lsmod | grep -wq "pcspkr"; then                                     
-  sudo rmmod pcspkr # Remove annoying beep sound in tty
-fi
-
-if [[ $TTY == /dev/tty1 ]]; then
-    dwl -d &> ~/dwl.log # For no display manager
-fi' | sudo tee -a /etc/profile # profile to autostart  
 echo -e 'root ALL=(ALL:ALL) ALL
 n ALL=(ALL:ALL) ALL
 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
@@ -156,7 +149,7 @@ curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Mona
 unzip Monaspace.zip
 unzip JetBrainsMono.zip
 sudo mkdir /usr/share/fonts/TTF
-sudo mv MonaspiceKrNerdFont* /usr/share/fonts/TTF
+sudo mv MonaspiceKrNerdFont-*.otf /usr/share/fonts/TTF
 sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
 cd ..
 rm -rf fonts
