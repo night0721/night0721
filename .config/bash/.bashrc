@@ -1,4 +1,4 @@
-. "${HOME}/.config/bash/.bashenv"
+. "${HOME}/.config/bash/env.bash"
 
 if lsmod | grep -wq "pcspkr"; then
   sudo rmmod pcspkr # Remove annoying beep sound in tty
@@ -51,6 +51,10 @@ lfcd() {
     fi
 }
 
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
 bind -x '"\C-f":"lfcd"'
 bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
