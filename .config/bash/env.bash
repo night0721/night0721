@@ -19,8 +19,6 @@ export GIT_CONFIG="$HOME/.config/git/config"
 export PASSWORD_STORE_DIR="$HOME/.nky/Me/pass"
 export GPG_TTY=$(tty)
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='p:preview'
 
 export LC_ALL=en_US.UTF-8
 
