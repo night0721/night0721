@@ -16,7 +16,7 @@ dashboard.section.header.val = {
 -- Set menu
 dashboard.section.buttons.val = {
     dashboard.button( "n", "  > New File", "<CMD>ene!<CR>"),
-    dashboard.button( "f", "  > Find File", "<CMD>Telescope find_files<CR>"),
+    dashboard.button( "s", "  > Find File", "<CMD>Telescope find_files<CR>"),
     dashboard.button( "r", "  > Recent Files", "<CMD>Telescope oldfiles<CR>"),
     dashboard.button( "t", "  > Find in Files", "<CMD>Telescope live_grep<CR>"),
     dashboard.button( "c", "  > Configuration", "<CMD>cd $HOME/.config/nvim | Telescope find_files<CR>"),

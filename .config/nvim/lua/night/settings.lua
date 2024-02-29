@@ -43,6 +43,7 @@ vim.g.mapleader = " "
 vim.g.rustfmt_autosave = 1
 
 vim.cmd([[
+let g:fff#split_direction = "nosplitbelow nosplitright"
 let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
 let g:closetag_filetypes = 'html,js'
