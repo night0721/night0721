@@ -3,6 +3,7 @@ export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERM="foot"
 export BROWSER="firefox"
+export MANPAGER='nvim +Man!'
 
 # Adds ~/.local/bin and subfolders to $PATH
 export PATH="$PATH:$HOME/.autojump/bin:$HOME/.autojump/functions:~/.local/npm/bin:$(find ~/.local/bin -maxdepth 1 -type d -printf '%p:' | sed 's/:$//')"

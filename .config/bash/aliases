@@ -16,7 +16,6 @@ alias tree="tree -a -I .git -I node_modules"
 alias :q="exit"
 alias wt="curl https://wttr.in/Nottingham"
 alias fnf="fnf -l 50"
-alias exit=""
 
 # application aliases
 alias v="$EDITOR"
@@ -34,7 +33,7 @@ alias findfiles="grep --exclude-dir={.mozilla,.cache,share,dump,env,state,node_m
 alias homefiles="find ~ -type d \( -path ~/.cargo -o -path ~/.local/share -o -path ~/.local/state/nvim -o -path ~/.mozilla -o -path ~/.npm -o -path ~/.autojump -o -path ~/.cache -o -path ~/dotfiles -o -path ~/.gnupg -o -path ~/.config/zsh/zsh-syntax-highlighting -o -path ~/.config/zsh/zsh-autosuggestions -o -path ~/.config/zsh/powerlevel10k \) -prune -o -type f -not -path '*/.git/*' -not -path '*/node_modules/*' -print | fnf"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
-alias hst="fc -l 1 -1 -n | cut -c 2- | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
+alias hst="history | cut -c 8- | sort | uniq | fnf -l 100 | tr -d '\n' | waycopy"
 alias ncdu="ncdu --color dark -x --exclude images"
 alias lf="lfrun"
 alias s="sudo systemctl"
