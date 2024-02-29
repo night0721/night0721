@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. $HOME/.config/yash/aliases
+source $HOME/.config/bash/aliases
 
 auth=$EZAPIKEY
 url="https://api.e-z.host/files"

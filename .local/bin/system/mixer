@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. $HOME/.config/yash/aliases
+source $HOME/.config/bash/aliases
 
 sinks=$(pactl list short sinks | awk '{print $1 " " $2}')
 

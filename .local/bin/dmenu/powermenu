@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. $HOME/.config/yash/aliases
+source $HOME/.config/bash/aliases
 
 op=$(echo " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | wmenu | awk '{print tolower($2)}')
 

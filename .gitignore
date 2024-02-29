@@ -1,7 +1,7 @@
 dotfiles
 .nky
 .mozilla
-.yashrc
+.bashrc
 .ssh
 .wakatime*
 .local/state
@@ -12,14 +12,11 @@ dotfiles
 .npm
 .gnupg
 .config/tmux/plugins
-.config/zsh/.zcompdump
 .config/pulse
 .config/nvim/plugin
-.config/systemd
 .config/btop
 .config/dconf
-.config/zsh/.zsh_history
-.config/yash/.yash_history
+.config/bash/.bash_history
 .local/npm
 Downloads
 repos

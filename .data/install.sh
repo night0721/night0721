@@ -15,7 +15,7 @@ pacman -Syu --noconfirm > /dev/null
 sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils brightnessctl btop \
     chafa dos2unix firefox foot graphicsmagick grub-customizer grim hugo lf libliftoff libnotify \
     libwebsockets mako man-db mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open \
-    pacman-contrib pass pipewire-pulse plymouth python-{mutagen,pip} ripgrep slurp socat swappy tllist \
+    pacman-contrib pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist \
     tmux unzip wf-recorder wireplumber wl-clipboard wlroots xdg-desktop-portal-wlr xorg-xhost yt-dlp \
     zathura-pdf-poppler zip --noconfirm > /dev/null
 
@@ -55,11 +55,9 @@ cd autojump
 cd ~
 mkdir repos
 cd repos
-git clone https://github.com/night0721/yash
-cd yash
-./configure
-make
-sudo make install
+git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+cd ble.sh
+make -C ble.sh install PREFIX=~/.local
 cd ..
 git clone https://github.com/night0721/aureate
 cd aureate
@@ -115,8 +113,8 @@ ninja -C build
 sudo ninja -C build install
 cd ..
 
-# yash
-ln -sf /home/night/.config/yash/.yashrc /home/night/.yashrc
+# bash
+ln -sf /home/night/.config/bash/.bashrc /home/night/.bashrc
 
 # plymouth
 cd /usr/share/plymouth/themes/
@@ -154,7 +152,7 @@ sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
 cd ..
 rm -rf fonts
 
-printf "$nightpasswd\n" | chsh -s /usr/bin/yash
+printf "$nightpasswd\n" | chsh -s /usr/bin/bash
 
 sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
 # sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu
