@@ -75,8 +75,10 @@ Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 ## Post setup
 
 ```
-nmcli device wifi connect [network name] password [password]
-yay
+connmanctl scan wifi
+connmanctl services
+connmanctl connect wifi_...........
+sudo pacman -Syu
 grub-customizer
 ```
 

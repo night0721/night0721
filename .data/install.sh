@@ -13,11 +13,11 @@ pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
 sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils brightnessctl btop \
-    chafa dos2unix firefox foot graphicsmagick grub-customizer grim hugo lf libliftoff libnotify \
-    libwebsockets mako mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open \
+    chafa connman dos2unix firefox foot grub-customizer grim hugo imagemagick iwd lf libliftoff libnotify \
+    libwebsockets mako mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh \
     pacman-contrib pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist \
     tmux unzip wf-recorder wireplumber wlroots xdg-desktop-portal-wlr xorg-xhost yt-dlp \
-    zathura-pdf-poppler zip --noconfirm > /dev/null
+    zathura-pdf-mupdf zip --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -30,12 +30,6 @@ echo -e "blacklist nouveau\noptions nvidia_drm modeset=1 fbdev=1" | sudo tee -a 
 
 sudo systemctl enable --now bluetooth
 sleep 2
-
-### Disable wifi powersave mode ###
-LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-sudo mkdir -p /etc/NetworkManager/conf.d
-sudo touch $LOC
-echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC
 
 ### Copy Config Files ###
 cp -R /dotfiles/.config /dotfiles/.local /dotfiles/.npmrc /dotfiles/.github /dotfiles/.gitignore /dotfiles/data /home/night/
@@ -161,7 +155,7 @@ printf "$nightpasswd\n" | chsh -s /usr/bin/bash
 
 sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
 # sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu
-sudo systemctl enable --now NetworkManager
+sudo systemctl enable --now connman iwd 
 echo "Install finished, type 'reboot'"
 
 # void https://github.com/elbachir-one/dotfiles/blob/main/install.sh
