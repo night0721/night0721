@@ -1,4 +1,4 @@
-. "${HOME}/.config/bash/env.bash"
+. "${HOME}/.config/sh/env"
 
 if lsmod | grep -wq "pcspkr"; then
   sudo rmmod pcspkr # Remove annoying beep sound in tty
@@ -31,7 +31,7 @@ git_prompt
 PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w]${GIT_BRANCH}\[\e[38;5;069m\] » \[\e[0m\]'
 
 # variables needed for command history
-HISTFILE=~/.config/bash/.bash_history
+HISTFILE=~/.config/sh/.sh_history
 HISTSIZE=5000
 
 # push to github with the lazy way
@@ -60,4 +60,4 @@ bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
 source ~/.autojump/share/autojump/autojump.bash
 
-. "${HOME}/.config/bash/aliases"
+. "${HOME}/.config/sh/aliases"
