@@ -16,7 +16,7 @@ sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils
     chafa connman dos2unix firefox foot grub-customizer grim hugo imagemagick iwd lf libliftoff libnotify \
     libwebsockets mako mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh \
     pacman-contrib pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist \
-    tmux unzip wf-recorder wireplumber wlroots xdg-desktop-portal-wlr xorg-xhost yt-dlp \
+    tmux unzip wf-recorder wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp \
     zathura-pdf-mupdf zip --noconfirm > /dev/null
 
 # update config
@@ -82,11 +82,6 @@ meson build
 ninja -C build
 sudo ninja -C build install
 cd ..
-git clone https://git.sr.ht/~night0721/wayclip
-cd wayclip
-make
-sudo make install
-cd ..
 git clone https://github.com/night0721/fnf
 cd fnf
 make
@@ -133,6 +128,8 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # misc
 sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
 sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
+sudo rm -rf /usr/share/doc /usr/share/licenses
+sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansHK-Normal.otf" -delete
 
 echo -e 'root ALL=(ALL:ALL) ALL
 n ALL=(ALL:ALL) ALL

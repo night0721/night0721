@@ -16,7 +16,7 @@ dotfiles
 .config/nvim/plugin
 .config/btop
 .config/dconf
-.config/bash/.bash_history
+.config/sh/.sh_history
 .local/npm
 Downloads
 repos
