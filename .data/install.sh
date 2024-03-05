@@ -108,7 +108,7 @@ sudo ninja -C build install
 cd ..
 
 # bash
-ln -sf /home/night/.config/bash/.bashrc /home/night/.bashrc
+ln -sf /home/night/.config/sh/.bashrc /home/night/.bashrc
 
 # plymouth
 cd /usr/share/plymouth/themes/
