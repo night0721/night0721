@@ -7,29 +7,10 @@ fi
 if ! pgrep -x "dwl" > /dev/null; then
     dwl # run dwl if not running
 fi
-source ~/.local/share/blesh/ble.sh
-GIT_BRANCH=""
-git_prompt() {
-  local git_info
-  git_info=$(git branch 2>/dev/null | sed 's/* //')
-  if [[ -n $git_info ]]; then
-    local ahead behind
-    ahead=$(git log --oneline @{u}..HEAD 2>/dev/null | wc -l | tr -d ' ')
-    behind=$(git log --oneline HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ')
-    if [[ $ahead -gt 0 && $behind -gt 0 ]]; then
-      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↑$ahead ↓$behind] "
-    elif [[ $ahead -gt 0 ]]; then
-      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↑$ahead] "
-    elif [[ $behind -gt 0 ]]; then
-      GIT_BRANCH="\[\e[38;5;183m\][$git_info ↓$behind] "
-    else
-      GIT_BRANCH="\[\e[38;5;183m\][$git_info] "
-    fi
-  fi
-}
-git_prompt
-PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w]${GIT_BRANCH}\[\e[38;5;069m\] » \[\e[0m\]'
 
+source ~/.local/share/blesh/ble.sh
+
+PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w] \[\e[38;5;069m\]» \[\e[0m\]'
 # variables needed for command history
 HISTFILE=~/.config/sh/.sh_history
 HISTSIZE=5000
@@ -53,8 +34,9 @@ lfcd() {
 
 f() {
     fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+    cd "$(cat "${XDG_CACHE_HOME}/fff/.fff_d")"
 }
+
 bind -x '"\C-f":"lfcd"'
 bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
