@@ -26,3 +26,4 @@ AUR_CACHE="$(find "$AUR_CACHE_DIR" -maxdepth 1 -type d | awk '{ print "-c " $1 }
 /usr/bin/paccache -qrk2 -c /var/cache/pacman/pkg $AUR_CACHE
 
 rm -rf ~/.npm
+sudo rm -rf /usr/share/doc /usr/share/licenses
