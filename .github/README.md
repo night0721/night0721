@@ -35,7 +35,7 @@ Catppuccin themed dotfiles for Arch Linux
 - Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
 - graphicsmagick for SVG and GIF preview
 - [Fontpreview](https://github.com/sdushantha/fontpreview) for OTF TTF WOFF preview
-- Required packages: grpahicsmagick chafa ydotool fzf imagemagick
+- Required packages: imagemagick chafa ydotool fzf
 
 5. GTK Theme: [Catppuccin](https://github.com/ljmill/catppuccin-icons)
 Alternatively, you can use [papirus icons](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with [this Catpuccin icon theme](https://aur.archlinux.org/packages/papirus-folders-catppuccin-git)
