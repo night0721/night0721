@@ -66,12 +66,12 @@ return require('packer').startup(function(use)
     }
 
     -- distraction-free writing mode
-    use {
-        'folke/zen-mode.nvim',
-        opt = true,
-        cmd = { 'ZenMode' },
-        config = function() require('night.plugins.zen-mode') end
-    }
+    --use {
+    --    'folke/zen-mode.nvim',
+    --    opt = true,
+    --    cmd = { 'ZenMode' },
+    --    config = function() require('night.plugins.zen-mode') end
+    --}
 
     -- wakatime to record coding time
     use 'wakatime/vim-wakatime'
@@ -110,10 +110,10 @@ return require('packer').startup(function(use)
     }
 
     -- rust formatter
-    use {
-        'rust-lang/rust.vim',
-        ft = "rust",
-    }
+    --use {
+    --    'rust-lang/rust.vim',
+    --    ft = "rust",
+    --}
 
     -- tmux integration
     use 'christoomey/vim-tmux-navigator'
