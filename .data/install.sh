@@ -32,7 +32,7 @@ sudo systemctl enable --now bluetooth
 sleep 2
 
 ### Copy Config Files ###
-cp -R /dotfiles/.config /dotfiles/.local /dotfiles/.npmrc /dotfiles/.github /dotfiles/.gitignore /dotfiles/data /home/night/
+cp -R /dotfiles/.config /dotfiles/.local /dotfiles/.npmrc /dotfiles/.github /dotfiles/.gitignore /dotfiles/.data /home/night/
 
 # /etc/hosts
 cd /dotfiles/.data/misc
@@ -58,8 +58,13 @@ cd aureate
 make
 sudo make install
 cd ..
-git clone https://codeberg.org/night0721/dwl
+git clone https://codeberg.org/dwl/dwl
 cd dwl
+git switch wlroots-next
+patch < ~/.data/patches/ipc.patch
+mv dwl-ipc-unstable-v2.xml protocols
+patch config.def.h ~/.data/patches/config.diff
+make 
 sudo make install
 cd ..
 git clone https://codeberg.org/night0721/dwlb

@@ -1,0 +1,107 @@
+9,13c9,13
+< static const unsigned int borderpx         = 1;  /* border pixel of windows */
+< static const float rootcolor[]             = COLOR(0x222222ff);
+< static const float bordercolor[]           = COLOR(0x444444ff);
+< static const float focuscolor[]            = COLOR(0x005577ff);
+< static const float urgentcolor[]           = COLOR(0xff0000ff);
+---
+> static const unsigned int borderpx         = 2;  /* border pixel of windows */
+> static const float rootcolor[]             = COLOR(0x11111bff);
+> static const float bordercolor[]           = COLOR(0x313244ff);
+> static const float focuscolor[]            = COLOR(0xb4befeff);
+> static const float urgentcolor[]           = COLOR(0xcba6f7ff);
+15c15
+< static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
+---
+> static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0}; /* You can also use glsl colors */
+25,28c25
+< 	/* examples:
+< 	{ "Gimp",     NULL,       0,            1,           -1 },
+< 	*/
+< 	{ "firefox",  NULL,       1 << 8,       0,           -1 },
+---
+> 	{ "firefox",  NULL,       0,            0,           -1 },
+42c39
+< 	/* name       mfact  nmaster scale layout       rotate/reflect                x    y */
+---
+> 	/* name       mfact nmaster scale layout       rotate/reflect                x    y */
+44c41
+< 	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
+---
+> 	{ "eDP-1",    0.5,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
+47c44
+< 	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
+---
+> 	{ NULL,       0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
+66c63
+< static const int natural_scrolling = 0;
+---
+> static const int natural_scrolling = 1;
+105c102,103
+< #define MODKEY WLR_MODIFIER_ALT
+---
+> #define MODKEY WLR_MODIFIER_LOGO
+> #define ALTKEY WLR_MODIFIER_ALT
+118a117,128
+> static const char *browsercmd[] = { "firefox", NULL };
+> static const char *passmenucmd[] = { "passmenu", NULL };
+> static const char *wificmd[] = { "wifi", NULL };
+> static const char *screenshotcmd[] = { "wlsyshot", NULL };
+> static const char *powercmd[] = { "powermenu", "--inc", NULL };
+> static const char *bldcmd[] = { "brightness", "down", NULL };
+> static const char *blucmd[] = { "brightness", "up", NULL };
+> static const char *volupcmd[] = { "volume", "--inc", NULL };
+> static const char *voldowncmd[] = { "volume", "--dec", NULL };
+> static const char *togglemiccmd[] = { "volume", "--toggle-mic", NULL };
+> static const char *togglespkcmd[] = { "volume", "--toggle", NULL };
+> static const char *togglemusiccmd[] = { "music", "toggle", NULL };
+123,134c133,156
+< 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
+< 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+< 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
+< 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
+< 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
+< 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
+< 	{ MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
+< 	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05f} },
+< 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
+< 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
+< 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
+< 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
+---
+> 	{ MODKEY,                    XKB_KEY_space,      spawn,          {.v = menucmd} },
+> 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = passmenucmd} },
+> 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = termcmd} },
+> 	{ MODKEY,                    XKB_KEY_f,          spawn,          {.v = browsercmd} },
+> 	{ MODKEY,                    XKB_KEY_m,          spawn,          {.v = powercmd} },
+> 	{ MODKEY,                    XKB_KEY_w,          spawn,          {.v = wificmd} },
+> 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          {.v = screenshotcmd} },
+> 	{ 0,    XKB_KEY_XF86AudioRaiseVolume,            spawn,          {.v = volupcmd} },
+> 	{ 0,    XKB_KEY_XF86AudioLowerVolume,            spawn,          {.v = voldowncmd} },
+> 	{ 0,    XKB_KEY_XF86AudioMicMute,                spawn,          {.v = togglemiccmd} },
+> 	{ 0,    XKB_KEY_XF86AudioMute,                   spawn,          {.v = togglespkcmd} },
+> 	{ 0,    XKB_KEY_XF86AudioPlay,                   spawn,          {.v = togglemusiccmd} },
+> 	{ 0,    XKB_KEY_XF86MonBrightnessUp,             spawn,          {.v = blucmd} },
+> 	{ 0,    XKB_KEY_XF86MonBrightnessDown,           spawn,          {.v = bldcmd} },
+> 	{ MODKEY,                    XKB_KEY_a,          focusstack,     {.i = +1} },
+> 	{ MODKEY,                    XKB_KEY_d,          focusstack,     {.i = -1} },
+> 	{ ALTKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
+> 	{ ALTKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
+> 	{ MODKEY,                    XKB_KEY_q,          setmfact,       {.f = -0.05} },
+> 	{ MODKEY,                    XKB_KEY_e,          setmfact,       {.f = +0.05} },
+> 	{ ALTKEY,                    XKB_KEY_Return,     zoom,           {0} },
+> 	{ ALTKEY,                    XKB_KEY_Tab,        view,           {0} },
+> 	{ MODKEY,                    XKB_KEY_c,          killclient,     {0} },
+> 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0}},
+136,138c158,160
+< 	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
+< 	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
+< 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
+---
+> 	{ MODKEY,                    XKB_KEY_u,          setlayout,      {.v = &layouts[1]} },
+> 	{ MODKEY,                    XKB_KEY_i,          setlayout,      {.v = &layouts[2]} },
+> 	{ ALTKEY,                    XKB_KEY_space,      setlayout,      {0} },
+140c162
+< 	{ MODKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
+---
+> 	{ ALTKEY,                    XKB_KEY_e,         togglefullscreen, {0} },

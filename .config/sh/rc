@@ -5,7 +5,7 @@ if lsmod | grep -wq "pcspkr"; then
 fi
 
 if ! pgrep -x "dwl" > /dev/null; then
-    dwl # run dwl if not running
+    dwl -s startw # run dwl if not running
 fi
 
 source ~/.local/share/blesh/ble.sh
