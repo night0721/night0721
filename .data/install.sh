@@ -81,12 +81,6 @@ meson --buildtype=release build
 ninja -C build
 sudo ninja -C build install
 cd ..
-git clone https://git.sr.ht/~night0721/wmenu
-cd wmenu
-meson build
-ninja -C build
-sudo ninja -C build install
-cd ..
 git clone https://github.com/night0721/fnf
 cd fnf
 make
