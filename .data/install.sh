@@ -12,12 +12,11 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed adobe-source-han-sans-{hk,jp,kr}-fonts bluez bluez-utils brightnessctl btop chafa connman \
-    dos2unix firefox foot grub-customizer grim hugo imagemagick iwd lf libgit2 libnotify libsodium \
-    libwebsockets mako mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh \
-    pacman-contrib pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist \
-    unzip wf-recorder wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp \
-    zathura-pdf-mupdf zip --noconfirm > /dev/null
+sudo pacman -S --needed bluez bluez-utils brightnessctl btop chafa connman dos2unix firefox foot \
+    grub-customizer grim hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako \
+    mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pacman-contrib \
+    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist wf-recorder \
+    wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-mupdf --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -146,6 +145,9 @@ sudo mv MonaspiceKrNerdFont-*.otf /usr/share/fonts/TTF
 sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
 cd ..
 rm -rf fonts
+
+sudo mv /usr/share/fonts/adobe-source-han-sans/SourceHanSansHK-Normal.otf /usr/share/fonts/TTF
+sudo pacman -Rcns dobe-source-han-sans-hk-fonts
 
 printf "$nightpasswd\n" | chsh -s /usr/bin/bash
 
