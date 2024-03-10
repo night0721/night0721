@@ -117,7 +117,7 @@ SUPER + SHIFT + S = Screenshot menu
 # Packages
 
 Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
-Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tmux tree unzip wget wf-recorder wlr-randr ydotool yt-dlp zip  
+Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tree unzip wget wf-recorder wlr-randr ydotool yt-dlp zip  
 Development: npm python-mutagen  
 Browser: firefox  
 Enviroment: mako plymouth slurp swappy xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
@@ -126,6 +126,6 @@ Graphics: graphicsmagick
 Bluetooth: bluez  
 Suckless: wmenu foot fnf aureate  
 VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
-Utils: brillo grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
+Utils: grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
 Drivers: libva nvidia-dkms   
 Kernel: linux linux-headers  
