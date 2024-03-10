@@ -15,8 +15,8 @@ pacman -Syu --noconfirm > /dev/null
 sudo pacman -S --needed bluez bluez-utils brightnessctl btop chafa connman dos2unix firefox foot \
     grub-customizer grim hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako \
     mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pacman-contrib \
-    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy tllist wf-recorder \
-    wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-mupdf --noconfirm > /dev/null
+    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy wf-recorder \
+    wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
