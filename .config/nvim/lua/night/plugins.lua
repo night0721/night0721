@@ -36,7 +36,8 @@ return require('packer').startup(function(use)
     -- syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSupdate',
+        requires = { { 'p00f/nvim-ts-rainbow' } },
+        run = ':TSUpdate',
         config = function() require('night.plugins.treesitter') end
     }
 
@@ -116,7 +117,7 @@ return require('packer').startup(function(use)
     --}
 
     -- tmux integration
-    use 'christoomey/vim-tmux-navigator'
+    -- use 'christoomey/vim-tmux-navigator'
 
     -- copilot
     -- use 'github/copilot.vim'
