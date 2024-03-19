@@ -17,6 +17,7 @@ dotfiles
 .config/btop
 .config/dconf
 .config/sh/.sh_history
+.config/asciinema/install-id
 .local/npm
 Downloads
 repos
