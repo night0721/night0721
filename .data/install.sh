@@ -15,8 +15,8 @@ pacman -Syu --noconfirm > /dev/null
 sudo pacman -S --needed bluez bluez-utils brightnessctl btop chafa connman dos2unix firefox foot \
     grub-customizer grim hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako \
     mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pacman-contrib \
-    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy wf-recorder \
-    wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
+    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy wf-recorder wireplumber \
+    wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -128,6 +128,8 @@ sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
 sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
 sudo rm -rf /usr/share/doc /usr/share/licenses /usr/share/gtk-doc /usr/lib/node_modules/npm/docs
 sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansHK-Normal.otf" -delete
+sudo find / -type f -name "*.md" -print -mount
+sudo find / -type f -name "LICENSE" -print -mount
 
 echo -e 'root ALL=(ALL:ALL) ALL
 n ALL=(ALL:ALL) ALL
