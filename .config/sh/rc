@@ -13,7 +13,7 @@ source ~/.local/share/blesh/ble.sh
 PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w] \[\e[38;5;069m\]» \[\e[0m\]'
 # variables needed for command history
 HISTFILE=~/.config/sh/.sh_history
-HISTSIZE=5000
+HISTSIZE=10000
 
 # push to github with the lazy way
 g() {
