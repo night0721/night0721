@@ -37,6 +37,11 @@ f() {
     cd "$(cat "${XDG_CACHE_HOME}/fff/.fff_d")"
 }
 
+c() {
+    ccc "$@"
+    cd "$(cat "${XDG_CACHE_HOME}/ccc/.ccc_d")"
+}
+
 bind -x '"\C-f":"lfcd"'
 bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
