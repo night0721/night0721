@@ -32,7 +32,7 @@ index 0822ddc..3e38aa5 100644
  	cp config.def.h $@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..07333aa
+index 0000000..6529e57
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,199 @@
@@ -79,8 +79,8 @@ index 0000000..07333aa
 +	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 0, 0, 120.000f, 1, 1},
 +	*/
 +	/* defaults */
-+	{ "eDP-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 2560, 0, 1920, 1080, 120.001999f, 1 , 0},
-+    { "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 2560, 1440, 59.951000f, 1 , 0},
++	{ "eDP-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 2560, 0, 1920, 1080, 120.001999f, -1 , 0},
++    { "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 2560, 1440, 59.951000f, -1 , 0},
 +
 +	// mode let's the user decide on how dwl should implement the modes:
 +	// -1 Sets a custom mode following the users choice
