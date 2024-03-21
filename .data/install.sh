@@ -60,9 +60,8 @@ cd ..
 git clone https://codeberg.org/dwl/dwl
 cd dwl
 git switch wlroots-next
-patch < ~/.data/patches/ipc.patch
+patch < ~/.data/patches/dwl.patch
 mv dwl-ipc-unstable-v2.xml protocols
-patch config.def.h ~/.data/patches/config.diff
 make 
 sudo make install
 cd ..
@@ -85,24 +84,19 @@ cd fnf
 make
 sudo make install
 cd ..
+git clone https://github.com/night0721/sloc
+cd sloc
+make
+sudo make install
+cd ..
 git clone https://github.com/night0721/kat
 cd kat
 make
 sudo mv kat /usr/local/bin
 cd ..
-
-# scc
-curl -L -O https://github.com/boyter/scc/releases/latest/download/scc_Linux_x86_64.tar.gz
-tar -xvf scc_Linux_x86_64.tar.gz
-rm scc_Linux_x86_64.tar.gz LICENSE README.md
-sudo mv scc /usr/local/bin
-
-# wlr-randr
-git clone https://git.sr.ht/~night0721/wlr-randr
-cd wlr-randr
-meson build
-ninja -C build
-sudo ninja -C build install
+git clone https://github.com/night0721/nvimpager
+cd nvimpager
+make PREFIX=$HOME/.local install
 cd ..
 
 # bash
