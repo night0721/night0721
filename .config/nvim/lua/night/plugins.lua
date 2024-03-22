@@ -47,12 +47,6 @@ return require('packer').startup(function(use)
         config = function() require('night.plugins.lualine') end,
     }
 
-    -- wiki
-    use {
-        'vimwiki/vimwiki',
-        config = function() require('night.plugins.vimwiki') end,
-    }
-
     -- wakatime to record coding time
     use 'wakatime/vim-wakatime'
 

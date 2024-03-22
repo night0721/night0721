@@ -12,16 +12,15 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed bluez bluez-utils brightnessctl btop chafa connman dos2unix firefox foot \
-    grub-customizer grim hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako \
-    mandoc mpv ncdu neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pacman-contrib \
-    pass pipewire-pulse plymouth python-mutagen ripgrep slurp socat swappy wf-recorder wireplumber \
-    wlroots wl-clipboard xdg-desktop-portal-wlr xorg-xhost yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
+sudo pacman -S --needed bluez brightnessctl btop chafa connman dos2unix firefox foot grim \
+    hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako mandoc mpv ncdu \
+    neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pass pipewire-pulse \
+    python-mutagen slurp socat swappy wf-recorder wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 # sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf # for qemu passthrough
-sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
+# sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
 # add modconf to HOOKS
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 echo -e "blacklist nouveau\noptions nvidia_drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
@@ -103,11 +102,11 @@ cd ..
 ln -sf /home/night/.config/sh/.bashrc /home/night/.bashrc
 
 # plymouth
-cd /usr/share/plymouth/themes/
-sudo git clone https://github.com/farsil/monoarch > /dev/null
-sudo plymouth-set-default-theme -R monoarch > /dev/null
-cd monoarch
-sudo rm -rf .git LICENSE README.md
+# cd /usr/share/plymouth/themes/
+# sudo git clone https://github.com/farsil/monoarch > /dev/null
+# sudo plymouth-set-default-theme -R monoarch > /dev/null
+# cd monoarch
+# sudo rm -rf .git LICENSE README.md
 
 # grub
 cd /dotfiles
