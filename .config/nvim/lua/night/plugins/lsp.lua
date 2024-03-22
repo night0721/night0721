@@ -1,34 +1,71 @@
-local lsp = require('lsp-zero')
-local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- note: diagnostics are not exclusive to lsp servers
+-- so these can be global keybindings
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next) 
 
-local function setup(server)
-    lspconfig[server].setup({
-        capabilities = capabilities
-    })
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = {buffer = event.buf}
+
+    -- these will be buffer-local keybindings
+    -- because they only work if you have an active language server
+
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gw', vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', 'ge', vim.lsp.buf.rename, opts)
+    vim.keymap.set({'n', 'x'}, 'gf', function () vim.lsp.buf.format({async = true}) end, opts)
+    vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, opts)
+  end
+})
+
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local default_setup = function(server)
+  require('lspconfig')[server].setup({
+    capabilities = lsp_capabilities,
+  })
 end
 
 require('mason').setup({})
-require("mason-lspconfig").setup({
-    ensure_installed = {'lua_ls', 'pylsp', 'clangd'}
+require('mason-lspconfig').setup({
+  ensure_installed = {'clangd'},
+  handlers = {
+    default_setup,
+  },
 })
 
-require("mason-lspconfig").setup_handlers({
-    setup
+--[[
+
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- Enter key confirms completion item
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+
+    -- Ctrl + space triggers completion menu
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }),
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
 })
 
-lsp.preset('recommended')
 
--- Fix Undefined global 'vim'
-lsp.configure('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -56,28 +93,9 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    if client.name == "eslint" then
-        vim.cmd.LspStop('eslint')
-        return
-    end
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-end)
-
-lsp.setup()
+-- lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true,
 })
+]]--

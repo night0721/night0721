@@ -26,13 +26,6 @@ return require('packer').startup(function(use)
 
     use 'dylanaraps/fff.vim'
 
-    -- fuzzy finder
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
-        requires = { { 'nvim-lua/plenary.nvim' } },
-        config = function() require('night.plugins.telescope') end
-    }
-
     -- syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -60,20 +53,6 @@ return require('packer').startup(function(use)
         config = function() require('night.plugins.vimwiki') end,
     }
 
-    -- startup screen
-    use {
-        'goolord/alpha-nvim',
-        config = function() require('night.plugins.alpha') end,
-    }
-
-    -- distraction-free writing mode
-    --use {
-    --    'folke/zen-mode.nvim',
-    --    opt = true,
-    --    cmd = { 'ZenMode' },
-    --    config = function() require('night.plugins.zen-mode') end
-    --}
-
     -- wakatime to record coding time
     use 'wakatime/vim-wakatime'
 
@@ -83,41 +62,18 @@ return require('packer').startup(function(use)
     -- autoclose html tags
     use 'alvan/vim-closetag'
 
-    -- indent blankline
-    use 'lukas-reineke/indent-blankline.nvim'
-
     -- lsp
     use {
-        'VonHeikemen/lsp-zero.nvim',
+        'neovim/nvim-lspconfig',
         requires = {
             -- LSP support
-            { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
-
-            -- autocompletion
             { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-
-            -- snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
         },
         config = function() require('night.plugins.lsp') end
     }
-
-    -- rust formatter
-    --use {
-    --    'rust-lang/rust.vim',
-    --    ft = "rust",
-    --}
-
-    -- tmux integration
-    -- use 'christoomey/vim-tmux-navigator'
 
     -- copilot
     -- use 'github/copilot.vim'
