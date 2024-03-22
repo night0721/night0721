@@ -41,6 +41,7 @@ c() {
     ccc "$@"
     cd "$(cat "${XDG_CACHE_HOME}/ccc/.ccc_d")"
 }
+man () { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvimpager; }
 
 bind -x '"\C-f":"lfcd"'
 bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'

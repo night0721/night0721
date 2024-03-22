@@ -1,16 +1,15 @@
 #!/bin/sh
 
 # settings for common commands
-alias cp="cp -iv"
-alias mv="mv -iv"
-alias rm="rm -vI"
+alias cp="cp -i"
+alias mv="mv -i"
 alias bc="bc -ql"
-alias mkdir="mkdir -pv"
+alias mkdir="mkdir -p"
 alias kat='kat -t ~/.data/misc/kat-theme'
 alias cls="clear"
 alias grep='grep --color=always'
 alias ls='ls --color=auto'
-alias ll="ls -lah"
+alias ll="ls -lah --color=auto"
 alias l="ls -lah --color=auto"
 alias tree="tree -a -I .git -I node_modules"
 alias :q="exit"
@@ -24,7 +23,7 @@ alias vim="$EDITOR"
 alias p="sudo pacman"
 alias sd="shutdown now"
 alias nf="neofetch"
-alias cpc="clearsystem"
+alias cpc="cleansystem"
 alias rmpkg="sudo pacman -Rcns"
 alias rmpkg-conf="sudo pacman -Runs"
 alias codingsize="ncdu ~/.nky/Coding --exclude .git --exclude image --exclude node_modules --exclude jnic.zip --exclude 'Machine Learning-A-Z-Codes-Datasets.zip'"
@@ -37,7 +36,6 @@ alias hst="history | cut -c 8- | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy
 alias ncdu="ncdu --color dark -x --exclude images"
 alias lf="lfrun"
 alias s="sudo systemctl"
-alias tmux="TERM=screen-256color tmux"
 alias ipv4="echo $(curl -s ipinfo.io/ip)"
 alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
 
@@ -50,3 +48,4 @@ alias cad='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME add'
 alias cco='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME commit -m'
 alias cpu='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME push'
 alias cst='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME status -u'
+alias cdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME diff'
