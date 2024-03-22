@@ -1,0 +1,7 @@
+#!/bin/sh
+
+sudo pacman -Rns $(pacman -Qdttq) # remove orphans
+rm -rf ~/.npm
+sudo rm -rf /usr/share/doc /usr/share/licenses /usr/share/gtk-doc /usr/lib/node_modules/npm/docs
+sudo find / -type f -name "*.md" -print -mount
+sudo find / -type f -name "LICENSE" -print -mount
