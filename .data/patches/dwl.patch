@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9009517..594703e 100644
+index 9009517..9d21396 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -6,11 +6,11 @@
@@ -19,6 +19,15 @@ index 9009517..594703e 100644
  /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
  static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
  
+@@ -25,7 +25,7 @@ static const Rule rules[] = {
+ 	/* examples:
+ 	{ "Gimp",     NULL,       0,            1,           -1 },
+ 	*/
+-	{ "firefox",  NULL,       1 << 8,       0,           -1 },
++	{ "firefox",  NULL,       0,       0,           -1 },
+ };
+ 
+ /* layout(s) */
 @@ -39,12 +39,17 @@ static const Layout layouts[] = {
  /* monitors */
  /* NOTE: ALWAYS add a fallback rule, even if you are completely sure it won't be used */
@@ -41,6 +50,15 @@ index 9009517..594703e 100644
  };
  
  /* keyboard */
+@@ -63,7 +68,7 @@ static const int repeat_delay = 600;
+ static const int tap_to_click = 1;
+ static const int tap_and_drag = 1;
+ static const int drag_lock = 1;
+-static const int natural_scrolling = 0;
++static const int natural_scrolling = 1;
+ static const int disable_while_typing = 1;
+ static const int left_handed = 0;
+ static const int middle_button_emulation = 0;
 @@ -102,7 +107,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
  static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TAP_MAP_LRM;
  
