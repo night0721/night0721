@@ -59,7 +59,6 @@ git clone https://codeberg.org/dwl/dwl
 cd dwl
 git switch wlroots-next
 patch < ~/.data/patches/dwl.patch
-mv dwl-ipc-unstable-v2.xml protocols
 make 
 sudo make install
 cd ..
@@ -98,7 +97,8 @@ make PREFIX=$HOME/.local install
 cd ..
 
 # bash
-ln -sf /home/night/.config/sh/.bashrc /home/night/.bashrc
+ln -sf /home/night/.profile /home/night/.bashrc
+ln -sf /home/night/.profile /home/night/.bash_profile
 
 # plymouth
 # cd /usr/share/plymouth/themes/
