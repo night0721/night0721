@@ -1,1 +1,1 @@
-. .bashrc
+.profile
