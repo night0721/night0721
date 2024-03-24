@@ -1,83 +1,43 @@
 #!/bin/sh
 
-source $HOME/.config/sh/aliases
+. $HOME/.rc
 
 auth="$EZAPIKEY"
 url="https://api.e-z.host/files"
+PICTURE_DIR="$HOME/.nky/Photo/Me/"
+fileName=$(echo "/tmp/$(date +'%s_grim.png')")
 
-snipping=$(echo -e "Select Area\nSelect Screen\nFull Screen" | wmenu -p "Snipping tool")
+snipping=$(echo -e "Area\nScreen\nFull" | wmenu -p "Snipping tool")
+# main program
+case $snipping in
+    "Full")
+        grim $fileName;;
+    "Screen")
+        grim -o $(slurp -f %o -or) $fileName;;
+    "Area")
+        grim -g "$(slurp)" $fileName;;
+esac
 
 if [ -z $snipping ]; then
     exit 0
 fi
-PICTURE_DIR="$HOME/.nky/Photo/Me/"
-temp="/tmp"
-fileName=$(echo "$temp/$(date +'%s_grim.png')")
 
 # function
-opts_mod(){
-    mods_la=$(printf "Copy to clipboard\nEdit screenshot\nSave\nUpload to e-z.host" | wmenu -p "Options:")
-    if [[ $mods_la == "" ]]; then
-	exit 0
-    fi
+mods_la=$(printf "Copy\nEdit\nSave\nUpload" | wmenu -p "Options:")
+if [ -z $mods_la ]; then
+exit 0
+fi
 
-    case $mods_la in
-	"Edit screenshot") swappy -f $1;;
-	"Save") cp $1 $PICTURE_DIR;;
-	"Copy to clipboard") wl-copy < $1 -t image/png;;
-    "Upload to e-z.host")
-        image_url=$(curl -X POST -F "file=@"$1 -H "key: "$auth -v "$url" 2>/dev/null)
-        echo $image_url > /tmp/upload.json
-        response_file="/tmp/upload.json"
-
-        if ! jq -e . >/dev/null 2>&1 < /tmp/upload.json; then
-            notify-send "Error occurred while uploading. Please try again later." -a "Grim"
-            rm $1 $response_file
-            exit 1
-        fi
-
-        success=$(cat /tmp/upload.json | jq -r ".success")
-        if [[ "$success" != "true" ]] || [[ "$success" == "null" ]]; then
-            error=$(cat /tmp/upload.json | jq -r ".error")
-            if [[ "$error" == "null" ]]; then
-                notify-send "Error occurred while uploading. Please try again later." -a "Grim"
-                rm $1 $response_file
-                exit 1
-            else
-                notify-send "Error: $error" -a "Grim"
-                rm $1 $response_file
-                exit 1
-            fi
-        fi
-
-        cat /tmp/upload.json | jq -r ".imageUrl" | wl-copy
-        notify-send "Image URL copied to clipboard" -a "Grim" -i $1
-        rm $1
-    esac
-    notify-send "Finish!"
-}
-
-full_screen(){
-    attualFile=$fileName
-    grim $attualFile
-    opts_mod "$attualFile"
-}
-
-selection_screen(){
-    attualFile=$fileName
-    grim -o $(slurp -f %o -or) $attualFile
-    opts_mod "$attualFile"
-}
-
-selection_area(){
-    attualFile=$fileName
-    grim -g "$(slurp)" $attualFile
-    opts_mod "$attualFile"
-}
-
-# main program
-case $snipping in
-    "Full Screen") full_screen;;
-    "Select Screen") selection_screen;;
-    "Select Area") selection_area;;
+case $mods_la in
+"Edit") swappy -f $fileName;;
+"Save") cp $fileName $PICTURE_DIR;;
+"Copy") wl-copy < $fileName -t image/png;;
+"Upload")
+    image_url=$(curl -X POST -F "file=@"$fileName -H "key: "$auth -v "$url" 2>/dev/null)
+    echo $image_url > /tmp/upload.json
+    response_file="/tmp/upload.json"
+    cat /tmp/upload.json | jq -r ".imageUrl" | wl-copy
+    notify-send "Image URL copied to clipboard" -a "Grim"
+    rm $fileName
 esac
+notify-send "Finish!"
