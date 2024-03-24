@@ -22,14 +22,15 @@ alias vw="$EDITOR ~/.nky/Coding/Markdown/wiki/Todo.md"
 alias vim="$EDITOR"
 alias p="sudo pacman"
 alias sd="shutdown now"
+alias rb="sudo reboot"
 alias nf="neofetch"
 alias cpc="cleansystem"
 alias rmpkg="sudo pacman -Rcns"
 alias rmpkg-conf="sudo pacman -Runs"
 alias codingsize="ncdu ~/.nky/Coding --exclude .git --exclude image --exclude node_modules --exclude jnic.zip --exclude 'Machine Learning-A-Z-Codes-Datasets.zip'"
 alias foldersize="sudo du -shc"
-alias findfiles="grep --exclude-dir={.mozilla,.cache,share,dump,env,state,node_modules,pdfs,build,.git,npm,autojump,cargo,gnupg,zsh-autosuggestions,zsh-syntax-highlighting,zsh-history-substring-search,.wakatime} --exclude=.zcompdump --exclude=.git --exclude=.sh_history -rnwinRIH . -e"
-alias homefiles="find ~ -type d \( -path ~/.cargo -o -path ~/.local/share -o -path ~/.local/state/nvim -o -path ~/.mozilla -o -path ~/.npm -o -path ~/.autojump -o -path ~/.cache -o -path ~/dotfiles -o -path ~/.gnupg -o -path ~/.config/zsh/zsh-syntax-highlighting -o -path ~/.config/zsh/zsh-autosuggestions -o -path ~/.config/zsh/powerlevel10k \) -prune -o -type f -not -path '*/.git/*' -not -path '*/node_modules/*' -print | fnf"
+alias findfiles="grep --exclude-dir={.mozilla,.cache,share,dump,env,state,node_modules,pdfs,build,.git,npm,autojump,cargo,gnupg,.wakatime} --exclude=.zcompdump --exclude=.git --exclude=.sh_history -rnwinRIH . -e"
+alias homefiles="find ~ -type d \( -path ~/.cargo -o -path ~/.local/share -o -path ~/.local/state/nvim -o -path ~/.mozilla -o -path ~/.npm -o -path ~/.autojump -o -path ~/.cache -o -path ~/dotfiles -o -path ~/.gnupg \) -prune -o -type f -not -path '*/.git/*' -not -path '*/node_modules/*' -print | fnf"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
 alias hst="history | cut -c 8- | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
@@ -38,14 +39,15 @@ alias lf="lfrun"
 alias s="sudo systemctl"
 alias ipv4="echo $(curl -s ipinfo.io/ip)"
 alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
+alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
 
 # Change directory aliases
 alias .='cd ~'
 alias ..='cd ..'
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-alias cad='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME add'
-alias cco='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME commit -m'
-alias cpu='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME push'
-alias cst='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME status -u'
-alias cdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME diff'
+alias cad='config add'
+alias cco='config commit -m'
+alias cpu='config push'
+alias cst='config status -u'
+alias cdf='config diff'

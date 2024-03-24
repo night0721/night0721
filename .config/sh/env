@@ -32,4 +32,3 @@ export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=wlroots
 export XCURSOR_SIZE=24
 export WLR_NO_HARDWARE_CURSORS=1
-export WLR_RENDERER=gles2

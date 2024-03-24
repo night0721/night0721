@@ -4,5 +4,5 @@ sudo pacman -Rns $(pacman -Qdttq) # remove orphans
 rm -rf ~/.npm
 sudo rm -rf /usr/share/doc /usr/share/licenses /usr/share/gtk-doc /usr/lib/node_modules/npm/docs /usr/share/icons/Catppuccin-Mocha-Standard-Lavender-Dark/{gnome-shell,gtk-4.0,cinnamon,gtk-2.0,plank,xfwm4} /usr/share/icons/Catppuccin-Mocha-Standard-Lavender-Dark-{xhpdi,hdpi}/xfwm4 
 
-sudo find / -type f -name "*.md" -print -mount
-sudo find / -type f -name "LICENSE" -print -mount
+sudo find / -type f -name "*.md" -delete -mount
+sudo find / -type f -name "LICENSE" -delete -mount

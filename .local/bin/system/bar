@@ -1,0 +1,24 @@
+#!/bin/sh
+
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+disk=$(df -h / | awk 'NR==2 {gsub("G", "", $3); gsub("G", "", $2); print $3 "/" $2}')
+mem=$(free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB\n", ( $3 / 1024))}')
+vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+if echo "$vol" | grep -q "\[MUTED\]"; then
+    vol="X"
+else
+    vol="$(($(echo "$vol" | awk '{print $2}' | tr -d '.')))%%"
+fi
+
+# Wifi
+if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
+	wifiicon="$(awk '/^\s*w/ { print int($3 * 100 / 70) "%%" }' /proc/net/wireless)"
+elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
+	[ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="📡 " || wifiicon="❌ "
+fi
+
+# Ethernet
+[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌐" || ethericon=""
+
+net=$(echo "$wifiicon""$ethericon")
+notify-send "$(printf "NET: $net | VOL: $vol | BAT: $bat%% | SSD: $disk | RAM: $mem | $(date '+%b %d %H:%M:%S')\n")"

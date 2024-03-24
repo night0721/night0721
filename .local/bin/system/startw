@@ -1,7 +1,5 @@
 #!/bin/sh
 
-dwlb &
-someblocks -p | dwlb -status-stdin all &
 mako &
 wbg ~/.nky/Photo/Wallpapers/dark-cat-rosewater.jpg &
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"

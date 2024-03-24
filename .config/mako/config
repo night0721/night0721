@@ -10,8 +10,8 @@ on-touch=dismiss
 
 # STYLE OPTIONS
 font=Monaspice Kr Nerd Font 12
-width=300
-height=100
+width=750
+height=750
 margin=10
 padding=10
 border-size=1

@@ -57,6 +57,8 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 #		image "$CACHE" "$2" "$3" "$4" "$5"
 #		;;
     *.ttf|*.otf|*.woff)
+        # xc: background color, pointsize: font size, font: input file, fill: foreground color, annotate: preview text, flatten: output file
+        convert -size "532x365" xc:"#ffffff" -gravity center -pointsize 38 -font "$1" -fill "#000000" -annotate +0+0 "ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\nabcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@$\%(){}[]" -flatten "$2" 
 	    fontpreview -i "$1" -o "${CACHE}.jpg"
 	    image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
