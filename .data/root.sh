@@ -50,14 +50,14 @@ arch-chroot /mnt /bin/bash -- << EOCHROOT
 useradd -m -G wheel,audio,storage,power -s /bin/bash night
 printf "$nightpasswd\n$nightpasswd" | passwd night
 printf "$rootpasswd\n$rootpasswd" | passwd root
-sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL\nDefaults timestamp_timeout=600/" /etc/sudoers
+sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /etc/sudoers
 sed -i -e 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 echo $hostname > /etc/hostname
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
-hwclock —w
+hwclock -w
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 EOCHROOT
 cp -r dotfiles/ /mnt/

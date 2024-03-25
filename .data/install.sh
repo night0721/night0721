@@ -117,11 +117,6 @@ sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Fon
 cleansystem
 sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansHK-Normal.otf" -delete
 
-echo -e 'root ALL=(ALL:ALL) ALL
-n ALL=(ALL:ALL) ALL
-%wheel ALL=(ALL:ALL) NOPASSWD: ALL
-@includedir /etc/sudoers.d' | sudo tee -a /etc/sudoers
-
 cd ~
 mkdir fonts
 curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
