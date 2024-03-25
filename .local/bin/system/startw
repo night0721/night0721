@@ -4,6 +4,7 @@ mako &
 wbg ~/.nky/Photo/Wallpapers/dark-cat-rosewater.jpg &
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
+pipewire-pulse &
 /usr/lib/xdg-desktop-portal-wlr &
 sleep 2
 /usr/lib/xdg-desktop-portal &
