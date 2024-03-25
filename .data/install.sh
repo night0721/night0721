@@ -12,10 +12,10 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed bluez brightnessctl btop chafa connman dos2unix firefox foot grim \
+sudo pacman -S --needed bluez bluez-utils brightnessctl btop chafa connman dos2unix firefox foot grim \
     hugo imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako mandoc mpv ncdu \
     neovim newsboat noto-fonts-emoji npm ntfs-3g nvidia-open openssh pass pipewire-pulse \
-    python-mutagen slurp socat swappy wf-recorder wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr yt-dlp zathura-pdf-poppler --noconfirm > /dev/null
+    python-mutagen slurp socat swappy wf-recorder wireplumber wlroots wl-clipboard xdg-desktop-portal-wlr yt-dlp --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
@@ -24,12 +24,8 @@ sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidi
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 echo -e "blacklist nouveau\noptions nvidia_drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
-
-sudo systemctl enable --now bluetooth
-sleep 2
-
 ### Copy Config Files ###
-cp -R /dotfiles/.config /dotfiles/.local /dotfiles/.npmrc /dotfiles/.github /dotfiles/.gitignore /dotfiles/.data /home/night/
+cp -R /dotfiles/* /home/night/
 
 # /etc/hosts
 cd /dotfiles/.data/misc
@@ -118,10 +114,8 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # misc
 sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
 sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
-sudo rm -rf /usr/share/doc /usr/share/licenses /usr/share/gtk-doc /usr/lib/node_modules/npm/docs
+cleansystem
 sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansHK-Normal.otf" -delete
-sudo find / -type f -name "*.md" -print -mount
-sudo find / -type f -name "LICENSE" -print -mount
 
 echo -e 'root ALL=(ALL:ALL) ALL
 n ALL=(ALL:ALL) ALL
@@ -147,7 +141,7 @@ printf "$nightpasswd\n" | chsh -s /usr/bin/bash
 
 sudo usermod -aG wheel,storage,power,lp,input,disk,audio,video night
 # sudo usermod -aG wheel,storage,power,lp,libvirt,kvm,libvirt-qemu,input,disk,audio,video night # with qemu
-sudo systemctl enable --now connman iwd 
+sudo systemctl enable --now connman iwd bluetooth 
 echo "Install finished, type 'reboot'"
 
 # void https://github.com/elbachir-one/dotfiles/blob/main/install.sh
