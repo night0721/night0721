@@ -1,25 +1,23 @@
 # Night Dotfiles
 
-Catppuccin themed dotfiles for Arch Linux
+Catppuccin themed dotfiles for Alpine Linux
 
 # Specifications
-- OS: Arch Linux
+- OS: Alpine Linux
 - WM: dwl
-- Topbar: dwl-bar
 - Notifications: mako
 - Terminal: foot
-- Shell: bash
+- Shell: sh
 - AUR Helper: aureate
 - Wallpaper daemon: wbg
 - Wallpapers: [catppuccin](https://github.com/iQuickDev/catppuccin-wallpapers)
-- File Manager: lf
+- File Manager: lf, ccc
 - Search menu: fnf, wmenu
 - Browser: firefox
 - Font: Monaspice Kr Nerd Font
 - Bootloader: grub
 
 # Details
-*Note: Parts with hyprland and mako is made by SolDoesTech with their HyprV4*
 
 1. Grub theme: `.data/grub/n` (Based on [sayonara](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara))
 
@@ -27,7 +25,7 @@ Catppuccin themed dotfiles for Arch Linux
 - Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
 - Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
-3. Shell: zsh (Removed, using bash)
+3. Shell: zsh (Removed, using sh)
 - Theme: `.config/deprecated/zsh/n.zsh-theme`
 - Plugins: zsh-autosuggestions, zsh-history-substring-search, zsh-syntax-highlighting
 
