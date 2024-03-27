@@ -1,5 +1,6 @@
 #!/bin/sh
 
+. ~/.rc
 IFS=:
 for p in $PATH; do
 	for e in $p/*; do
