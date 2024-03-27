@@ -20,7 +20,7 @@ export PAGER="nvimpager" # 'nvim +Man!'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export PATH="$PATH:$HOME/.autojump/bin:$HOME/.autojump/functions:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system"
+export PATH="$PATH:/usr/local/bin:$HOME/.autojump/bin:$HOME/.autojump/functions:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"
@@ -42,10 +42,10 @@ export XCURSOR_SIZE=24
 export WLR_NO_HARDWARE_CURSORS=1
 
 if lsmod | grep -wq "pcspkr"; then
-  sudo rmmod pcspkr # Remove annoying beep sound in tty
+    rmmod pcspkr # Remove annoying beep sound in tty
 fi
 
-if [[ "$(tty)" == "/dev/tty1" ]] then
+if [[ "$(tty)" == "/dev/tty1" ]]; then
     dbus-run-session dwl -s startw # run dwl if not running
 fi
 
@@ -94,6 +94,6 @@ replace() {
 bind -x '"\C-f":"lfcd"'
 bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
-source ~/.local/share/blesh/ble.sh
+# source ~/.local/share/blesh/ble.sh
 source ~/.autojump/share/autojump/autojump.bash
 . .rc

@@ -3,7 +3,7 @@
 # Copyright (c) 2017 Lucas Hoffmann
 # Licenced under a BSD-2-clause licence.  See the LICENSE file.
 
-RUNTIME='/home/n/.local/share/nvimpager/runtime'
+RUNTIME='/home/night/.local/share/nvimpager/runtime'
 PARENT=$PPID
 TMPFILE=
 export RUNTIME
@@ -50,7 +50,7 @@ while getopts achpv flag; do
     h) usage; description; exit;;
     p) mode=pager;;
     v)
-      version=0.12.0-35-g41d3a3a
+      version=0.12.0
       echo "$NVIM_APPNAME ${version#v}"
       exit
       ;;

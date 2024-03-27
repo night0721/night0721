@@ -4,10 +4,9 @@ mako &
 wbg ~/.nky/Photo/Wallpapers/dark-cat-rosewater.jpg &
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
-pipewire-pulse &
-/usr/lib/xdg-desktop-portal-wlr &
+/usr/libexec/pipewire-launcher
+/usr/libexec/xdg-desktop-portal-wlr &
 sleep 2
-/usr/lib/xdg-desktop-portal &
-dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+/usr/libexec/xdg-desktop-portal &
+dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
 dns &

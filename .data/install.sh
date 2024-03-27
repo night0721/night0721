@@ -58,14 +58,6 @@ patch < ~/.data/patches/dwl.patch
 make 
 sudo make install
 cd ..
-git clone https://codeberg.org/night0721/dwlb
-cd dwlb
-sudo make install
-cd ..
-git clone https://codeberg.org/night0721/someblocks
-cd someblocks
-sudo make install
-cd ..
 git clone https://codeberg.org/night0721/wbg
 cd wbg
 meson --buildtype=release build
