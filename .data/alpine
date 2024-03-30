@@ -3,7 +3,7 @@
 setup-interfaces
 rc-service networking -q start &
 rc-update add networking boot
-echo-e "http://dl-cdn.alpinelinux.org/alpine/edge/main\n http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
+echo-e "http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
 apk update && apk upgrade 
 apk add lsblk efibootmgr grub-efi 
 BOOTLOADER=grub;USE_EFI=1
@@ -15,18 +15,23 @@ mount /dev/nvme0n1p7 /mnt/home
 setup-disk /mnt
 
 setup-devd udev
-apk add brightnessctl cairo-dev curl dbus e2fsprogs efibootmgr firefox foot gcc git grim grub-efi hwdata \
-    hwdata-dev iwd jpeg-dev lf libliftoff-dev libnotify linux-firmware-amdgpu lsblk make mako mandoc \
-    mesa-dri-gallium mkinitfs mpv musl-dev ncdu ncurses-dev neovim openssh pango-dev pass patch \
-    pciutils pipewire-pulse pipewire-tools scdoc seatd slurp socat tllist-dev wf-recorder wlroots-dev \
-    wl-clipboard xdg-desktop-portal-wlr
+apk add acpid brightnessctl cairo-dev curl dbus e2fsprogs efibootmgr firefox \
+    foot gcc git grim groff grub-efi hwdata hwdata-dev imagemagick jpeg-dev \
+    lf libliftoff-dev libnotify linux-firmware-amdgpu lsblk make mako mandoc \
+    mesa-dri-gallium mkinitfs mpv musl-dev ncdu ncurses-dev neovim openssh \
+    pango-dev pass patch pciutils pipewire-pulse pipewire-tools scdoc seatd \
+    slurp socat stagit tllist-dev wf-recorder wlroots-dev wl-clipboard \
+    wpa_supplicant xdg-desktop-portal-wlr zzz
 
 rc-update add sshd
 rc-update add seatd
 rc-update add brightnessctl
+rc-update add acpid
+rc-update add iwd
 rc-service seatd start
 rc-service sshd start
 rc-service iwd start
+rc acpid start
 USERNAME=night; setup-user -a -f Night -g wheel,input,seat,video
 cat > /etc/ssh/sshd_config << EOF
 Include /etc/ssh/sshd_config.d/*.conf
@@ -48,3 +53,7 @@ rc-update del networking boot
 rc-update add networking async
 rc-update add wpa_supplicant async
 echo "::once:/sbin/openrc async" >> /etc/inittab
+doas mkdir /etc/acpi/LID
+echo -e "#!/bin/sh\necho mem > /sys/power/state" > /etc/acpi/LID/00000080
+chmod +x 00000080
+rc-service acoud start
