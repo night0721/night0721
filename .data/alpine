@@ -15,12 +15,12 @@ mount /dev/nvme0n1p7 /mnt/home
 setup-disk /mnt
 
 setup-devd udev
-apk add acpid brightnessctl cairo-dev curl dbus e2fsprogs efibootmgr firefox \
-    foot gcc git grim groff grub-efi hwdata hwdata-dev imagemagick jpeg-dev \
-    lf libliftoff-dev libnotify linux-firmware-amdgpu lsblk make mako mandoc \
-    mesa-dri-gallium mkinitfs mpv musl-dev ncdu ncurses-dev neovim openssh \
-    pango-dev pass patch pciutils pipewire-pulse pipewire-tools scdoc seatd \
-    slurp socat stagit tllist-dev wf-recorder wlroots-dev wl-clipboard \
+apk add acpid brightnessctl curl dbus e2fsprogs efibootmgr firefox fnf foot \
+    gcc git grim groff grub-efi hwdata-dev imagemagick jpeg-dev lf \
+    libliftoff-dev libnotify linux-firmware-amdgpu lsblk make mako mandoc \
+    mesa-dri-gallium mkinitfs mpv musl-dev ncdu ncurses ncurses-dev neovim \
+    openssh pass patch pciutils pipewire-pulse pipewire-tools scdoc seatd \
+    slurp socat stagit tllist-dev wbg wf-recorder wlroots-dev wl-clipboard wmenu \
     wpa_supplicant xdg-desktop-portal-wlr zzz
 
 rc-update add sshd

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true
+do
+    curl "$NC_URL" &> /dev/null
+    sleep 600
+done
