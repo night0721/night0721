@@ -42,53 +42,11 @@ export XDG_SESSION_DESKTOP=wlroots
 export XCURSOR_SIZE=24
 export WLR_NO_HARDWARE_CURSORS=1
 
-# push to github with the lazy way
-g() {
-	git add .
-	git commit -m "$1"
-	git push
-}
-
-lfcd() {
-    tmp="$(mktemp -uq)"
-    trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-
-f() {
-    fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME}/fff/.fff_d")"
-}
-
-c() {
-    ccc "$@"
-    cd "$(cat "${XDG_CACHE_HOME}/ccc/.ccc_d")"
-}
-
-ma() { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvimpager; }
-
-manl() { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fnf); }
-
-webjpeg() { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
-
-replace() {
-    echo "Type the pattern you want to replace"
-    read pattern
-    echo "Type the phrase you want to replace with"
-    read replacewith
-
-    find . -type f -exec sed -i "s/$pattern/$replacewith/g" {} \;
-}
-
 # bind -x '"\C-f":"lfcd"'
 # bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
-# source ~/.local/share/blesh/ble.sh
-# . ~/.autojump/share/autojump/autojump.bash
+source ~/.rc
+source ~/.nky/Me/personal/.env
 
 if lsmod | grep -wq "pcspkr"; then
     doas rmmod pcspkr # Remove annoying beep sound in tty
@@ -97,6 +55,3 @@ fi
 if [[ "$(tty)" == "/dev/tty1" ]]; then
     dbus-run-session dwl -s startw # run dwl if not
 fi
-
-. ~/.rc
-source ~/.nky/Me/personal/.env

@@ -51,3 +51,45 @@ alias cco='config commit -m'
 alias cpu='config push'
 alias cst='config status -u'
 alias cdf='config diff'
+
+# push to github with the lazy way
+function g {
+	git add .
+	git commit -m "$1"
+	git push
+}
+
+function lfcd {
+    tmp="$(mktemp -uq)"
+    trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+function f {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME}/fff/.fff_d")"
+}
+
+function c {
+    ccc "$@"
+    cd "$(cat "${XDG_CACHE_HOME}/ccc/.ccc_d")"
+}
+
+function ma { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvimpager; }
+
+function manl { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fnf); }
+
+function webjpeg { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
+
+function replace {
+    echo "Type the pattern you want to replace"
+    read pattern
+    echo "Type the phrase you want to replace with"
+    read replacewith
+
+    find . -type f -exec sed -i "s/$pattern/$replacewith/g" {} \;
+}
