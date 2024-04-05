@@ -18,11 +18,9 @@ sudo pacman -S --needed bluez bluez-utils brightnessctl chafa connman dos2unix f
     swappy wf-recorder wlroots wl-clipboard xdg-desktop-portal-wlr yt-dlp --noconfirm > /dev/null
 
 # update config
-sudo sed -i 's/MODULES=()/MODULES=(amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-# sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf # for qemu passthrough
-# sudo sed -i '/^HOOKS=/ s/udev/& plymouth/' /etc/mkinitcpio.conf
+sudo sed -i 's/MODULES=()/MODULES=(amdgpu nouveau)/' /etc/mkinitcpio.conf
+# sudo sed -i 's/MODULES=()/MODULES=(vfio vfio_iommu_type1 vfio_pci amdgpu)/' /etc/mkinitcpio.conf # for qemu passthrough
 sudo mkinitcpio -p linux --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-echo -e "blacklist nouveau\noptions nvidia_drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
 
 ### Copy Config Files ###
 cp -R /dotfiles/* /home/night/
@@ -31,12 +29,6 @@ cp -R /dotfiles/* /home/night/
 cd /dotfiles/.data/misc
 curl -L -O https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 sudo cp hosts /etc/hosts
-
-# autojump
-cd /home/night
-git clone https://github.com/wting/autojump.git
-cd autojump
-./install.py
 
 # suckless stuff
 cd ~
@@ -87,13 +79,6 @@ cd ..
 # bash
 ln -sf /home/night/.profile /home/night/.bashrc
 ln -sf /home/night/.profile /home/night/.bash_profile
-
-# plymouth
-# cd /usr/share/plymouth/themes/
-# sudo git clone https://github.com/farsil/monoarch > /dev/null
-# sudo plymouth-set-default-theme -R monoarch > /dev/null
-# cd monoarch
-# sudo rm -rf .git LICENSE README.md
 
 # grub
 cd /dotfiles

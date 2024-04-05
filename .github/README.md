@@ -23,7 +23,7 @@ Catppuccin themed dotfiles for Alpine Linux
 
 2. Login: SDDM(Remvoed, logging in with tty)
 - Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
-- Required packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+- Packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
 3. Shell: zsh (Removed, using sh)
 - Theme: `.config/deprecated/zsh/n.zsh-theme`
@@ -37,6 +37,10 @@ Catppuccin themed dotfiles for Alpine Linux
 
 5. GTK Theme: [Catppuccin](https://github.com/ljmill/catppuccin-icons)
 Alternatively, you can use [papirus icons](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) with [this Catpuccin icon theme](https://aur.archlinux.org/packages/papirus-folders-catppuccin-git)
+
+6. VM
+- Packages: bridge-utils libvirt qemu-full virt-manager virt-viewer  
+
 ## Additional Information
 
 You might need to install `grub-customizer` to remove other boot options, if syntax error occured, most likely a `:` will solve the problem
@@ -48,7 +52,6 @@ UUID=94ACAFD1ACAFAC64   /run/media/N    ntfs        rw,user,auto,fmask=133,dmask
 ```
 
 ## Install
-
 ```
 iwctl
 device list # find device name
@@ -60,7 +63,6 @@ bash dotfiles/.data/root.sh
 ```
 
 ## Setup
-
 ```
 git clone --bare git@codeberg.org:night0721/dotfiles
 # OR
@@ -71,13 +73,11 @@ config config --local status.showUntrackedFiles no
 Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 
 ## Post setup
-
 ```
 connmanctl scan wifi
 connmanctl services
 connmanctl connect wifi_...........
 sudo pacman -Syu
-grub-customizer
 ```
 
 ### Firefox
@@ -111,19 +111,3 @@ SUPER + ENTER = Toggle focus
 SUPER + P = Password menu  
 SUPER + SPACE = App Launcher  
 SUPER + SHIFT + S = Screenshot menu  
-
-# Packages
-
-Fonts: adobe-source-han-sans-{hk,jp,kr}-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd  
-Shell softwares: btop chafa kat lf mpv ncdu neovim newsboat pass ripgrep scc socat tree unzip wget wf-recorder wlr-randr ydotool yt-dlp zip  
-Development: npm python-mutagen  
-Browser: firefox  
-Enviroment: mako plymouth slurp swappy xdg-desktop-portal-wlr wlroots-nvidia xorg-xhost zathura-pdf-poppler  
-Audio: pamixer pipewire-pulse wireplumber  
-Graphics: graphicsmagick  
-Bluetooth: bluez  
-Suckless: wmenu foot fnf aureate  
-VM: bridge-utils libvirt qemu-full virt-manager virt-viewer  
-Utils: grub-customizer grim libnotify man-db ntfs-3g pacman-contrib  
-Drivers: libva nvidia-dkms   
-Kernel: linux linux-headers  
