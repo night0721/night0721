@@ -82,13 +82,13 @@ device list # find device name
 station [device name] connect [network name]
 exit
 pacman -Sy git
-git clone https://github.com/night0721/dotfiles
-bash dotfiles/.data/root.sh
+git clone https://github.com/night0721/night0721
+bash night0721/.data/root.sh
 ```
 
 ## Post setup
 ```
-git clone --bare git@codeberg.org:night0721/dotfiles
+git clone --bare git@codeberg.org:night0721/night0721
 connmanctl scan wifi
 connmanctl services
 connmanctl connect wifi_...........
