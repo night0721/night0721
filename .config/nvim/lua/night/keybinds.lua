@@ -47,7 +47,7 @@ vim.keymap.set("n", "<Right>", "<nop>")
 vim.keymap.set("n", "<Up>", "<nop>")
 vim.keymap.set("n", "<Down>", "<nop>")
 
-vim.keymap.set("n", "f", ":F<CR>")
+vim.keymap.set("n", "F", ":Ccc .<CR>")
 vim.cmd([[
 " Toggle Vexplore with Ctrl-O
 function! ToggleVExplorer()

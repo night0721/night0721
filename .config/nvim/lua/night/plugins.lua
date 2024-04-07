@@ -68,6 +68,10 @@ return require('packer').startup(function(use)
         },
         config = function() require('night.plugins.lsp') end
     }
+    use {
+        'night0721/ccc.nvim',
+        config = function() require('night.plugins.ccc') end
+    }
 
     -- copilot
     -- use 'github/copilot.vim'
