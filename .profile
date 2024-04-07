@@ -25,7 +25,7 @@ export CDPATH=":$HOME/.config:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/C
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"
-export PASSWORD_STORE_DIR="$HOME/.nky/Me/pass"
+export PASSWORD_STORE_DIR="$HOME/.nky/me/pass"
 export GPG_TTY=$(tty)
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
