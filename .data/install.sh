@@ -12,10 +12,12 @@ cd /home/night
 pacman -Syu --noconfirm > /dev/null
 
 ### Install all of the above pacakges ####
-sudo pacman -S --needed bluez bluez-utils brightnessctl chafa connman dos2unix firefox foot grim hugo \
-    imagemagick iwd lf libgit2 libnotify libsodium libwebsockets mako mandoc mpv ncdu neovim newsboat \
-    noto-fonts-emoji npm ntfs-3g nvidia-open openssh pass pipewire-pulse python-pytube slurp socat \
-    swappy wf-recorder wlroots wl-clipboard xdg-desktop-portal-wlr yt-dlp --noconfirm > /dev/null
+sudo pacman -S --needed asciinema bluez bluez-utils brightnessctl chafa \
+    dos2unix firefox foot grim hugo imagemagick iwd lf libgit2 libnotify \
+    libsodium libwebsockets mako mandoc mpv ncdu neovim newsboat \
+    noto-fonts-emoji npm ntfs-3g nvidia-open openssh pass pipewire-pulse \
+    python-pytube slurp socat swappy wf-recorder wlroots wl-clipboard \
+    xdg-desktop-portal-wlr yt-dlp --noconfirm > /dev/null
 
 # update config
 sudo sed -i 's/MODULES=()/MODULES=(amdgpu nouveau)/' /etc/mkinitcpio.conf
