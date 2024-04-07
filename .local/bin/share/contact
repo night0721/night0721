@@ -1,6 +1,6 @@
 #!/bin/sh
 
-f=$HOME/.nky/Me/personal/contact.csv
+f=$HOME/.nky/me/personal/contact.csv
 if [ -z "$1" ]; then
     line=$(cat $f | cut -d"," -f 1 --output-delimiter="\n" | fzf)
     grep "$line" $f | awk -F, '{print $2; if (length($3) > 1) print $3}'
