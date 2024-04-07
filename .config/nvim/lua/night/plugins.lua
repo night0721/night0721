@@ -24,8 +24,6 @@ vim.cmd([[
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'dylanaraps/fff.vim'
-
     -- syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',

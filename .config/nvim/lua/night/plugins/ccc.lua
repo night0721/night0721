@@ -23,8 +23,8 @@ require('ccc').setup{
 			blend     = 0,
 
 			-- Num from 0 - 1 for measurements
-			height    = 1,
-			width     = 1,
+			height    = 0.8,
+			width     = 0.8,
 
 			-- X and Y Axis of Window
 			x         = 0.5,
