@@ -25,6 +25,8 @@ export CDPATH=":$HOME/.config:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/C
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"
+export ARGON_DIR="$HOME/.nky/me/argon"
+export ARGON_KEY="$HOME/.nky/me/personal/argon"
 export PASSWORD_STORE_DIR="$HOME/.nky/me/pass"
 export GPG_TTY=$(tty)
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
@@ -46,7 +48,7 @@ export WLR_NO_HARDWARE_CURSORS=1
 # bind -x '"\C-o":"cd $(dirname $(find . -name .git -prune -o -type f | fnf))"'
 
 source ~/.rc
-source ~/.nky/Me/personal/.env
+source ~/.nky/me/personal/.env
 
 if lsmod | grep -wq "pcspkr"; then
     doas rmmod pcspkr # Remove annoying beep sound in tty

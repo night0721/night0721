@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
             -- LSP support
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
+            { 'ranjithshegde/ccls.nvim' },
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-nvim-lsp' },
         },
