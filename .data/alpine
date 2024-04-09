@@ -15,7 +15,7 @@ setup-disk /mnt
 
 setup-devd udev
 apk add acpid bluez brightnessctl curl dbus e2fsprogs efibootmgr firefox fnf foot \
-    gcc git grim groff grub-efi imagemagick jpeg-dev lf libnotify \
+    gcc git grim groff grub-efi imagemagick lf libnotify \
     linux-firmware-amdgpu lsblk make mako mandoc mesa-dri-gallium mkinitfs \
     mpv musl-dev ncdu ncurses ncurses-dev neovim openssh pass patch pciutils \
     pipewire-pulse pipewire-tools scdoc seatd slurp socat stagit wbg \
