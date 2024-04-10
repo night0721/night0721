@@ -42,7 +42,6 @@ require('mason-lspconfig').setup({
     default_setup,
   },
 })
-require("ccls").setup({lsp = {use_defaults = true}})
 --[[
 
 local cmp = require('cmp')
