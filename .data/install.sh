@@ -30,7 +30,7 @@ cp -R /dotfiles/* /home/night/
 # /etc/hosts
 cd /dotfiles/.data/misc
 curl -L -O https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-sudo cp hosts /etc/hosts
+sudo mv hosts /etc/hosts
 
 # suckless stuff
 cd ~
@@ -98,7 +98,7 @@ sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansH
 
 cd ~
 mkdir fonts
-curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+cd fonts
 curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monaspace.zip
 unzip Monaspace.zip
 unzip JetBrainsMono.zip

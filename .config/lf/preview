@@ -80,7 +80,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		kat "$1"
 		;;
 	*)
-        nvimpager -p "$1"
+        kat "$1"
 		;;
 esac
 exit 0
