@@ -30,7 +30,12 @@ rc-service seatd start
 rc-service sshd start
 rc-service bluetooth start
 rc-service acpid start
-USERNAME=night; setup-user -a -f Night -g wheel,input,seat,video
+USERNAME=night; setup-user -a -f Night -g wheel
+addgroup night input
+addgroup night seat 
+addgroup night seat
+addgroup night video
+addgroup night audio
 cat > /etc/ssh/sshd_config << EOF
 Include /etc/ssh/sshd_config.d/*.conf
 Port 44114
