@@ -9,4 +9,4 @@ gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-L
 sleep 2
 /usr/libexec/xdg-desktop-portal &
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-# dns &
+dns &

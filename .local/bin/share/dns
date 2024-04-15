@@ -1,7 +1,24 @@
 #!/bin/sh
 
+source ~/.rc
+
 while true
 do
-    curl "$NC_URL" &> /dev/null
+    ip=$(ipv4)
+    curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$RECORD_ID" \
+         -H "Authorization: Bearer $API_TOKEN" \
+         -H "Content-Type: application/json" \
+         --data @- << EOF
+{
+  "content": "$ip",
+  "name": "ng",
+  "proxied": false,
+  "type": "A",
+  "comment": "DNS",
+  "tags": [],
+  "ttl": 1
+}
+EOF
+
     sleep 600
 done
