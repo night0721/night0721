@@ -24,6 +24,7 @@ vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
 -- yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>/", "0i/* <ESC>$a */<ESC>")
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
@@ -51,7 +52,7 @@ vim.keymap.set("i", "<Left>", "<nop>")
 vim.keymap.set("i", "<Right>", "<nop>")
 vim.keymap.set("i", "<Up>", "<nop>")
 vim.keymap.set("i", "<Down>", "<nop>")
-vim.keymap.set("i", "qq", "<ESC>")
+vim.keymap.set("i", "ff", "<ESC>")
 
 vim.keymap.set("n", "<C-c>", ":Ccc .<CR>")
 vim.cmd([[
