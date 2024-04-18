@@ -8,7 +8,6 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I35XISJ) [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=night0721)]()
 
-
 ![Metrics](https://gist.githubusercontent.com/night0721/776e9d33accd140dca02d9a9f0e05994/raw/5f65cfcf3b32670e3deffa61931f8854ea86c970/metrics.svg)
 
 <!-- https://github.com/catppuccin/github-readme-stats -->
@@ -50,27 +49,13 @@ TypeScript     91   3769      220    169   4104
 ### Details
 
 1. Grub theme: `.data/grub/n` (Based on [sayonara](https://github.com/samoht9277/dotfiles/tree/master/grub/themes/sayonara))
-
-2. Login: SDDM(Remvoed, logging in with tty)
-- Theme: [aerial](https://github.com/3ximus/aerial-sddm-theme)
-- Packages: gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
-
-3. Shell: zsh (Removed, using sh)
-- Theme: `.config/deprecated/zsh/n.zsh-theme`
-- Plugins: zsh-autosuggestions, zsh-history-substring-search, zsh-syntax-highlighting
-
-4. File Manager: lf
+2. File Manager: lf
 - Using [lfimg-sixel](https://github.com/Anima-OS-Dev/lfimg-sixel) to support sixel in lf with foot
 - graphicsmagick for SVG and GIF preview
 - [Fontpreview](https://github.com/sdushantha/fontpreview) for OTF TTF WOFF preview
 - Required packages: imagemagick chafa ydotool fzf
-
-6. VM
+3. VM
 - Packages: bridge-utils libvirt qemu-full virt-manager virt-viewer  
-
-### Additional Information
-
-You might need to install `grub-customizer` to remove other boot options, if syntax error occured, most likely a `:` will solve the problem
 
 ### Dual booting
 Windws partition in fstab should have these properties
@@ -92,10 +77,6 @@ bash night0721/.data/root.sh
 ## Post setup
 ```
 git clone --bare git@codeberg.org:night0721/night0721
-connmanctl scan wifi
-connmanctl services
-connmanctl connect wifi_...........
-sudo pacman -Syu
 ```
 Credits to [this tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 
