@@ -25,6 +25,7 @@ vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>/", "0i/* <ESC>$a */<ESC>")
+vim.keymap.set("n", "<leader>ps", ":!grep . -Re \"\"<Left>")
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
