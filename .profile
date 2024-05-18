@@ -21,7 +21,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export PATH="$PATH:/usr/local/bin:$HOME/.autojump/bin:$HOME/.autojump/functions:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system:$HOME/.local/share/nvim/mason/bin"
-export CDPATH=":$HOME/.config:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.local/bin"
+export CDPATH=":$HOME/.config:$HOME/.nky/me:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.local/bin"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"

@@ -4,7 +4,7 @@
 
 auth="$EZAPIKEY"
 url="https://api.e-z.host/files"
-PICTURE_DIR="$HOME/.nky/Photo/me/"
+PICTURE_DIR="$HOME/.nky/Photo/Me/"
 fileName=$(echo "/tmp/$(date +'%s_grim.png')")
 
 snipping=$(echo -e "Area\nScreen\nFull" | wmenu -p "Snipping tool")

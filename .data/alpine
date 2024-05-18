@@ -15,10 +15,10 @@ setup-disk /mnt
 
 setup-devd udev
 apk add acpid bluez brightnessctl curl dbus e2fsprogs efibootmgr firefox fnf \
-    foot gcc git grim groff grub-efi gpg imagemagick lf libnotify \
+    foot gcc git grim groff grub-efi gpg imagemagick lf libnotify-dev libsodium-dev \
     linux-firmware-amdgpu lsblk make mako mandoc mesa-dri-gallium mkinitfs \
     mpv musl-dev ncdu ncurses-dev neovim openssh patch pipewire-pulse seatd \
-    slurp socat stagit wbg wf-recorder wlroots wl-clipboard wmenu \
+    slurp socat sqlite-dev stagit wbg wf-recorder wlroots wl-clipboard wmenu \
     wpa_supplicant xdg-desktop-portal-wlr zzz
 
 rc-update add sshd
