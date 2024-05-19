@@ -15,7 +15,6 @@ require("catppuccin").setup({
       },
   },
 })
---[[
 require('nvim-treesitter.configs').setup({
     -- A list of parser names, or "all"
     ensure_installed = { "javascript", "typescript", "bash", "c", "lua", "html", "json", "python" },
@@ -33,7 +32,6 @@ require('nvim-treesitter.configs').setup({
         enable = true,
     },
 })
---]]
 
 vim.cmd.syntax("on")
 vim.cmd [[colorscheme catppuccin-mocha]]
