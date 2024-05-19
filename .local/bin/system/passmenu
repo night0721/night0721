@@ -1,3 +1,5 @@
 #!/bin/sh
 
-argon -Q $(argon -L | wmenu) | tr -d '\n' | wl-copy
+. $HOME/.rc
+
+apm -Q $(apm -L | wmenu) | tr -d '\n' | wl-copy
