@@ -1,0 +1,3 @@
+#!/bin/sh
+
+argon -Q $(argon -L | wmenu) | tr -d '\n' | wl-copy

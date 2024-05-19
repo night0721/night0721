@@ -39,7 +39,6 @@ alias ipv4="echo \$(curl -s ipinfo.io/ip)"
 alias fnf="fnf -l 50"
 alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
 alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
-alias passmenu="argon -Q \$(argon -L | wmenu) | tr -d '\n' | wl-copy"
 
 # Change directory aliases
 alias .='cd ~'
