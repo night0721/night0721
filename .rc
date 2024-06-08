@@ -83,6 +83,10 @@ findfiles() {
     find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/.local/state/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -type f -not -executable -exec grep -rnwsRH -e "$1" {} + 2> /dev/null
 }
 
+asz() {
+	([ $# -eq 0 ] && apk info -e -s '*' || apk info -s "$@") | while IFS=' ' read -r p _ _; do read -r l m; printf '%s\t%s\n' "$l$m" "$p"; read; done | sort -h
+}
+
 function replace {
     echo "Type the pattern you want to replace"
     read pattern
