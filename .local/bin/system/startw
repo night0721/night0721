@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mako &
-wbg ~/.nky/Photo/Wallpapers/dark-cat-rosewater.jpg &
+wbg ~/.nky/Photo/Wallpapers/tokyo.jpg &
 gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-SE"
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender-Dark"
 /usr/libexec/pipewire-launcher
