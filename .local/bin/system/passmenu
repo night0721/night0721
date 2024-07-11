@@ -2,4 +2,4 @@
 
 . $HOME/.rc
 
-apm -Q $(apm -L | wmenu) | tr -d '\n' | wl-copy
+apm -Q $(apm -L | mew -p "Password") | tr -d '\n' | wl-copy

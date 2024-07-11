@@ -7,7 +7,7 @@ url="https://api.e-z.host/files"
 PICTURE_DIR="$HOME/.nky/Photo/Me/"
 fileName=$(echo "/tmp/$(date +'%s_grim.png')")
 
-snipping=$(echo -e "Area\nScreen\nFull" | wmenu -p "Snipping tool")
+snipping=$(echo -e "Area\nScreen\nFull" | mew -p "Snipping tool")
 # main program
 case $snipping in
     "Full")
@@ -23,7 +23,7 @@ if [ -z $snipping ]; then
 fi
 
 # function
-mods_la=$(printf "Copy\nEdit\nSave\nUpload" | wmenu -p "Options:")
+mods_la=$(printf "Copy\nEdit\nSave\nUpload" | mew -p "Options:")
 if [ -z $mods_la ]; then
 exit 0
 fi
