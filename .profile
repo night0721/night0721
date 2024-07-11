@@ -31,6 +31,7 @@ export PASSWORD_STORE_DIR="$HOME/.nky/me/pass"
 export GPG_TTY=$(tty)
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
+export CC="cc"
 export CFLAGS="-O3 -mtune=native -march=native -pipe -s"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
