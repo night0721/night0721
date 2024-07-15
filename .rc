@@ -20,14 +20,14 @@ alias v="$EDITOR"
 alias vw="$EDITOR ~/.nky/Coding/Markdown/wiki/Todo.md"
 alias vim="$EDITOR"
 alias p="sudo pacman"
-alias rb="doas reboot"
-alias po="doas poweroff"
-alias sl="doas /etc/acpi/LID/00000080"
+alias rb="ssu reboot"
+alias po="ssu poweroff"
+alias sl="ssu /etc/acpi/LID/00000080"
 alias nf="neofetch"
 alias cpc="cleansystem"
 alias rmpkg="sudo pacman -Rcns"
 alias rmpkg-conf="sudo pacman -Runs"
-alias foldersize="doas du -shc"
+alias foldersize="ssu du -shc"
 alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg*/' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | fnf"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
@@ -37,8 +37,8 @@ alias lf="lfrun"
 alias s="sudo systemctl"
 alias ipv4="echo \$(curl -s ipinfo.io/ip)"
 alias fnf="fnf -l 50"
-alias wmenu="wmenu -i -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af -p 'Menu'"
 alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
+alias dn="ssu rc-service networking restart &"
 
 # Change directory aliases
 alias .='cd ~'
@@ -87,6 +87,8 @@ asz() {
 	([ $# -eq 0 ] && apk info -e -s '*' || apk info -s "$@") | while IFS=' ' read -r p _ _; do read -r l m; printf '%s\t%s\n' "$l$m" "$p"; read; done | sort -h
 }
 
+function yt { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json; }
+
 function replace {
     echo "Type the pattern you want to replace"
     read pattern
@@ -95,3 +97,5 @@ function replace {
 
     find . -type f -exec sed -i "s/$pattern/$replacewith/g" {} \;
 }
+
+jy
