@@ -1,56 +1,54 @@
+diff --git a/Makefile b/Makefile
+index 0d651e7..baf0eed 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@ include config.mk
+ # flags for compiling
+ DWLCPPFLAGS = -I. -DWLR_USE_UNSTABLE -D_POSIX_C_SOURCE=200809L \
+ 	-DVERSION=\"$(VERSION)\" $(XWAYLAND)
+-DWLDEVCFLAGS = -g -pedantic -Wall -Wextra -Wdeclaration-after-statement \
++DWLDEVCFLAGS = -pedantic -Wall -Wextra -Wdeclaration-after-statement \
+ 	-Wno-unused-parameter -Wshadow -Wunused-macros -Werror=strict-prototypes \
+ 	-Werror=implicit -Werror=return-type -Werror=incompatible-pointer-types \
+ 	-Wfloat-conversion
 diff --git a/config.def.h b/config.def.h
-index 9009517..9d21396 100644
+index 22d2171..b83d8a3 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -6,11 +6,11 @@
- /* appearance */
+@@ -7,10 +7,10 @@
  static const int sloppyfocus               = 1;  /* focus follows mouse */
  static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
--static const unsigned int borderpx         = 1;  /* border pixel of windows */
+ static const unsigned int borderpx         = 1;  /* border pixel of windows */
 -static const float rootcolor[]             = COLOR(0x222222ff);
 -static const float bordercolor[]           = COLOR(0x444444ff);
 -static const float focuscolor[]            = COLOR(0x005577ff);
 -static const float urgentcolor[]           = COLOR(0xff0000ff);
-+static const unsigned int borderpx         = 2;  /* border pixel of windows */
 +static const float rootcolor[]             = COLOR(0x11111bff);
 +static const float bordercolor[]           = COLOR(0x000000ff);
 +static const float focuscolor[]            = COLOR(0x000000ff);
 +static const float urgentcolor[]           = COLOR(0x000000ff);
- /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
+ /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
  static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
  
-@@ -25,7 +25,7 @@ static const Rule rules[] = {
- 	/* examples:
- 	{ "Gimp",     NULL,       0,            1,           -1 },
- 	*/
--	{ "firefox",  NULL,       1 << 8,       0,           -1 },
-+	{ "firefox",  NULL,       0,       0,           -1 },
+@@ -25,7 +25,6 @@ static const Rule rules[] = {
+ 	/* app_id             title       tags mask     isfloating   monitor */
+ 	/* examples: */
+ 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
+-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
  };
  
  /* layout(s) */
-@@ -39,12 +39,17 @@ static const Layout layouts[] = {
- /* monitors */
- /* NOTE: ALWAYS add a fallback rule, even if you are completely sure it won't be used */
- static const MonitorRule monrules[] = {
--	/* name       mfact  nmaster scale layout       rotate/reflect                x    y */
--	/* example of a HiDPI laptop monitor:
--	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
-+	/* name       mfact nmaster scale layout       rotate/reflect              x  y  resx resy rate mode adaptive*/
-+	/* example of a HiDPI laptop monitor at 120Hz:
-+	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 0, 0, 120.000f, 1, 1},
+@@ -48,7 +47,8 @@ static const MonitorRule monrules[] = {
+ 	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
  	*/
  	/* defaults */
 -	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
 +	{ "eDP-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 2560, 0, 1920, 1080, 120.001999f, -1 , 0},
 +    { "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 2560, 1440, 59.951000f, -1 , 0},
-+
-+	// mode let's the user decide on how dwl should implement the modes:
-+	// -1 Sets a custom mode following the users choice
-+	// All other number's set the mode at the index n, 0 is the standard mode; see wlr-randr
  };
  
  /* keyboard */
-@@ -63,7 +68,7 @@ static const int repeat_delay = 600;
+@@ -67,7 +67,7 @@ static const int repeat_delay = 600;
  static const int tap_to_click = 1;
  static const int tap_and_drag = 1;
  static const int drag_lock = 1;
@@ -59,7 +57,7 @@ index 9009517..9d21396 100644
  static const int disable_while_typing = 1;
  static const int left_handed = 0;
  static const int middle_button_emulation = 0;
-@@ -102,7 +107,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
+@@ -107,7 +107,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
  static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TAP_MAP_LRM;
  
  /* If you want to use the windows key for MODKEY, use WLR_MODIFIER_LOGO */
@@ -69,12 +67,13 @@ index 9009517..9d21396 100644
  
  #define TAGKEYS(KEY,SKEY,TAG) \
  	{ MODKEY,                    KEY,            view,            {.ui = 1 << TAG} }, \
-@@ -115,28 +121,52 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
+@@ -119,29 +120,52 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
+ #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
  
  /* commands */
- static const char *termcmd[] = { "foot", NULL };
--static const char *menucmd[] = { "bemenu-run", NULL };
-+static const char *menucmd[] = { "wmenu-run", NULL };
+-static const char *termcmd[] = { "foot", NULL };
+-static const char *menucmd[] = { "wmenu-run", NULL };
++static const char *menucmd[] = { "mew-run", NULL };
 +static const char *browsercmd[] = { "firefox", NULL };
 +static const char *passmenucmd[] = { "passmenu", NULL };
 +static const char *wificmd[] = { "wifi", NULL };
@@ -138,20 +137,21 @@ index 9009517..9d21396 100644
  	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
  	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
  	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
-@@ -164,6 +194,8 @@ static const Key keys[] = {
- 	CHVT(7), CHVT(8), CHVT(9), CHVT(10), CHVT(11), CHVT(12),
- };
+diff --git a/config.mk b/config.mk
+index 259bd0f..404a547 100644
+--- a/config.mk
++++ b/config.mk
+@@ -14,4 +14,4 @@ XLIBS =
+ #XWAYLAND = -DXWAYLAND
+ #XLIBS = xcb xcb-icccm
  
-+
-+
- static const Button buttons[] = {
- 	{ MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
- 	{ MODKEY, BTN_MIDDLE, togglefloating, {0} },
+-CC = gcc
++CC = cc
 diff --git a/dwl.c b/dwl.c
-index dfb3a27..de9ec85 100644
+index dc0437e..c3154fb 100644
 --- a/dwl.c
 +++ b/dwl.c
-@@ -212,6 +212,11 @@ typedef struct {
+@@ -217,6 +217,11 @@ typedef struct {
  	const Layout *lt;
  	enum wl_output_transform rr;
  	int x, y;
@@ -163,7 +163,7 @@ index dfb3a27..de9ec85 100644
  } MonitorRule;
  
  typedef struct {
-@@ -890,6 +895,7 @@ createmon(struct wl_listener *listener, void *data)
+@@ -933,6 +938,7 @@ createmon(struct wl_listener *listener, void *data)
  	/* This event is raised by the backend when a new output (aka a display or
  	 * monitor) becomes available. */
  	struct wlr_output *wlr_output = data;
@@ -171,7 +171,7 @@ index dfb3a27..de9ec85 100644
  	const MonitorRule *r;
  	size_t i;
  	struct wlr_output_state state;
-@@ -918,15 +924,23 @@ createmon(struct wl_listener *listener, void *data)
+@@ -961,15 +967,23 @@ createmon(struct wl_listener *listener, void *data)
  			strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, LENGTH(m->ltsymbol));
  			wlr_output_state_set_scale(&state, r->scale);
  			wlr_output_state_set_transform(&state, r->rr);
