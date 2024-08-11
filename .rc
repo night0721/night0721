@@ -39,6 +39,7 @@ alias ipv4="echo \$(curl -s ipinfo.io/ip)"
 alias fnf="fnf -l 50"
 alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
 alias dn="ssu rc-service networking restart &"
+alias oe="opustags --in-place -e"
 
 # Change directory aliases
 alias .='cd ~'
@@ -80,7 +81,7 @@ function manl { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 
 function webjpeg { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
 
 findfiles() {
-    find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/.local/state/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -type f -not -executable -exec grep -rnwsRH -e "$1" {} + 2> /dev/null
+    find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/.local/state/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -type f -not -executable -exec grep -rnwsRHn -e "$1" {} + 2> /dev/null
 }
 
 asz() {
