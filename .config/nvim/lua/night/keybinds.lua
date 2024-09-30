@@ -53,7 +53,7 @@ vim.keymap.set("i", "<Left>", "<nop>")
 vim.keymap.set("i", "<Right>", "<nop>")
 vim.keymap.set("i", "<Up>", "<nop>")
 vim.keymap.set("i", "<Down>", "<nop>")
-vim.keymap.set("i", "ff", "<ESC>")
+vim.keymap.set("i", "xx", "<ESC>")
 
 vim.keymap.set("n", "<C-c>", ":Ccc .<CR>")
 vim.cmd([[

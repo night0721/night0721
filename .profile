@@ -35,6 +35,7 @@ export CC="cc"
 export CFLAGS="-O3 -mtune=native -march=native -pipe -s -flto"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
+export COS="/mnt/cos"
 
 mkdir -pm 0700 "$XDG_RUNTIME_DIR"
 
