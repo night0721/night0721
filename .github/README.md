@@ -10,26 +10,25 @@
 
 **Featured repositories can be viewed in [git.night0721.xyz](https://git.night0721.xyz)**
 
-[![Stats](https://gh-md-stats.vercel.app/api?username=night0721&bg_color=1e1e2e&text_color=cdd6f4&icon_color=cba6f7&title_color=89b4fa&border_color=cba6f7&count_private=true&show_icons=true&include_all_commits=true&number_format=long&show=prs_merged_percentage,prs_merged,reviews&disable_animations=true&custom_title=Github%20Stats&rank_icon=github&)]()
+<!-- [![Stats](https://gh-md-stats.vercel.app/api?username=night0721&bg_color=1e1e2e&text_color=cdd6f4&icon_color=cba6f7&title_color=89b4fa&border_color=cba6f7&count_private=true&show_icons=true&include_all_commits=true&number_format=long&show=prs_merged_percentage,prs_merged,reviews&disable_animations=true&custom_title=Github%20Stats&rank_icon=github&)]() -->
 <!-- https://github.com/catppuccin/github-readme-stats -->
-[![Wakatime](https://gh-md-stats.vercel.app/api/wakatime?username=night0721&border_radius=20px&bg_color=1e1e2e&text_color=cdd6f4&icon_color=cba6f7&title_color=89b4fa&border_color=cba6f7&show_icons=true&disable_animations=true&custom_title=Coding%20Stats&langs_count=50&layout=compact&hide=other,ini,git,git%20config,text,textmate,batch,mixin%20configuration,gitignore%20file,tsconfig,properties,d,image%20(png),inittab,desktop,sshdconfig,gdscript,gdscript3,mdx,image%20(jpeg),actionscript,ssh%20key,xml,conf,netrw,prolog,ezhil,toml,tsql,sh,gitignore,jsonc,zip,gitconfig,zsh,dosini,MiniScript,kitty,sshconfig,Ignore%20List,tmux,diff,modconf,fstab,Org,pdf,Bash,nginx%20configuration%20file,scdoc,vifm,tar,gpg,yaml,Slurm,BibTeX,gitrebase)]()
+<!-- [![Wakatime](https://gh-md-stats.vercel.app/api/wakatime?username=night0721&border_radius=20px&bg_color=1e1e2e&text_color=cdd6f4&icon_color=cba6f7&title_color=89b4fa&border_color=cba6f7&show_icons=true&disable_animations=true&custom_title=Coding%20Stats&langs_count=50&layout=compact&hide=other,ini,git,git%20config,text,textmate,batch,mixin%20configuration,gitignore%20file,tsconfig,properties,d,image%20(png),inittab,desktop,sshdconfig,gdscript,gdscript3,mdx,image%20(jpeg),actionscript,ssh%20key,xml,conf,netrw,prolog,ezhil,toml,tsql,sh,gitignore,jsonc,zip,gitconfig,zsh,dosini,MiniScript,kitty,sshconfig,Ignore%20List,tmux,diff,modconf,fstab,Org,pdf,Bash,nginx%20configuration%20file,scdoc,vifm,tar,gpg,yaml,Slurm,BibTeX,gitrebase)]() -->
 
 ```
 Language   Files  Code   Comment  Blank  Lines 
-JavaScript 143    11024  707      343    12074 
+JavaScript 147    11227  707      364    12298 
+C          65     9255   1019     1407   11681 
 Java       165    8018   147      1000   9165  
-C          54     7360   850      1275   9485  
 TypeScript 86     3667   147      164    3978  
-HTML       22     2176   11       34     2221  
+C Header   50     2635   2292     527    5454  
+HTML       21     2171   11       34     2216  
 Kotlin     24     1625   60       183    1868  
-CSS        9      1558   14       204    1776  
-Python     12     1130   44       158    1332  
-C Header   30     1110   493      243    1846  
-Shell      2      438    0        1      439   
-Makefile   13     389    8        111    508   
+CSS        10     1591   23       212    1826  
+Python     10     524    34       73     631   
+Makefile   17     519    12       158    689   
 Lua        2      161    0        9      170   
 R          3      26     14       8      48    
-Total      565    38682  2495     3733   44910 
+Total      600    41419  4466     4139   50024
 ```
 
 ## Catppuccin themed dotfiles for Alpine Linux
