@@ -15,8 +15,8 @@ export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERM="foot"
 export BROWSER="firefox"
-export MANPAGER="nvimpager"
-export PAGER="nvimpager" # 'nvim +Man!'
+export MANPAGER="nsh"
+export PAGER="nsh" # 'nvim +Man!'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 

@@ -21,4 +21,4 @@ fi
 [ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌐" || ethericon=""
 
 net=$(echo "$wifiicon""$ethericon")
-notify-send "$(printf "NET: $net | VOL: $vol | BAT: $bat%% | SSD: $disk | RAM: $mem | $(date '+%b %d %H:%M:%S')\n")"
+luft "$(printf "NET: $net | VOL: $vol | BAT: $bat%% | SSD: $disk | RAM: $mem | $(date '+%b %d %H:%M:%S')\n")"

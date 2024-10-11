@@ -1,10 +1,10 @@
 [user]
-    signingkey = 957D67B8DB7A119B
+	signingkey = 957D67B8DB7A119B
 	email = night@night0721.xyz
 	name = night0721
 [pull]
-    rebase = false
+	rebase = false
 [commit]
-    gpgsign = true
+	gpgsign = true
 [push]
-    autoSetupRemote = true
+	autoSetupRemote = true
