@@ -7,7 +7,7 @@ vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 if echo "$vol" | grep -q "\[MUTED\]"; then
     vol="X"
 else
-    vol="$(($(echo "$vol" | awk '{print $2}' | tr -d '.')))%%"
+	vol="$(echo "$vol" | awk '{print int($2 * 100)}')%%"
 fi
 
 # Wifi
