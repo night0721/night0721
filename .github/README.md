@@ -16,19 +16,19 @@
 
 ```
 Language   Files  Code   Comment  Blank  Lines 
-JavaScript 147    11227  707      364    12298 
-C          65     9255   1019     1407   11681 
-Java       165    8018   147      1000   9165  
-TypeScript 86     3667   147      164    3978  
-C Header   50     2635   2292     527    5454  
-HTML       21     2171   11       34     2216  
+JavaScript 133    10747  682      349    11778 
+C          62     9521   1062     1418   12001 
+Java       160    7724   131      963    8818  
+TypeScript 79     3434   134      141    3709  
+C Header   46     3309   4371     628    8308  
 Kotlin     24     1625   60       183    1868  
-CSS        10     1591   23       212    1826  
-Python     10     524    34       73     631   
-Makefile   17     519    12       158    689   
+CSS        7      705    18       133    856   
+Makefile   18     569    14       178    761   
+HTML       20     478    7        33     518   
+Python     9      261    15       31     307   
 Lua        2      161    0        9      170   
 R          3      26     14       8      48    
-Total      600    41419  4466     4139   50024
+Total      563    38560  6508     4074   49142
 ```
 
 ## Catppuccin themed dotfiles for Alpine Linux
@@ -36,7 +36,7 @@ Total      600    41419  4466     4139   50024
 #### Specifications
 - OS: Alpine Linux
 - WM: dwl
-- Notifications: mako
+- Notifications: luft
 - Terminal: foot
 - Shell: sh
 - AUR Helper: aureate

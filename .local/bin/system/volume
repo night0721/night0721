@@ -7,13 +7,13 @@ get_volume() {
 
 # Notify
 notify_user() {
-    notify-send -a "volume" -u low -r 9991 -h int:value:"$(get_volume)" -h string:x-canonical-private-synchronous:sys-notify "Volume: $(get_volume)%" -t 2000
+    luft "Volume: $(get_volume)%"
 }
 
 # Notify Mic
 notify_mic_user() {
     strength=$(pactl get-source-volume @DEFAULT_SOURCE@ | awk '{print $5}' | sed 's/%//')
-	notify-send -a "mic" -u low -r 9991 -h int:value:"$strength" -h string:x-canonical-private-synchronous:sys-notify "Microphone: $strength%" -t 2000
+	luft "Microphone: $strength%"
 }
 
 # Execute accordingly
@@ -30,19 +30,19 @@ case "$1" in
 	"--toggle")
         if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "Mute: yes"; then
 		    pactl set-sink-mute @DEFAULT_SINK@ 0
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Volume ON"
+            luft "Volume ON"
 	    else
 		    pactl set-sink-mute @DEFAULT_SINK@ 1
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Volume OFF"
+            luft "Volume OFF"
 	    fi
         ;;
 	"--toggle-mic") 
         if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "Mute: yes"; then
             pactl set-source-mute @DEFAULT_SOURCE@ 0
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Microphone ON"
+            luft "Microphone ON"
         else
             pactl set-source-mute @DEFAULT_SOURCE@ 1
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Microphone OFF"
+            luft "Microphone OFF"
         fi
         ;;
 	"--mic-inc")

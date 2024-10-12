@@ -1,9 +1,0 @@
-#!/bin/sh
-
-. ~/.rc
-IFS=:
-for p in $PATH; do
-	for e in $p/*; do
-		[ -x $e ] && echo ${e##*/}
-	done
-done | sort -u | wmenu "$@" | ${SHELL:-"/bin/sh"} &

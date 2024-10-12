@@ -37,7 +37,7 @@ case $mods_la in
     echo $image_url > /tmp/upload.json
     response_file="/tmp/upload.json"
     cat /tmp/upload.json | jq -r ".imageUrl" | wl-copy
-    notify-send "Image URL copied to clipboard" -a "Grim"
+    luft "Image URL copied to clipboard"
     rm $fileName
 esac
-notify-send "Finish!"
+luft "Finish!"

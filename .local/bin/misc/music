@@ -13,6 +13,6 @@ if pgrep mpv > /dev/null; then
 elif [[ $1 == "play" ]]; then
     mpv --input-ipc-server=/tmp/mpvsocket --no-audio-display --shuffle "$2"
 else
-    notify-send -h string:x-canonical-private-synchronous:sys-notify "Use 'music play [dir]' to play music first"
+    luft "Use 'music play [dir]' to play music first"
     exit 1
 fi

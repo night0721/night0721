@@ -2,7 +2,7 @@
 
 send_notification() {
 	brightness=$(printf "%.0f\n" "$(brightnessctl i | grep 'Current brightness' | awk -F'[(%]' '{print $2}')")
-	notify-send -a "brightness" -u low -r 9991 -h int:value:"$brightness" -h string:x-canonical-private-synchronous:sys-notify "Brightness: $brightness%" -t 2000
+	luft "Brightness: $brightness%"
 }
 
 case $1 in

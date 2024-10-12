@@ -33,5 +33,5 @@ for dir in "${reposdir}/"*/; do
 	ln -sf ../logo.png logo.png
 	ln -sf ../favicon.png favicon.png
 
-	echo "done"
+	echo "Done"
 done
