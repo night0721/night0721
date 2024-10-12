@@ -28,7 +28,7 @@ alias cpc="cleansystem"
 alias rmpkg="sudo pacman -Rcns"
 alias rmpkg-conf="sudo pacman -Runs"
 alias foldersize="ssu du -shc"
-alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg*/' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | fnf"
+alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.thunderbird/*' -not -path '*/.wakatime/*' -not -path '*/Music/*' -not -path '*/coslinux/*' -not -path '*/stagit/*' -not -path '*/Zig/*' -not -path '*/env/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg/*' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | fnf"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
 alias hst="history | cut -c 6- | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
@@ -53,13 +53,13 @@ alias cst='config status -u'
 alias cdf='config diff'
 
 # push to github with the lazy way
-function g {
+g() {
 	git add .
 	git commit -m "$1"
 	git push
 }
 
-function lfcd {
+lfcd() {
     tmp="$(mktemp -uq)"
     trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
     lf -last-dir-path="$tmp" "$@"
@@ -69,16 +69,16 @@ function lfcd {
     fi
 }
 
-function c {
+c() {
     ccc "$@"
     cd "$(cat "${XDG_CACHE_HOME}/ccc/.ccc_d")"
 }
 
-function ma { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvimpager; }
+ma() { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvim +Man!; }
 
-function manl { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fnf); }
+manl() { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fnf); }
 
-function webjpeg { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
+webjpeg() { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
 
 findfiles() {
     find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/.local/state/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -type f -not -executable -exec grep -rnwsRHn -e "$1" {} + 2> /dev/null
@@ -88,9 +88,9 @@ asz() {
 	([ $# -eq 0 ] && apk info -e -s '*' || apk info -s "$@") | while IFS=' ' read -r p _ _; do read -r l m; printf '%s\t%s\n' "$l$m" "$p"; read; done | sort -h
 }
 
-function yt { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json; }
+yt() { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json; }
 
-function replace {
+replace() {
     echo "Type the pattern you want to replace"
     read pattern
     echo "Type the phrase you want to replace with"
