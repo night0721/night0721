@@ -7,12 +7,10 @@ night0721
 .local/state
 .local/share
 .cache
-.npm
 .gnupg
 .config/tmux/plugins
 .config/pulse
 .config/nvim/plugin
 .config/asciinema/install-id
 .config/glib-2.0
-.local/npm
 Downloads
