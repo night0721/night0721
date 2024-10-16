@@ -1,8 +1,0 @@
-#!/bin/sh
-
-videos_dir="$HOME/.nky/Video"
-timestamp=$(date +"%Y%m%d%H%M%S")
-recording_file="$videos_dir/$timestamp.mp4"
-wf-recorder -g "$(slurp)" -f "$recording_file"
-luft "Screen recording ended"
-pkill wf-recorder

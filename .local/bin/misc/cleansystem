@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# ssu pacman -Rns $(pacman -Qdttq) # remove orphans
-apk cache clean
-ssu rm -rf ~/.npm /usr/share/doc /usr/share/licenses /usr/share/gtk-doc /usr/lib/node_modules/npm/docs /usr/share/icons/Catppuccin-Mocha-Standard-Lavender-Dark/{gnome-shell,gtk-4.0,cinnamon,gtk-2.0,plank,xfwm4} /usr/share/icons/Catppuccin-Mocha-Standard-Lavender-Dark-{xhpdi,hdpi}/xfwm4 /var/lib/systemd/coredump /usr/share/gnupg/*.txt /usr/share/{zsh,fish,emacs,foot,themes} /usr/share/man/{de,fr,sv,ro,ru,pt_BR,zh_CN,it,ja,pl,ko,cs,tr,zh_TW,da,sr,hu,hr,nl,es,pt,jp,id}
-ssu find / -xdev \( -name "*.md" -o -name "LICENSE" \) -type f -delete

@@ -17,7 +17,7 @@ case $_option in
         wget $@
         ;;
     2)
-        yt-dlp -x -f ba $@
+		yt-dlp $@ -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json
         ;;
     3)
         yt-dlp $@
