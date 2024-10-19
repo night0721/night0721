@@ -44,7 +44,7 @@ alias oe="opustags --in-place -e"
 alias .='cd ~'
 alias ..='cd ..'
 
-alias config='/usr/bin/git --git-dir=$HOME/night0721/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.nky/git/night0721/ --work-tree=$HOME'
 alias cad='config add'
 alias cco='config commit -m'
 alias cpu='config push'
