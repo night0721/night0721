@@ -57,5 +57,6 @@ if lsmod | grep -wq "pcspkr"; then
 fi
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-    dbus-run-session dwl -s startw # run dwl if not
+#	dbus-run-session dwl -s startw # run dwl if not
+    dwl -s startw # run dwl if not
 fi
