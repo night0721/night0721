@@ -26,7 +26,6 @@ alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*t
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
 alias hst="cat ~/.cache/sh_history | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
 alias ncdu="ncdu --color dark -x --exclude images"
-alias lf="lfrun"
 alias s="ssu"
 alias ipv4="echo \$(curl -s ipinfo.io/ip)"
 alias fnf="fnf -l 50"
