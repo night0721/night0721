@@ -10,7 +10,6 @@ alias cls="clear"
 alias grep='grep --color=always'
 alias ls='ls --color=auto'
 alias l="ls -lah --color=auto"
-alias tree="tree -I .git -I node_modules"
 alias :q="exit"
 
 # application aliases
