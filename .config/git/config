@@ -1,10 +1,23 @@
 [user]
-	signingkey = 957D67B8DB7A119B
+	signingkey = ~/.nky/me/keys/ssh/id_ed25519
 	email = night@night0721.xyz
 	name = night0721
+[gpg]
+	format = ssh
 [pull]
 	rebase = false
 [commit]
 	gpgsign = true
 [push]
 	autoSetupRemote = true
+[init]
+	defaultBranch = master
+[pager]
+	branch = false
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
