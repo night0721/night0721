@@ -27,9 +27,7 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"
 export APM_DIR="$HOME/.nky/me/argon"
 export APM_KEY="$HOME/.nky/me/personal/argon"
-export PASSWORD_STORE_DIR="$HOME/.nky/me/pass"
 export GPG_TTY=$(tty)
-export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
 export CC="cc"
 export CFLAGS="-O3 -mtune=native -march=native -pipe -s -flto"
@@ -57,6 +55,6 @@ if lsmod | grep -wq "pcspkr"; then
 fi
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-#	dbus-run-session dwl -s startw # run dwl if not
-    dwl -s startw # run dwl if not
+	dbus-run-session dwl -s startw # run dwl if not
+   # dwl -s startw # run dwl if not
 fi
