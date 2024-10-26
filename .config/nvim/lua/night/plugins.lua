@@ -45,9 +45,6 @@ return require('packer').startup(function(use)
         config = function() require('night.plugins.lualine') end,
     }
 
-    -- wakatime to record coding time
-    use 'wakatime/vim-wakatime'
-
     -- insert or delete brackets, parens, quotes in pair
     use 'jiangmiao/auto-pairs'
 
