@@ -1,16 +1,11 @@
-night0721
 .nky
 .mozilla
-.thunderbird
 .ssh
-.wakatime*
 .local/state
 .local/share
 .cache
 .gnupg
-.config/tmux/plugins
 .config/pulse
 .config/nvim/plugin
 .config/asciinema/install-id
 .config/glib-2.0
-Downloads
