@@ -29,8 +29,8 @@ export APM_DIR="$HOME/.nky/me/argon"
 export APM_KEY="$HOME/.nky/me/personal/argon"
 export GPG_TTY=$(tty)
 
-export CC="cc"
-export CFLAGS="-O3 -mtune=native -march=native -pipe -s -flto"
+export CC="zig cc"
+export CFLAGS="-Os -mtune=native -march=native -pipe -s -flto"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
 export COS="/mnt/cos"
