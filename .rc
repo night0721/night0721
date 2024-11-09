@@ -13,6 +13,7 @@ alias l="ls -lah --color=auto"
 alias :q="exit"
 
 # application aliases
+alias cc="$CC"
 alias v="$EDITOR"
 alias vw="$EDITOR ~/.nky/me/personal/wiki/Todo.md"
 alias vim="$EDITOR"
