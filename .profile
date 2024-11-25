@@ -6,7 +6,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/tmp/1000"
 
-export PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w] \[\e[38;5;069m\]» \[\e[0m\]'
+export PS1='\[\e[38;2;180;190;254m\][\t] \[\e[38;2;245;194;231m\][\w] \[\e[38;2;137;180;250m\]» \[\e[0m\]'
 export ENV="$HOME/.rc"
 export HISTFILE="$XDG_CACHE_HOME/${SHELL##*/}_history"
 export HISTSIZE=100000
