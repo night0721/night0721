@@ -6,7 +6,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/tmp/1000"
 
-export PS1='\[\e[38;5;147m\][\t] \[\e[38;5;005m\][\w] \[\e[38;5;069m\]» \[\e[0m\]'
+export PS1='\[\e[38;2;180;190;254m\][\t] \[\e[38;2;245;194;231m\][\w] \[\e[38;2;137;180;250m\]» \[\e[0m\]'
 export ENV="$HOME/.rc"
 export HISTFILE="$XDG_CACHE_HOME/${SHELL##*/}_history"
 export HISTSIZE=100000
@@ -20,7 +20,7 @@ export PAGER="nsh"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export PATH="$PATH:/usr/local/bin:$HOME/.autojump/bin:$HOME/.autojump/functions:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system:$HOME/.local/share/nvim/mason/bin"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system"
 export CDPATH=":$HOME/.config:$HOME/.nky/me:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.nky/coslinux:$HOME/.local/bin"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
@@ -29,8 +29,8 @@ export APM_DIR="$HOME/.nky/me/argon"
 export APM_KEY="$HOME/.nky/me/personal/argon"
 export GPG_TTY=$(tty)
 
-export CC="cc"
-export CFLAGS="-O3 -mtune=native -march=native -pipe -s -flto"
+export CC="zig cc"
+export CFLAGS="-Os -mtune=native -march=native -pipe -s -flto"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
 export COS="/mnt/cos"
