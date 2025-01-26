@@ -32,6 +32,8 @@ alias fnf="fnf -l 50"
 alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
 alias dn="ssu rc-service networking restart &"
 alias oe="opustags --in-place -e"
+alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes"
+alias cck="cppcheck --std=c99 --check-level=exhaustive"
 
 # Change directory aliases
 alias .='cd ~'

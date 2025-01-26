@@ -27,11 +27,14 @@ return require('packer').startup(function(use)
     -- syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
-        requires = { { 'p00f/nvim-ts-rainbow' } },
+--        requires = { { 'p00f/nvim-ts-rainbow' } },
         run = ':TSUpdate',
         config = function() require('night.plugins.treesitter') end
     }
 
+	use {
+		"https://gitlab.com/HiPhish/rainbow-delimiters.nvim"
+	}
     -- color scheme
     use {
         "catppuccin/nvim",
@@ -49,7 +52,7 @@ return require('packer').startup(function(use)
     use 'jiangmiao/auto-pairs'
 
     -- autoclose html tags
-    use 'alvan/vim-closetag'
+	use 'alvan/vim-closetag'
 
     -- lsp
     use {
