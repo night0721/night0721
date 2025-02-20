@@ -34,6 +34,8 @@ alias dn="ssu rc-service networking restart &"
 alias oe="opustags --in-place -e"
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes"
 alias cck="cppcheck --std=c99 --check-level=exhaustive"
+alias wu="wg-quick up wg0"
+alias wd="wg-quick down wg0"
 
 # Change directory aliases
 alias .='cd ~'
