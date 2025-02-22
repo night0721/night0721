@@ -32,6 +32,7 @@ Total      563    38560  6508     4074   49142
 
 <details>
 <summary>Dotfiles</summary>
+
 ## Catppuccin themed dotfiles for Alpine Linux
 
 #### Specifications
