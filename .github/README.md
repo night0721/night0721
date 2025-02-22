@@ -4,11 +4,10 @@
 
 - Youtube: <https://www.youtube.com/@night0721>
 - Website: <https://night0721.xyz>
+- Git: <https://git.night0721.xyz>
 - Email: <night@night0721.xyz> ([PGP Key](https://night0721.xyz/pub.gpg))
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I35XISJ) [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=night0721)]()
-
-**Featured repositories can be viewed in [git.night0721.xyz](https://git.night0721.xyz)**
 
 <!-- [![Stats](https://gh-md-stats.vercel.app/api?username=night0721&bg_color=1e1e2e&text_color=cdd6f4&icon_color=cba6f7&title_color=89b4fa&border_color=cba6f7&count_private=true&show_icons=true&include_all_commits=true&number_format=long&show=prs_merged_percentage,prs_merged,reviews&disable_animations=true&custom_title=Github%20Stats&rank_icon=github&)]() -->
 <!-- https://github.com/catppuccin/github-readme-stats -->
@@ -31,6 +30,8 @@ R          3      26     14       8      48
 Total      563    38560  6508     4074   49142
 ```
 
+<details>
+<summary>Dotfiles</summary>
 ## Catppuccin themed dotfiles for Alpine Linux
 
 #### Specifications
@@ -113,3 +114,4 @@ SUPER + ENTER = Toggle focus
 SUPER + P = Password menu  
 SUPER + SPACE = App Launcher  
 SUPER + SHIFT + S = Screenshot menu  
+</details>
