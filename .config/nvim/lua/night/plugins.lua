@@ -72,7 +72,7 @@ return require('packer').startup(function(use)
     }
 
     -- copilot
-    -- use 'github/copilot.vim'
+    use 'github/copilot.vim'
 
     -- automatically set up the configuration after cloning packer.nvim
     if packer_bootstrap then
