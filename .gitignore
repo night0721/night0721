@@ -7,5 +7,10 @@
 .gnupg
 .config/pulse
 .config/nvim/plugin
-.config/asciinema/install-id
-.config/glib-2.0
+.config/go
+.config/dconf
+.config/JetBrains
+.minecraft
+.jdks
+.java
+.gradle

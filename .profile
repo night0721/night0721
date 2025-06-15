@@ -16,12 +16,12 @@ export SUDO_EDITOR="nvim"
 export TERM="foot"
 export BROWSER="firefox"
 export MANPAGER="nvim +Man!"
-export PAGER="nsh"
+export PAGER="more"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export PATH="$PATH:/usr/local/bin:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system"
-export CDPATH=":$HOME/.config:$HOME/.nky/me:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.nky/coslinux:$HOME/.local/bin"
+export CDPATH=":$HOME/.config:$HOME/.nky/me:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.nky/coslinux:$HOME/.local/bin:$HOME/.nky/Coding/Projects:$HOME/.local/share/PrismLauncher/instances/1.8.9/minecraft"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GIT_CONFIG="$HOME/.config/git/config"

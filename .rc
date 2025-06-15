@@ -36,6 +36,8 @@ alias vg="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes"
 alias cck="cppcheck --std=c99 --check-level=exhaustive"
 alias wu="ssu wg-quick up wg0"
 alias wd="ssu wg-quick down wg0"
+alias mc="prismlauncher & disown"
+alias ij="intellij-idea-community-edition & disown"
 
 # Change directory aliases
 alias .='cd ~'
