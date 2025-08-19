@@ -1,18 +1,19 @@
 #!/bin/sh
 
+file="/sys/class/backlight/amdgpu_bl1/brightness"
 send_notification() {
-	brightness=$(cat /sys/class/backlight/amdgpu_bl2/brightness)
+	brightness=$(cat $file)
 	brightness_percentage=$(( brightness * 100 / 255 ))
 	luft "Brightness: $brightness_percentage%"
 }
 
 case $1 in
 up)
-	echo $(( $(cat /sys/class/backlight/amdgpu_bl2/brightness) + 11 )) | ssu tee /sys/class/backlight/amdgpu_bl2/brightness > /dev/null
+	echo $(( $(cat $file) + 11 )) | ssu tee $file > /dev/null
 	send_notification
 	;;
 down)
-	echo $(( $(cat /sys/class/backlight/amdgpu_bl2/brightness) - 11 )) | ssu tee /sys/class/backlight/amdgpu_bl2/brightness > /dev/null
+	echo $(( $(cat $file) - 11 )) | ssu tee $file > /dev/null
 	send_notification
 	;;
 esac

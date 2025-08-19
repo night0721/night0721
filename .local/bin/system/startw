@@ -1,16 +1,22 @@
 #!/bin/sh
 
 wbg ~/.nky/Photo/Wallpapers/tokyo.jpg &
-/usr/libexec/pipewire-launcher
-/usr/libexec/xdg-desktop-portal-wlr &
+# alpine
+# /usr/libexec/pipewire-launcher
+# /usr/libexec/xdg-desktop-portal-wlr &
+
 # arch
-# wireplumber &
-# pipewire &
-# pipewire-pulse &
-# /usr/lib/xdg-desktop-portal-wlr &
+wireplumber &
+pipewire &
+pipewire-pulse &
+/usr/lib/xdg-desktop-portal-wlr &
+
 sleep 2
-/usr/libexec/xdg-desktop-portal &
+
+# alpine
+# /usr/libexec/xdg-desktop-portal &
+
 # arch
-# /usr/lib/xdg-desktop-portal &
+/usr/lib/xdg-desktop-portal &
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-# dns &
+dns &
