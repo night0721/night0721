@@ -38,6 +38,7 @@ alias wu="ssu wg-quick up wg0"
 alias wd="ssu wg-quick down wg0"
 alias mc="prismlauncher & disown"
 alias ij="intellij-idea-community-edition & disown"
+alias pw="apm -L | fnf | xargs -r apm"
 
 # Change directory aliases
 alias .='cd ~'
