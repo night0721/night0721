@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wbg ~/.nky/Photo/Wallpapers/tokyo.jpg &
+wbg ~/.nky/Photo/Wallpapers/ohtani.png &
 # alpine
 # /usr/libexec/pipewire-launcher
 # /usr/libexec/xdg-desktop-portal-wlr &
