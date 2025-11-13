@@ -1,6 +1,8 @@
 #!/bin/sh
 
-source ~/.rc
+ipv4() {
+	echo $(curl -s ipinfo.io/ip)
+}
 
 while true
 do
@@ -8,5 +10,5 @@ do
          -H "Authorization: Bearer $API_TOKEN" -H "Content-Type: application/json" --data @- << EOF
 {"content": "$(ipv4)","name": "ng","proxied": false,"type": "A","comment": "DNS","tags": [],"ttl": 1}
 EOF
-    sleep 600
+    sleep 86400
 done
