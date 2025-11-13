@@ -14,3 +14,9 @@
 .jdks
 .java
 .gradle
+.thunderbird
+.ollama
+.continue
+.cursor
+.config/Cursor
+.bun

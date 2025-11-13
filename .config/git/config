@@ -21,3 +21,5 @@
 	interactive = auto
 	ui = true
 	pager = true
+[core]
+	excludesfile = /home/night/.config/git/ignore
