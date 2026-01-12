@@ -17,14 +17,15 @@ alias cc="$CC"
 alias v="$EDITOR"
 alias vw="$EDITOR ~/.nky/me/personal/wiki/Todo.md"
 alias vim="$EDITOR"
-alias rb="sudo reboot"
-alias po="sudo poweroff"
-alias sl="echo \"echo mem > /sys/power/state\" | ssu -s"
+alias rb="sudo systemctl --force reboot"
+alias po="sudo systemctl --force poweroff"
+alias sl="sudo systemctl suspend"
+#alias sl="echo \"echo mem > /sys/power/state\" | ssu -s"
 alias foldersize="sudo du -shc"
 alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.thunderbird/*' -not -path '*/.wakatime/*' -not -path '*/Music/*' -not -path '*/coslinux/*' -not -path '*/stagit/*' -not -path '*/Zig/*' -not -path '*/env/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg/*' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | fnf"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
-alias hst="cat ~/.cache/sh_history | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
+alias hst="cat ~/.cache/bash_history | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
 alias ncdu="ncdu --color dark -x --exclude images"
 alias s="ssu"
 alias ipv4="echo \$(curl -s ipinfo.io/ip)"
@@ -37,8 +38,12 @@ alias cck="cppcheck --std=c99 --check-level=exhaustive"
 alias wu="ssu wg-quick up wg0"
 alias wd="ssu wg-quick down wg0"
 alias mc="prismlauncher & disown"
-alias ij="intellij-idea-community-edition & disown"
+alias tb="thunderbird & disown"
+alias ij="idea & disown"
+alias ws="webstorm & disown"
+alias rs="rustrover & disown"
 alias pw="apm -L | fnf | xargs -r apm"
+
 
 # Change directory aliases
 alias .='cd ~'
@@ -100,6 +105,8 @@ chtsh() {
 		curl cht.sh/$selected~$query
 	fi
 }
+
+function yt { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json --extractor-args "youtubepot-bgutilscript:script_path=/home/night/bgutil-ytdlp-pot-provider/server/build/generate_once.js" & }
 
 screenrecord() {
 	wf-recorder -g "$(slurp)" -f "$HOME/.nky/Video/$(date +"%Y%m%d%H%M%S").mp4"
