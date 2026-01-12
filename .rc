@@ -44,7 +44,6 @@ alias ws="webstorm & disown"
 alias rs="rustrover & disown"
 alias pw="apm -L | fnf | xargs -r apm"
 
-
 # Change directory aliases
 alias .='cd ~'
 alias ..='cd ..'
