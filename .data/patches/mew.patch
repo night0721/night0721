@@ -17,4 +17,4 @@
 +	[SchemeOut]  = { 0xf38ba8ff, 0x1e1e2eff },
  };
  
- /* -l option; if nonzero, use vertical list with given number of lines */
+ /* -m option; if provided, use that output instead of default output */

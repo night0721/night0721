@@ -20,7 +20,7 @@ export PAGER="more"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export PATH="$PATH:/usr/local/bin:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin/misc:$HOME/.local/bin/share:$HOME/.local/bin/system:/opt/rocm/bin"
 export CDPATH=":$HOME/.config:$HOME/.nky/me:$HOME/.nky/Coding:$HOME/.nky/Coding/C:$HOME/.nky/Coding/HTML:$HOME/.nky/Coding/Markdown:$HOME/.nky/git:$HOME/.nky/coslinux:$HOME/.local/bin:$HOME/.nky/Coding/Projects:$HOME/.local/share/PrismLauncher/instances/1.8.9/minecraft"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
@@ -30,6 +30,7 @@ export APM_KEY="$HOME/.nky/me/personal/argon"
 export GPG_TTY=$(tty)
 
 export CC="zig cc"
+export CC="gcc"
 export CFLAGS="-Os -mtune=native -march=native -pipe -s -flto"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
@@ -58,3 +59,12 @@ if [[ "$(tty)" == "/dev/tty1" ]]; then
 	dbus-run-session dwl -s startw # run dwl if not
    # dwl -s startw # run dwl if not
 fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export HSA_OVERRIDE_GFX_VERSION=12.0.1
+
+# uv
+export PATH="/home/night/.local/share/../bin:$PATH"

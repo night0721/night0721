@@ -94,25 +94,21 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 efibootmgr --create --label "Alpain" --disk "/dev/nvme0n1" --part "1" --loader "\vmlinuz-lts" --unicode "root=UUID=93b78e35-1c63-4fd3-922d-cf855f86c90f loglevel=3 quiet splash udev.log_priority=3 vt.global_cursor_default=1 amdgpu.backlight=0 modules=sd-mod,usb-storage,ext4,nvme rootfstype=ext4 rw initrd=\initramfs-lts" --verbose
 
 # misc
-sudo sed -i "s/dmenu-wl/wmenu" /usr/bin/passmenu # fix passmenu not using wmenu
-sudo sed -i "s/\"\$dmenu\"/\"\$dmenu\" -i -p 'Password' -f 'MonaspiceKr Nerd Font 13' -N 1e1e2e -n cdd6f4 -M 1e1e2e -m f38ba8 -S 1e1e2e -s f9e2af/" /usr/bin/passmenu
 cleansystem
 sudo find /usr/share/fonts/adobe-source-han-sans -type f ! -name "SourceHanSansHK-Normal.otf" -delete
 
 cd ~
 mkdir fonts
 cd fonts
-curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monaspace.zip
+curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Monaspace.zip
 unzip Monaspace.zip
-unzip JetBrainsMono.zip
 sudo mkdir /usr/share/fonts/TTF
 sudo mv MonaspiceKrNerdFont-*.otf /usr/share/fonts/TTF
-sudo mv JetBrainsMonoNerdFont* /usr/share/fonts/TTF
 cd ..
 rm -rf fonts
 
 sudo mv /usr/share/fonts/adobe-source-han-sans/SourceHanSansHK-Normal.otf /usr/share/fonts/TTF
-sudo pacman -Rcns dobe-source-han-sans-hk-fonts
+sudo pacman -Rcns adobe-source-han-sans-hk-fonts
 
 printf "$nightpasswd\n" | chsh -s /usr/bin/bash
 

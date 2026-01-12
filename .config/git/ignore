@@ -20,3 +20,6 @@
 .cursor
 .config/Cursor
 .bun
+.rustup
+.aws
+.pki
