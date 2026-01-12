@@ -65,6 +65,3 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export HSA_OVERRIDE_GFX_VERSION=12.0.1
-
-# uv
-export PATH="/home/night/.local/share/../bin:$PATH"
