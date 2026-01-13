@@ -22,14 +22,13 @@ alias po="sudo systemctl --force poweroff"
 alias sl="sudo systemctl suspend"
 #alias sl="echo \"echo mem > /sys/power/state\" | ssu -s"
 alias foldersize="sudo du -shc"
-alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.thunderbird/*' -not -path '*/.wakatime/*' -not -path '*/Music/*' -not -path '*/coslinux/*' -not -path '*/stagit/*' -not -path '*/Zig/*' -not -path '*/env/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg/*' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | fnf"
+alias homefiles="find ~ -not -path '*/.local/share/*' -not -path '*/.local/state/*' -not -path '*/.mozilla/*' -not -path '*/.thunderbird/*' -not -path '*/.wakatime/*' -not -path '*/Music/*' -not -path '*/coslinux/*' -not -path '*/stagit/*' -not -path '*/Zig/*' -not -path '*/env/*' -not -path '*/.cache/*' -not -path '*/night0721/*' -not -path '*/.gnupg/*' -not -path '*/.git/*' -not -path '*/node_modules/*' -type f -print | neo"
 alias gitfolders="find . -type d -name '.git' -not -path '*nvim*' -not -path '*tmux*'"
 alias convertunix="find . -type f -print0 | xargs -0 dos2unix --"
-alias hst="cat ~/.cache/bash_history | sort | uniq | fnf -l 100 | tr -d '\n' | wl-copy"
+alias hst="cat ~/.cache/bash_history | sort | uniq | neo | tr -d '\n' | wl-copy"
 alias ncdu="ncdu --color dark -x --exclude images"
 alias s="ssu"
 alias ipv4="echo \$(curl -s ipinfo.io/ip)"
-alias fnf="fnf -l 50"
 alias hp="bluetoothctl power on && bluetoothctl connect '50:DE:06:D7:C7:30' && pactl set-default-sink 'bluez_output.50_DE_06_D7_C7_30.1'"
 alias dn="ssu rc-service networking restart &"
 alias oe="opustags --in-place -e"
@@ -42,7 +41,7 @@ alias tb="thunderbird & disown"
 alias ij="idea & disown"
 alias ws="webstorm & disown"
 alias rs="rustrover & disown"
-alias pw="apm -L | fnf | xargs -r apm"
+alias pw="apm -L | neo | xargs -r apm"
 
 # Change directory aliases
 alias .='cd ~'
@@ -79,7 +78,7 @@ c() {
 
 ma() { section="$(test -z $2 && echo 0 || echo $1)" page="${2:-$1}" ; curl -s "https://man-api.ch/v1/buster/${section}/${page}" | nvim +Man!; }
 
-manl() { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | fnf); }
+manl() { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | sed 's/ //' | neo); }
 
 webjpeg() { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
 
@@ -94,7 +93,7 @@ asz() {
 chtsh() {
 	languages=$(echo "react nextjs javascript python java golang c cpp typescript rust" | tr " " "\n")
 	core_utils=$(echo "find xargs sed awk" | tr " " "\n")
-	selected=$(echo "$languages\n$core_utils" | fnf)
+	selected=$(echo "$languages\n$core_utils" | neo)
 
 	read -p "What you want to learn: " query
 
@@ -105,7 +104,7 @@ chtsh() {
 	fi
 }
 
-function yt { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json --extractor-args "youtubepot-bgutilscript:script_path=/home/night/bgutil-ytdlp-pot-provider/server/build/generate_once.js" & }
+function yt { yt-dlp $1 -f ba --audio-format opus -o "%(title)s.%(ext)s" -x --no-write-description --no-write-comments --audio-quality 0 --parse-metadata ":(?P<meta_synopsis>)" --parse-metadata ":(?P<meta_description>)" --parse-metadata ":(?P<meta_purl>)" --parse-metadata ":(?P<meta_comment>)" --embed-metadata --no-embed-chapters --no-embed-info-json --extractor-args "youtubepot-bgutilscript:script_path=/home/night/bgutil/server/build/generate_once.js" & }
 
 screenrecord() {
 	wf-recorder -g "$(slurp)" -f "$HOME/.nky/Video/$(date +"%Y%m%d%H%M%S").mp4"
