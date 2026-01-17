@@ -42,6 +42,7 @@ alias ij="idea & disown"
 alias ws="webstorm & disown"
 alias rs="rustrover & disown"
 alias pw="apm -L | neo | xargs -r apm"
+alias ml="moonlight & disown"
 
 # Change directory aliases
 alias .='cd ~'
