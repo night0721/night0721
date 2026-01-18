@@ -87,7 +87,7 @@ cd /dotfiles
 sudo cp .data/misc/grub /etc/default/grub
 sudo mkdir -p /boot/grub/themes
 sudo cp -r .data/misc/n /boot/grub/themes/n
-sudo grub-install —-target=x86_64-efi --efi-directory=/boot/efi —-bootloader-id=Arch —-recheck
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --recheck
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # instead of grub, I now use efistub
