@@ -18,6 +18,9 @@ vim.opt.expandtab = false
 vim.opt.wrap = true
 vim.opt.breakindent = true
 
+vim.opt.encoding = "utf-8"
+--vim.opt.fileformat = "unix"
+
 vim.opt.smartindent = true
 
 vim.opt.colorcolumn = "80"

@@ -13,5 +13,5 @@ require("catppuccin").setup({
   },
 })
 
-vim.cmd [[colorscheme catppuccin-mocha]]
+vim.cmd.colorscheme("catppuccin")
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "none" })
