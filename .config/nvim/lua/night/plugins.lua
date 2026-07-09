@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 
 vim.opt.rtp:prepend(lazypath)
@@ -17,30 +17,20 @@ local config = {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
-		dependencies = {
-			"HiPhish/rainbow-delimiters.nvim",
-		},
 		build = ":TSUpdate",
+		dependencies = { "HiPhish/rainbow-delimiters.nvim" },
 		event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-		opts = {
-			ensure_installed = {
+		config = function()
+			require("nvim-treesitter").install({
 				"javascript", "typescript", "bash", "c", "lua",
-				"html", "json", "python", "typst", "go", "make", "markdown"
-			},
-			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-			auto_install = true, -- Automatically install missing parsers when entering buffer
-			highlight = { enable = true },
-			indent = { enable = true },
-			folds = { enable = true },
-		},
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
-
-			local rainbow_delimiters = require('rainbow-delimiters')
-			require('rainbow-delimiters.setup').setup({
-				strategy = {
-					[''] = rainbow_delimiters.strategy['global'],
-				},
+				"html", "json", "python", "typst", "go", "make", "markdown",
+			})
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "javascript", "typescript", "bash", "c", "lua",
+				"html", "json", "python", "typst", "go", "make", "markdown" },
+				callback = function()
+					vim.treesitter.start()
+				end,
 			})
 		end,
 	},
@@ -78,66 +68,66 @@ local config = {
 		},
 		version = '1.*',
 		opts = {
-      cmdline = {
-        keymap = { preset = 'inherit' },
-        completion = { menu = { auto_show = true } },
-      },
-      completion = {
-        documentation = { auto_show = true, auto_show_delay_ms = 500 },
-        ghost_text = { enabled = true },
-        menu = {
-          -- TODO: menu item direction, not implemented yet
-          direction_priority = { 'n', 's' },
-          draw = {
-            columns = {
-              { 'label', 'label_description' },
-              { 'kind_icon', 'source_name', gap = 1 },
-            },
-          },
-        },
-        trigger = {
-          show_on_backspace_in_keyword = true,
-        },
-      },
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'nerdfont', 'spell' },
-        providers = {
-          emoji = {
-            name = 'Emoji',
-            module = 'blink-emoji',
-            score_offset = -200,
-            opts = { trigger = ':' },
-          },
-          nerdfont = {
-            name = 'Nerd',
-            module = 'blink-nerdfont',
-            score_offset = -200,
-            opts = { trigger = ':' },
-          },
-          spell = {
-            name = 'Spell',
-            module = 'blink-cmp-spell',
-            score_offset = -400,
-            enabled = function()
-              return vim.opt.spell:get()
-            end,
-            opts = { use_cmp_spell_sorting = true, keep_all_entries = true, max_entries = 10 },
-          },
-          buffer = {
-            score_offset = -600,
-          }
-        },
-      },
-  },
-      keymap = {
-        preset = 'super-tab',
-        ['<M-Left>'] = { 'cancel' },
-        ['<M-Right>'] = { 'accept' },
-      },
-	  event = {
-		  "InsertEnter",
-		  "CmdlineEnter",
-	  }
+			cmdline = {
+				keymap = { preset = 'inherit' },
+				completion = { menu = { auto_show = true } },
+			},
+			completion = {
+				documentation = { auto_show = true, auto_show_delay_ms = 500 },
+				ghost_text = { enabled = true },
+				menu = {
+					-- TODO: menu item direction, not implemented yet
+					direction_priority = { 'n', 's' },
+					draw = {
+						columns = {
+							{ 'label', 'label_description' },
+							{ 'kind_icon', 'source_name', gap = 1 },
+						},
+					},
+				},
+				trigger = {
+					show_on_backspace_in_keyword = true,
+				},
+			},
+			sources = {
+				default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'nerdfont', 'spell' },
+				providers = {
+					emoji = {
+						name = 'Emoji',
+						module = 'blink-emoji',
+						score_offset = -200,
+						opts = { trigger = ':' },
+					},
+					nerdfont = {
+						name = 'Nerd',
+						module = 'blink-nerdfont',
+						score_offset = -200,
+						opts = { trigger = ':' },
+					},
+					spell = {
+						name = 'Spell',
+						module = 'blink-cmp-spell',
+						score_offset = -400,
+						enabled = function()
+							return vim.opt.spell:get()
+						end,
+						opts = { use_cmp_spell_sorting = true, keep_all_entries = true, max_entries = 10 },
+					},
+					buffer = {
+						score_offset = -600,
+					}
+				},
+			},
+		},
+		keymap = {
+			preset = 'super-tab',
+			['<M-Left>'] = { 'cancel' },
+			['<M-Right>'] = { 'accept' },
+		},
+		event = {
+			"InsertEnter",
+			"CmdlineEnter",
+		}
 	},
 	{
 		"night0721/ccc.nvim",
