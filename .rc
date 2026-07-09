@@ -43,6 +43,8 @@ alias ws="webstorm & disown"
 alias rs="rustrover & disown"
 alias pw="apm -L | neo | xargs -r apm"
 alias ml="moonlight & disown"
+alias lc="find . -type f -exec sh -c 'echo \"==> {}\"; cat {} ' \; | wl-copy"
+alias oc="openclaw gateway --auth none"
 
 # Change directory aliases
 alias .='cd ~'
@@ -84,7 +86,7 @@ manl() { man $(man -k . | awk -F'-' '{print $1}' | awk -F'(' '{ print $1 }' | se
 webjpeg() { convert $1 -sampling-factor 4:2:0 -strip -quality 75 -interlace JPEG -colorspace sRGB -resize $2 $3; }
 
 findfiles() {
-    find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -type f -not -executable -exec grep -rnwsRHn -e "$1" {} + 2> /dev/null
+    find . -not -path "*/.mozilla/*" -not -path "*/.cache/*" -not -path "*/.local/share/*" -not -path "*/.local/state/*" -not -path "*/env/*" -not -path "*/node_modules/*" -not -path "*/pdfs/*" -not -path "*/build/*" -not -path "*/.git/*" -not -path "*/npm/*" -not -path "*/.gnupg/*" -not -path "*/.wakatime/*" -not -path "*/textbook/*" -not -path "*/stagit/*" -not -path "*/Music/*" -not -path "*/Video/*" -not -path "*/cath-docs/*" -not -name "*.tar.gz" -not -path "*/minecraft-weekend/*" -type f -not -executable -exec grep -rnwsRHn -e "$1" {} + 2> /dev/null
 }
 
 asz() {
@@ -113,6 +115,10 @@ screenrecord() {
 	pkill wf-recorder
 }
 
+gl() {
+	find ~/.nky/git -maxdepth 1 -type d -exec sh -c 'echo "==> {}"; cd "{}"; git status -s;' \;
+}
+
 cpc() {
 	# ssu pacman -Rns $(pacman -Qdttq) # remove orphans
 	apk cache clean
@@ -128,5 +134,3 @@ replace() {
 
     find . -type f -exec sed -i "s/$pattern/$replacewith/g" {} \;
 }
-
-jy
