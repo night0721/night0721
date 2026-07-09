@@ -14,36 +14,36 @@ vim.opt.rtp:prepend(lazypath)
 
 local config = {
 	"folke/lazy.nvim",
-{
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    dependencies = {
-        "HiPhish/rainbow-delimiters.nvim",
-    },
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-    opts = {
-        ensure_installed = {
-            "javascript", "typescript", "bash", "c", "lua",
-            "html", "json", "python", "typst", "go", "make", "markdown"
-        },
-        sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-        auto_install = true, -- Automatically install missing parsers when entering buffer
-        highlight = { enable = true },
-        indent = { enable = true },
-        folds = { enable = true },
-    },
-    config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		dependencies = {
+			"HiPhish/rainbow-delimiters.nvim",
+		},
+		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+		opts = {
+			ensure_installed = {
+				"javascript", "typescript", "bash", "c", "lua",
+				"html", "json", "python", "typst", "go", "make", "markdown"
+			},
+			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
+			auto_install = true, -- Automatically install missing parsers when entering buffer
+			highlight = { enable = true },
+			indent = { enable = true },
+			folds = { enable = true },
+		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
 
-        local rainbow_delimiters = require('rainbow-delimiters')
-        require('rainbow-delimiters.setup').setup({
-            strategy = {
-                [''] = rainbow_delimiters.strategy['global'],
-            },
-        })
-    end,
-}
+			local rainbow_delimiters = require('rainbow-delimiters')
+			require('rainbow-delimiters.setup').setup({
+				strategy = {
+					[''] = rainbow_delimiters.strategy['global'],
+				},
+			})
+		end,
+	},
 	{
 		-- color scheme
 		"catppuccin/nvim",
