@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wbg ~/.nky/Photo/Wallpapers/ohtani.png &
+wbg ~/.nky/Photo/Wallpapers/bridge.jpg &
 # alpine
 # /usr/libexec/pipewire-launcher
 # /usr/libexec/xdg-desktop-portal-wlr &

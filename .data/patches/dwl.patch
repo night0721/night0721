@@ -1,24 +1,24 @@
 diff --git a/Makefile b/Makefile
-index 3358bae..80ebb2e 100644
+index 8304245..c2d1dd9 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -6,7 +6,7 @@ include config.mk
  # flags for compiling
  DWLCPPFLAGS = -I. -DWLR_USE_UNSTABLE -D_POSIX_C_SOURCE=200809L \
- 	-DVERSION=\"$(VERSION)\" $(XWAYLAND)
--DWLDEVCFLAGS = -g -pedantic -Wall -Wextra -Wdeclaration-after-statement \
-+DWLDEVCFLAGS = -pedantic -Wall -Wextra -Wdeclaration-after-statement \
+ 	-DVERSION=\"$(VERSION)\" $(XWAYLAND) $(CPPFLAGS)
+-DWLDEVCFLAGS = -g -Wpedantic -Wall -Wextra -Wdeclaration-after-statement \
++DWLDEVCFLAGS = -Wpedantic -Wall -Wextra -Wdeclaration-after-statement \
  	-Wno-unused-parameter -Wshadow -Wunused-macros -Werror=strict-prototypes \
  	-Werror=implicit -Werror=return-type -Werror=incompatible-pointer-types \
  	-Wfloat-conversion
 diff --git a/config.def.h b/config.def.h
-index 22d2171..f404f66 100644
+index a4019d3..51530f2 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -7,10 +7,10 @@
- static const int sloppyfocus               = 1;  /* focus follows mouse */
+@@ -8,10 +8,10 @@ static const int sloppyfocus               = 1;  /* focus follows mouse */
  static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
  static const unsigned int borderpx         = 1;  /* border pixel of windows */
+ static const unsigned int snap             = 32; /* snap pixel */
 -static const float rootcolor[]             = COLOR(0x222222ff);
 -static const float bordercolor[]           = COLOR(0x444444ff);
 -static const float focuscolor[]            = COLOR(0x005577ff);
@@ -28,27 +28,29 @@ index 22d2171..f404f66 100644
 +static const float focuscolor[]            = COLOR(0x000000ff);
 +static const float urgentcolor[]           = COLOR(0x000000ff);
  /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
- static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
+ static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
  
-@@ -25,7 +25,6 @@ static const Rule rules[] = {
+@@ -24,7 +24,6 @@ static int log_level = WLR_ERROR;
+ static const Rule rules[] = {
  	/* app_id             title       tags mask     isfloating   monitor */
- 	/* examples: */
  	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 -	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+     /* default/example rule: can be changed but cannot be eliminated; at least one rule must exist */
  };
  
- /* layout(s) */
-@@ -48,7 +47,8 @@ static const MonitorRule monrules[] = {
- 	{ "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
- 	*/
- 	/* defaults */
+@@ -44,7 +43,10 @@ static const MonitorRule monrules[] = {
+    /* name        mfact  nmaster scale layout       rotate/reflect                x    y
+     * example of a HiDPI laptop monitor:
+     { "eDP-1",    0.5f,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 }, */
 -	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
-+	{ "eDP-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 2560, 0, 1920, 1080, 120.001999f, -1 , 0},
-+    { "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 2560, 1440, 59.951000f, -1 , 0},
++	{ "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 1920, 1080, 60.000f, -1 , 0},
++	{ "HDMI-A-2",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 1920, 0, 2560, 1440, 59.951f, -1 , 0}
++//	{ "eDP-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 2560, 0, 1920, 1080, 120.001999f, -1 , 0},
++//  { "HDMI-A-1",       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0, 2560, 1440, 59.951000f, -1 , 0},
+ 	/* default monitor rule: can be changed but cannot be eliminated; at least one monitor rule must exist */
  };
  
- /* keyboard */
-@@ -67,7 +67,7 @@ static const int repeat_delay = 600;
+@@ -64,7 +66,7 @@ static const int repeat_delay = 600;
  static const int tap_to_click = 1;
  static const int tap_and_drag = 1;
  static const int drag_lock = 1;
@@ -57,7 +59,7 @@ index 22d2171..f404f66 100644
  static const int disable_while_typing = 1;
  static const int left_handed = 0;
  static const int middle_button_emulation = 0;
-@@ -107,7 +107,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
+@@ -104,7 +106,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
  static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TAP_MAP_LRM;
  
  /* If you want to use the windows key for MODKEY, use WLR_MODIFIER_LOGO */
@@ -65,9 +67,9 @@ index 22d2171..f404f66 100644
 +#define MODKEY WLR_MODIFIER_LOGO
 +#define ALTKEY WLR_MODIFIER_ALT
  
- #define TAGKEYS(KEY,SKEY,TAG) \
+ #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                    KEY,            view,            {.ui = 1 << TAG} }, \
-@@ -120,28 +121,52 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
+@@ -117,27 +120,48 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
  
  /* commands */
  static const char *termcmd[] = { "foot", NULL };
@@ -87,19 +89,22 @@ index 22d2171..f404f66 100644
 +static const char *barcmd[] = { "bar", NULL };
  
  static const Key keys[] = {
- 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
- 	/* modifier                  key                 function        argument */
--	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
--	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
--	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
--	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
--	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
--	{ MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
--	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05f} },
--	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
--	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
--	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
--	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          killclient,     {0} },
+ 	/* modifier                  key                  function          argument */
+-	{ MODKEY,                    XKB_KEY_p,           spawn,            {.v = menucmd} },
+-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,      spawn,            {.v = termcmd} },
+-	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
+-	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
+-	{ MODKEY,                    XKB_KEY_i,           incnmaster,       {.i = +1} },
+-	{ MODKEY,                    XKB_KEY_d,           incnmaster,       {.i = -1} },
+-	{ MODKEY,                    XKB_KEY_h,           setmfact,         {.f = -0.05f} },
+-	{ MODKEY,                    XKB_KEY_l,           setmfact,         {.f = +0.05f} },
+-	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
+-	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
+-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           killclient,       {0} },
+-	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
+-	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
+-	{ MODKEY,                    XKB_KEY_m,           setlayout,        {.v = &layouts[2]} },
+-	{ MODKEY,                    XKB_KEY_space,       setlayout,        {0} },
 +	{ MODKEY,                    XKB_KEY_space,      spawn,          {.v = menucmd} },
 +    { MODKEY,                    XKB_KEY_b,          spawn,          {.v = barcmd} },
 +	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = passmenucmd} },
@@ -123,24 +128,18 @@ index 22d2171..f404f66 100644
 +	{ ALTKEY,                    XKB_KEY_Return,     zoom,           {0} },
 +	{ ALTKEY,                    XKB_KEY_Tab,        view,           {0} },
 +	{ MODKEY,                    XKB_KEY_c,          killclient,     {0} },
- 	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
--	{ MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
--	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
--	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
-+	{ MODKEY,                    XKB_KEY_u,          setlayout,      {.v = &layouts[1]} },
-+	{ MODKEY,                    XKB_KEY_i,          setlayout,      {.v = &layouts[2]} },
 +	{ ALTKEY,                    XKB_KEY_space,      setlayout,      {0} },
- 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
--	{ MODKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
-+	{ ALTKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
- 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
- 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
- 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
+ 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,       togglefloating,   {0} },
+-	{ MODKEY,                    XKB_KEY_e,           togglefullscreen, {0} },
++	{ ALTKEY,                    XKB_KEY_e,           togglefullscreen, {0} },
+ 	{ MODKEY,                    XKB_KEY_0,           view,             {.ui = ~0} },
+ 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_0,           tag,              {.ui = ~0} },
+ 	{ MODKEY,                    XKB_KEY_comma,       focusmon,         {.i = WLR_DIRECTION_LEFT} },
 diff --git a/dwl.c b/dwl.c
-index 5bf995e..a41a90f 100644
+index cca1ea4..4c8793f 100644
 --- a/dwl.c
 +++ b/dwl.c
-@@ -218,6 +218,11 @@ typedef struct {
+@@ -236,6 +236,11 @@ typedef struct {
  	const Layout *lt;
  	enum wl_output_transform rr;
  	int x, y;
@@ -152,7 +151,7 @@ index 5bf995e..a41a90f 100644
  } MonitorRule;
  
  typedef struct {
-@@ -974,6 +979,7 @@ createmon(struct wl_listener *listener, void *data)
+@@ -1149,6 +1154,7 @@ createmon(struct wl_listener *listener, void *data)
  	/* This event is raised by the backend when a new output (aka a display or
  	 * monitor) becomes available. */
  	struct wlr_output *wlr_output = data;
@@ -160,7 +159,7 @@ index 5bf995e..a41a90f 100644
  	const MonitorRule *r;
  	size_t i;
  	struct wlr_output_state state;
-@@ -1002,15 +1008,23 @@ createmon(struct wl_listener *listener, void *data)
+@@ -1177,15 +1183,23 @@ createmon(struct wl_listener *listener, void *data)
  			strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, LENGTH(m->ltsymbol));
  			wlr_output_state_set_scale(&state, r->scale);
  			wlr_output_state_set_transform(&state, r->rr);
